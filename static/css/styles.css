@@ -1,0 +1,135 @@
+:root{
+    --default-font: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway", sans-serif;
+    --nav-font: "Poppins", sans-serif;
+
+    --background-color: #F6F1F1;
+    --primary-color: #146C94;
+    --primary-rgb-color: rgba(20,108,148,1) 0%;
+    --secondary-color: #19A7CE;
+    --secondary-rgb-color: rgba(25,167,206,1) 35%;
+    --accent-color: #AFD3E2;
+    --accent-rgb-color: rgba(175,211,226,1) 100%;
+
+    --fs-400: 1rem;
+	--fs-500: 1.25rem; /*text*/
+	--fs-600: 1.5rem; /*subtitle*/
+	--fs-700: 2rem; /*title*/
+    --fs-800: 2.5rem;
+
+    --fw-light: 200;
+	--fw-normal: 400;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+    --item-border-radius: 1rem;
+}
+
+/* GENERAL */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	scroll-behavior: smooth;
+}
+
+.title{
+    /* color: var(--primary-color); */
+    color: var(--background-color);
+    font-size: var(--fs-700);
+    font-weight: var(--fw-bold);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.hero-title{
+
+    color: var(--background-color);
+    font-size: var(--fs-800);
+    font-weight: var(--fw-bold);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.subtitle{
+    /* color: var(--primary-color); */
+
+    color: var(--background-color);
+    font-size: var(--fs-600);
+    font-weight: var(--fw-bold);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.text{
+
+    color: var(--background-color);
+    /* color: var(--primary-color); */
+}
+
+.hero-text{
+    color: var(--background-color);
+    font-size: var(--fs-600);
+}
+
+
+/* END OF GENERAL */
+
+
+/* NAVBAR */
+
+
+
+/* NAVBAR END */
+
+/* FOOTER */
+
+
+
+/* FOOTER END */
+
+/* INDEX PAGE */
+
+.hero-image {
+    background-image: url('/img/hero-banner.jpg'); /* Ensure the image path is correct */
+    background-size: cover; /* Make the background image cover the entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 75vh; 
+    border-radius: 20px;
+}
+
+
+/* END OF INDEX PAGE */
+
+
+/* RECOMMENDATION PAGE */
+
+/* RECOMMENDATION */
+
+.beach-description{
+    max-width: 75rem;
+}
+
+
+
+/* RECOMMENDATION END */
+
+/* RECOMMENDATION PAGE END */
+
+
+
+/* MEDIA QUERY */
+
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column; /* Stacks flex children vertically */
+    }
+
+    .beach-class {
+        width: 100%; /* Allows the image to take the full width of the row */
+    }
+}
+
+/* MEDIA QUERY END */

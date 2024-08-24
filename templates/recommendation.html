@@ -1,0 +1,165 @@
+{% extends "template.html" %} {% block title %}Index page{% endblock %} {% block
+content %}
+
+<div class="container-fluid">
+	<section id="banner" class="banner">
+		<div class="row">
+			<div
+				class="col-sm-12 colmd-12 col-lg-12 col-xl-6 rounded-5 d-flex align-items-end"
+				style="
+					background-image: url('/img/recommendation-banner.jpeg');
+					height: 500px; /* You can set this to maintain the aspect ratio */
+					background-position: center;
+					background-size: cover;
+					width: 100%;
+					height: 50vh;
+				"
+			>
+				<div class="row w-100">
+					<div class="col-md-1"></div>
+					<!-- Aligning to the grid's padding -->
+					<div class="col-md-10">
+						<p class="title" style="color: #fff">
+							Top 3 safest beaches in your current state of residence
+						</p>
+					</div>
+					<div class="col-md-1"></div>
+					<!-- Optional for symmetry -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="list-beaches" class="list-beaches">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<!-- Card Content -->
+
+				<!-- Card 1 -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card rounded-5 mt-3">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<!-- Image -->
+											<div class="col-sm-12 col-md-12 col-lg-4">
+												<img
+													src="/img/bellsbeach.jpg"
+													alt=""
+													class="img-fluid rounded-5"
+												/>
+											</div>
+											<!-- Content Description -->
+											<div class="col-sm-12 col-md-12 col-lg-8">
+												<div class="d-flex flex-column justify-content-between">
+													<p class="title">Bells Beach</p>
+													<p class="beach-description text">
+														Lorem ipsum dolor, sit amet consectetur adipisicing
+														elit. Non praesentium inventore mollitia tenetur
+														distinctio earum ipsam provident! Natus, laborum sed
+														quidem magni vero nulla minima magnam blanditiis!
+														Sunt ut sapiente et ex dolores quo temporibus, nihil
+														repellat numquam laborum adipisci suscipit soluta
+														aperiam cumque! Beatae, nemo recusandae. Voluptates,
+														natus officiis.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 2 -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card rounded-5 mt-3">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<!-- Image -->
+											<div class="col-sm-12 col-md-12 col-lg-4">
+												<img
+													src="/img/bellsbeach.jpg"
+													alt=""
+													class="img-fluid rounded-5"
+												/>
+											</div>
+											<!-- Content Description -->
+											<div class="col-sm-12 col-md-12 col-lg-8">
+												<div class="d-flex flex-column justify-content-between">
+													<p class="title">Bells Beach</p>
+													<p class="beach-description text">
+														Lorem ipsum dolor, sit amet consectetur adipisicing
+														elit. Non praesentium inventore mollitia tenetur
+														distinctio earum ipsam provident! Natus, laborum sed
+														quidem magni vero nulla minima magnam blanditiis!
+														Sunt ut sapiente et ex dolores quo temporibus, nihil
+														repellat numquam laborum adipisci suscipit soluta
+														aperiam cumque! Beatae, nemo recusandae. Voluptates,
+														natus officiis.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 3 -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card rounded-5 mt-3">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+											<!-- Image -->
+											<div class="col-sm-12 col-md-12 col-lg-4">
+												<img
+													src="/img/bellsbeach.jpg"
+													alt=""
+													class="img-fluid rounded-5"
+												/>
+											</div>
+											<!-- Content Description -->
+											<div class="col-sm-12 col-md-12 col-lg-8">
+												<div class="d-flex flex-column justify-content-between">
+													<p class="title">Bells Beach</p>
+													<p class="beach-description text">
+														Lorem ipsum dolor, sit amet consectetur adipisicing
+														elit. Non praesentium inventore mollitia tenetur
+														distinctio earum ipsam provident! Natus, laborum sed
+														quidem magni vero nulla minima magnam blanditiis!
+														Sunt ut sapiente et ex dolores quo temporibus, nihil
+														repellat numquam laborum adipisci suscipit soluta
+														aperiam cumque! Beatae, nemo recusandae. Voluptates,
+														natus officiis.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card Content End -->
+			</div>
+		</div>
+	</section>
+</div>
+
+{% endblock %}
