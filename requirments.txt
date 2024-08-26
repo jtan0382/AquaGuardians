@@ -1,0 +1,8 @@
+Flask
+pydantic
+pyodbc
+azure-identity
+APScheduler
+gunicorn
+python-dotenv
+requests
