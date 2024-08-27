@@ -1,32 +1,75 @@
 {% extends "template.html" %} {% block title %}Index page{% endblock %} {% block
-	content %}
-	
-	<section id="hero" class="hero">
-		<div class="d-flex flex-column justify-content-end hero-image">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<p class="hero-title">Stay Safe in the Water</p>
-						<p class="hero-title">Protect Your Family</p>
-						<p class="hero-text">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-							amet illo velit numquam quidem possimus cupiditate laudantium modi
-							libero impedit ab, dolorem, recusandae vero qui distinctio
-							voluptatem suscipit. Perferendis quos quo natus error doloremque a
-							dolor hic nisi voluptas vel? Neque harum blanditiis autem aperiam
-							sint quia, facere fuga aliquam!
-						</p>
-						<div class="d-flex gap-3 mb-3">
-							<a href="" class="btn btn-primary">Safe Beaches</a>
-						</div>
+content %}
+
+<section id="hero" class="hero">
+	<div class="d-flex flex-column justify-content-end hero-image">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<p class="hero-title">Stay Safe in the Water</p>
+					<p class="hero-title">Protect Your Family</p>
+					<p class="hero-text">
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
+						amet illo velit numquam quidem possimus cupiditate laudantium modi
+						libero impedit ab, dolorem, recusandae vero qui distinctio
+						voluptatem suscipit. Perferendis quos quo natus error doloremque a
+						dolor hic nisi voluptas vel? Neque harum blanditiis autem aperiam
+						sint quia, facere fuga aliquam!
+					</p>
+					<div class="d-flex gap-3 mb-3">
+						<a href="" class="btn btn-primary hero-button">Safe Beaches</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	
-	section#
-	
-	{% endblock %}
-	
+	</div>
+</section>
+
+<section id="about" class="about">
+	<div class="row mt-5">
+		<div class="col-md-1"></div>
+		<div class="col-sm-12 col-md-10">
+			<!-- <div class="row">
+					<div class="col-md-6 left-about">test</div>
+					<div class="col-md-6 right-about">
+						<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
+					</div>
+				</div> -->
+
+			<!-- About Information -->
+
+			<div class="d-flex">
+				<!-- Left -->
+				<div>
+					<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
+				</div>
+				<!-- Right -->
+				<div>
+					<div class="d-flex flex-column justify-content-between">
+						<div>
+							<p class="title">What is AquaGuardians?</p>
+						</div>
+						<div>
+							<p class="text about-information">
+								AquaGuardians is a website designed to address the issue of
+								accidental drowning of children in migrant families in
+								Australia. Important water safety information and resources are
+								provided to help migrant parents make safe decisions when
+								planning beach or other water activities. The goal of the
+								webpage is to raise awareness of water safety and preventative
+								preparedness, thereby reducing the incidence of drowning and
+								ensuring that migrant families are able to safely enjoy
+								Australia's rich water resources.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- End of About Information -->
+		</div>
+	</div>
+</section>
+
+{% endblock %}
