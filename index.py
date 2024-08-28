@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/')
 
@@ -8,7 +8,14 @@ def index():
 
 @app.route("/recommendation")
 def recommendation():
-    return render_template("recommendation.html")
+    latitude = request.args["latitude"]
+    longitude = request.args["longitude"]
+    return render_template("recommendation.html", latitude=latitude, longitude=longitude)
+
+@app.route("/water-safety")
+def safety():
+    return render_template("water-safety.html")
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080, debug=True)

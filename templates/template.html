@@ -16,22 +16,25 @@
 		/>
 
 		<!-- Font -->
-		<link href="https://fonts.googleapis.com" rel="preconnect" />
-		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+			href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;700&display=swap"
 			rel="stylesheet"
 		/>
+
+		<!-- AOS -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
 		<style>
 			body {
 				/* background-color: var(--accent-color); */
-				background: linear-gradient(
+				/* background: linear-gradient(
 					var(--linear-degree),
 					var(--linear-first-color),
 					var(--linear-second-color),
 					var(--linear-third-color)
-				);
+				); */
 			}
 			.navbar {
 				/* position: fixed; */
@@ -53,172 +56,173 @@
 		</style>
 	</head>
 	<body>
-		<!-- Navbar -->
-		<section id="header" class="header">
-			<div class="row">
-				<div class="col-md-12">
-					<nav class="navbar navbar-expand-lg px-3">
-						<a class="navbar-brand title" href="/">AquaGuardians</a>
-						<button
-							class="navbar-toggler"
-							type="button"
-							data-bs-toggle="collapse"
-							data-bs-target="#navbarMenu"
-							aria-controls="navbarMenu"
-							aria-expanded="false"
-							aria-label="Toggle navigation"
+		<div class="container-fluid">
+			<!-- Navbar -->
+			<section id="header" class="header">
+				<div class="row">
+					<div class="col-md-12">
+						<nav
+							class="navbar navbar-expand-lg px-3"
+							style="background-color: aqua"
 						>
-							<span class="navbar-toggler-icon"></span>
-						</button>
+							<a class="navbar-brand title" href="/">AquaGuardians</a>
+							<button
+								class="navbar-toggler"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#navbarMenu"
+								aria-controls="navbarMenu"
+								aria-expanded="false"
+								aria-label="Toggle navigation"
+							>
+								<span class="navbar-toggler-icon"></span>
+							</button>
 
-						<div
-							class="collapse navbar-collapse justify-content-center"
-							id="navbarMenu"
-						>
-							<ul class="navbar-nav d-flex">
-								<li class="nav-item active">
-									<a class="nav-link subtitle" href="#">First-Aid</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link subtitle" href="#">Alerts</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link subtitle" href="#">Safety Education</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link subtitle" href="#">Water Safety</a>
-								</li>
-								<li class="nav-item active">
-									<a class="nav-link subtitle" href="/recommendation"
-										>Safe Beaches</a
-									>
-								</li>
-							</ul>
-						</div>
-					</nav>
+							<div
+								class="collapse navbar-collapse justify-content-end"
+								id="navbarMenu"
+							>
+								<ul class="navbar-nav d-flex">
+									<li class="nav-item">
+										<a class="nav-link subtitle" href="/water-safety"
+											>Water Safety</a
+										>
+									</li>
+									<li class="nav-item active">
+										<a class="btn nav-link subtitle" onclick="getLocation()"
+											>Safe Beaches</a
+										>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- Navbar Ended-->
-		{% block content %}{% endblock %}
+			<!-- Navbar Ended-->
 
-		<section id="call" class="call">
-			<a href="tel:+000" target="_blank">
-				<img src="/img/icons/phone-call.png" />
-			</a>
-		</section>
+			{% block content %}{% endblock %}
 
-		<section id="footer" class="footer">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<!-- Contact Information -->
+			<section id="call" class="call">
+				<a href="tel:+000" target="_blank">
+					<img src="/img/icons/phone-call.png" />
+				</a>
+			</section>
 
-								<div class="col-md-6">
-									<div class="row">
-										<div class="col-md-12">
-											<p class="footer-title">Contact Information</p>
+			<section id="footer" class="footer" style="background-color: #667799">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<!-- Contact Information -->
+
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-12">
+												<p class="footer-title">Contact Information</p>
+											</div>
 										</div>
-									</div>
-									<div class="row my-3">
-										<div class="col-md-12">
-											<!-- Icons -->
-											<div class="row">
-												<div class="col-sm-12 col-md-12 col-lg-1">
-													<img
-														src="/img/icons/gmail.png"
-														alt=""
-														class="footer-icon"
-													/>
+										<div class="row my-3">
+											<div class="col-md-12">
+												<!-- Icons -->
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-1">
+														<img
+															src="/img/icons/gmail.png"
+															alt=""
+															class="footer-icon"
+														/>
+													</div>
+													<div class="col-sm-12 col-md-12 col-lg-11">
+														<p class="footer-text">info@aquaguardians.com</p>
+													</div>
 												</div>
-												<div class="col-sm-12 col-md-12 col-lg-11">
-													<p class="footer-text">info@aquaguardians.com</p>
+											</div>
+										</div>
+
+										<div class="row my-3">
+											<div class="col-md-12">
+												<!-- Icons -->
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-1">
+														<img
+															src="/img/icons/phone-call.png"
+															alt=""
+															class="footer-icon"
+														/>
+													</div>
+													<div class="col-sm-12 col-md-12 col-lg-11">
+														<p class="footer-text">+61 123 456 789</p>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 
-									<div class="row my-3">
-										<div class="col-md-12">
-											<!-- Icons -->
-											<div class="row">
-												<div class="col-sm-12 col-md-12 col-lg-1">
-													<img
-														src="/img/icons/phone-call.png"
-														alt=""
-														class="footer-icon"
-													/>
+									<!-- End of Contact Information -->
+
+									<!-- Our Social Network -->
+
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-12">
+												<p class="footer-title">Our Social Network</p>
+											</div>
+										</div>
+										<div class="row my-3">
+											<div class="col-md-12">
+												<!-- Icons -->
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-1">
+														<img
+															src="/img/icons/instagram.png"
+															alt=""
+															class="footer-icon"
+														/>
+													</div>
+													<div class="col-sm-12 col-md-12 col-lg-11">
+														<p class="footer-text">
+															instagram.com/AquaGuardians
+														</p>
+													</div>
 												</div>
-												<div class="col-sm-12 col-md-12 col-lg-11">
-													<p class="footer-text">+61 123 456 789</p>
+											</div>
+										</div>
+
+										<div class="row my-3">
+											<div class="col-md-12">
+												<!-- Icons -->
+												<div class="row">
+													<div class="col-sm-12 col-md-12 col-lg-1">
+														<img
+															src="/img/icons/facebook.png"
+															alt=""
+															class="footer-icon"
+														/>
+													</div>
+													<div class="col-sm-12 col-md-12 col-lg-11">
+														<p class="footer-text">
+															facebook.com/AquaGuardians
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+
+									<!-- End of Our Social Network -->
 								</div>
-
-								<!-- End of Contact Information -->
-
-								<!-- Our Social Network -->
-
-								<div class="col-md-6">
-									<div class="row">
-										<div class="col-md-12">
-											<p class="footer-title">Our Social Network</p>
-										</div>
-									</div>
-									<div class="row my-3">
-										<div class="col-md-12">
-											<!-- Icons -->
-											<div class="row">
-												<div class="col-sm-12 col-md-12 col-lg-1">
-													<img
-														src="/img/icons/instagram.png"
-														alt=""
-														class="footer-icon"
-													/>
-												</div>
-												<div class="col-sm-12 col-md-12 col-lg-11">
-													<p class="footer-text">instagram.com/AquaGuardians</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row my-3">
-										<div class="col-md-12">
-											<!-- Icons -->
-											<div class="row">
-												<div class="col-sm-12 col-md-12 col-lg-1">
-													<img
-														src="/img/icons/facebook.png"
-														alt=""
-														class="footer-icon"
-													/>
-												</div>
-												<div class="col-sm-12 col-md-12 col-lg-11">
-													<p class="footer-text">facebook.com/AquaGuardians</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- End of Our Social Network -->
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<!-- Footer -->
-
-		<!-- Footer Ended -->
+			<!-- Footer Ended -->
+		</div>
 
 		<script src="/js/index.js"></script>
 
@@ -227,5 +231,12 @@
 			integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 			crossorigin="anonymous"
 		></script>
+
+		<!-- AOS -->
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+		<script>
+			AOS.init();
+		</script>
 	</body>
 </html>

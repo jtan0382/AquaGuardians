@@ -4,8 +4,15 @@
     --nav-font: "Poppins", sans-serif;
 
     --background-color: #F6F1F1;
+    /* --primary-color: #e6e6e6; */
     --primary-color: #146C94;
-    --primary-rgb-color: rgba(20,108,148,1) 0%;
+    
+
+
+    
+	--ff-gothic: 'Gothic A1', sans-serif;
+
+    /* --primary-rgb-color: rgba(20,108,148,1) 0%;
     --secondary-color: #19A7CE;
     --secondary-rgb-color: rgba(25,167,206,1) 35%;
     --accent-color: #AFD3E2;
@@ -14,7 +21,7 @@
     --linear-degree: 90deg;
     --linear-first-color:rgba(20, 108, 148, 1) 0%;
     --linear-second-color: rgba(25, 167, 206, 1) 35%;
-    --linear-third-color: rgba(175, 211, 226, 1) 100%;
+    --linear-third-color: rgba(175, 211, 226, 1) 100%; */
 
     --flex-gap: 2rem;
 
@@ -35,7 +42,6 @@
 }
 
 /* GENERAL */
-
 * {
     margin: 0;
     padding: 0;
@@ -46,9 +52,19 @@
     scroll-behavior: smooth;
 }
 
+html{
+    html {
+        font-family: var(--ff-gothic);
+        font-weight: var(--fw-normal);
+        font-size: var(--fs-500);
+        line-height: 1.7;
+        /* color: var(--primaryTextColor); */
+        /* background-color: var(--primaryBackgroundColor); */
+    }
+}
+
+
 .title{
-    color: var(--primary-color);
-    /* color: var(--background-color); */
     font-size: var(--fs-700);
     font-weight: var(--fw-bold);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
@@ -56,15 +72,13 @@
 
 .footer-title{
     color: var(--background-color);
-    font-size: var(--fs-700);
+    font-size: var(--fs-800);
     font-weight: var(--fw-bold);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-.subtitle{
-    color: var(--primary-color);
 
-    /* color: var(--background-color); */
+.subtitle{
     font-size: var(--fs-600);
     font-weight: var(--fw-bold);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
@@ -72,12 +86,18 @@
 
 .text{
 
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
+    /* color: var(--background-color); */
+
 }
 
 .footer-text{
 
     color: var(--background-color);
+
+    font-size: var(--fs-600);
+    font-weight: var(--fw-bold);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .call {
@@ -113,7 +133,12 @@
     height: 2.5rem; 
 }
 
-
+.seperator {
+	display: block;
+	border-bottom: 0.1rem solid var(--primary-color);
+	transform: scaleX(0.05);
+	transform-origin: 0 0;
+}
 
 
 
@@ -154,6 +179,8 @@
 .hero-text{
     color: var(--background-color);
     font-size: var(--fs-600);
+    font-weight: var(--fw-bold);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .hero-button{
@@ -173,18 +200,6 @@
 .about{
     padding: var(--sectionPadding)
 }
-
-
-
-/* .about-image {
-    background-image: url('/img/children.jpeg'); 
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: auto; 
-    border-radius: 20px;
-} */
 
 .about div.d-flex{
     gap:var(--flex-gap);
@@ -212,9 +227,15 @@
 
 /* RECOMMENDATION */
 
+.list-beaches{
+    padding: var(--sectionPadding);
+}
+
 .beach-description{
     max-width: 75rem;
 }
+
+
 
 
 
@@ -223,6 +244,35 @@
 /* RECOMMENDATION PAGE END */
 
 
+/* WATER SAFETY */
+
+/* .water-safety{
+
+    padding: var(--sectionPadding)
+} */
+
+.warning-information{
+    max-width: 25rem;
+    text-align: justify;
+}
+
+.life-information{
+    
+    flex-direction: row-reverse;
+}
+
+.safety-information{
+    max-width: 65rem;
+    text-align: justify; 
+}
+
+.life-image{
+    width: 10rem;
+    height: 10rem;
+}
+
+
+/* END OF WATER SAFETY */
 
 /* MEDIA QUERY */
 
