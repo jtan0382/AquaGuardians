@@ -15,24 +15,26 @@ block content %}
 					height: 50vh;
 				"
 			>
-				<div class="row w-100">
-					<div class="col-md-1"></div>
-					<!-- Aligning to the grid's padding -->
-					<div class="col-md-10">
-						<p class="title" style="color: #fff">
-							Top 3 safest beaches in your current state of residence
-						</p>
+				<div data-aos="fade-up" data-aos-duration="1000">
+					<div class="row w-100">
+						<div class="col-md-1"></div>
+						<!-- Aligning to the grid's padding -->
+						<div class="col-md-10">
+							<p class="title" style="color: #fff">
+								Top 3 safest beaches in your current state of residence
+							</p>
+						</div>
+						<div class="col-md-1"></div>
+						<!-- Optional for symmetry -->
 					</div>
-					<div class="col-md-1"></div>
-					<!-- Optional for symmetry -->
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<p>Your current location is:</p>
-	<p>Latitude: {{ latitude }}</p>
-	<p>Longitude: {{ longitude }}</p>
+	<!-- <p>Your current location is:</p>
+		<p>Latitude: {{ latitude }}</p>
+		<p>Longitude: {{ longitude }}</p> -->
 
 	<section id="list-beaches" class="list-beaches">
 		<div data-aos="fade-up">
@@ -43,6 +45,7 @@ block content %}
 					<div data-aos="fade-up" data-aos-duration="1000">
 						<div class="row">
 							<!-- #1 -->
+							{% for beach in top_beaches %}
 							<div class="col-md-4 my-3">
 								<a
 									type="button"
@@ -50,52 +53,17 @@ block content %}
 									data-bs-target="#bellsbeach1"
 								>
 									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5"
+										src="{{beach['image_address']}}"
+										alt="{{beach['BEACH_NAME']}}"
+										class="img-fluid rounded-5 beach-image"
 									/>
 								</a>
 
 								<div class="d-flex justify-content-center align-items-center">
-									<p class="text">Bells Beach</p>
+									<p class="subtitle">{{beach['BEACH_NAME']}}</p>
 								</div>
 							</div>
-							<!-- #2 -->
-							<div class="col-md-4 my-3">
-								<a
-									type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#bellsbeach2"
-								>
-									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5"
-									/>
-								</a>
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="text">Bells Beach</p>
-								</div>
-							</div>
-							<!-- #3 -->
-							<div class="col-md-4 my-3">
-								<a
-									type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#bellsbeach3"
-								>
-									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5"
-									/>
-								</a>
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="text">Bells Beach</p>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
 					</div>
 
@@ -110,16 +78,16 @@ block content %}
 <!-- #1 -->
 <div
 	class="modal fade"
-	id="bellsbeach1"
+	id="beachModal"
 	tabindex="-1"
 	role="dialog"
-	aria-labelledby="bellsbeach"
+	aria-labelledby="beachModalLabel"
 	aria-hidden="true"
 >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Bells Beach</h5>
+				<h5 class="modal-title" id="beachModalLabel">Bells Beach</h5>
 				<button
 					type="button"
 					class="close"
@@ -137,124 +105,17 @@ block content %}
 								src="/img/bellsbeach.jpg"
 								alt=""
 								class="img-fluid rounded-5"
+								id="beachModalImage"
 							/>
-							<p class="beach-description text mt-3">
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-								praesentium inventore mollitia tenetur distinctio earum ipsam
-								provident! Natus, laborum sed quidem magni vero nulla minima
-								magnam blanditiis! Sunt ut sapiente et ex dolores quo
-								temporibus, nihil repellat numquam laborum adipisci suscipit
-								soluta aperiam cumque! Beatae, nemo recusandae. Voluptates,
-								natus officiis.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-					Close
-				</button>
-				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- #2 -->
-<div
-	class="modal fade"
-	id="bellsbeach2"
-	tabindex="-1"
-	role="dialog"
-	aria-labelledby="bellsbeach"
-	aria-hidden="true"
->
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Bells Beach</h5>
-				<button
-					type="button"
-					class="close"
-					data-bs-dismiss="modal"
-					aria-label="Close"
-				>
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="d-flex flex-column">
-							<img
-								src="/img/bellsbeach.jpg"
-								alt=""
-								class="img-fluid rounded-5"
-							/>
-							<p class="beach-description text mt-3">
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-								praesentium inventore mollitia tenetur distinctio earum ipsam
-								provident! Natus, laborum sed quidem magni vero nulla minima
-								magnam blanditiis! Sunt ut sapiente et ex dolores quo
-								temporibus, nihil repellat numquam laborum adipisci suscipit
-								soluta aperiam cumque! Beatae, nemo recusandae. Voluptates,
-								natus officiis.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-					Close
-				</button>
-				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- #3 -->
-<div
-	class="modal fade"
-	id="bellsbeach3"
-	tabindex="-1"
-	role="dialog"
-	aria-labelledby="bellsbeach"
-	aria-hidden="true"
->
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Bells Beach</h5>
-				<button
-					type="button"
-					class="close"
-					data-bs-dismiss="modal"
-					aria-label="Close"
-				>
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="d-flex flex-column">
-							<img
-								src="/img/bellsbeach.jpg"
-								alt=""
-								class="img-fluid rounded-5"
-							/>
-							<p class="beach-description text mt-3">
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-								praesentium inventore mollitia tenetur distinctio earum ipsam
-								provident! Natus, laborum sed quidem magni vero nulla minima
-								magnam blanditiis! Sunt ut sapiente et ex dolores quo
-								temporibus, nihil repellat numquam laborum adipisci suscipit
-								soluta aperiam cumque! Beatae, nemo recusandae. Voluptates,
-								natus officiis.
-							</p>
+							<!-- <p class="beach-description text mt-3">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+									praesentium inventore mollitia tenetur distinctio earum ipsam
+									provident! Natus, laborum sed quidem magni vero nulla minima
+									magnam blanditiis! Sunt ut sapiente et ex dolores quo
+									temporibus, nihil repellat numquam laborum adipisci suscipit
+									soluta aperiam cumque! Beatae, nemo recusandae. Voluptates,
+									natus officiis.
+								</p> -->
 						</div>
 					</div>
 				</div>

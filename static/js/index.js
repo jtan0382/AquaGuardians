@@ -35,9 +35,9 @@ function getLocation() {
 			},
 			function (error) {
 				console.error("Geolocation error:", error);
-				// Redirect without location if permission denied
 				window.location.href = "/recommendation";
 			}
+			// { maximumAge: 0, timeout: 10000, enableHighAccuracy: true }
 		);
 	} else {
 		// Redirect without location if geolocation is not supported
@@ -52,3 +52,18 @@ function showPosition(position) {
 		"<br>Longitude: " +
 		position.coords.longitude;
 }
+
+function openModal() {
+	console.log("testsss");
+}
+// function openModal(beachName, imageUrl) {
+// Set the modal title
+// document.getElementById("beachModalLabel").innerText = beachName;
+
+// Set the modal image
+// document.getElementById("beachModalImage").src = imageUrl;
+// document.getElementById("beachModalImage").alt = beachName;
+
+// Set the modal description
+// document.getElementById("beachModalDescription").innerText = description;
+// }

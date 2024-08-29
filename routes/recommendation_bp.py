@@ -1,5 +1,6 @@
 from flask import Blueprint
 from controllers.RecommendationController import index
+# from RecommendationController import index
 # from controllers.UserController import index, store, show, update, destroy
 recommendation_bp = Blueprint('recommendation_bp', __name__)
 recommendation_bp.route('/', methods=['GET'])(index)

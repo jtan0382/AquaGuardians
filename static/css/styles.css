@@ -1,16 +1,15 @@
 :root{
-    --default-font: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    /* --default-font: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --heading-font: "Raleway", sans-serif;
-    --nav-font: "Poppins", sans-serif;
+    --nav-font: "Poppins", sans-serif; */
 
     --background-color: #F6F1F1;
     /* --primary-color: #e6e6e6; */
     --primary-color: #146C94;
-    
-
 
     
 	--ff-gothic: 'Gothic A1', sans-serif;
+
 
     /* --primary-rgb-color: rgba(20,108,148,1) 0%;
     --secondary-color: #19A7CE;
@@ -52,16 +51,7 @@
     scroll-behavior: smooth;
 }
 
-html{
-    html {
-        font-family: var(--ff-gothic);
-        font-weight: var(--fw-normal);
-        font-size: var(--fs-500);
-        line-height: 1.7;
-        /* color: var(--primaryTextColor); */
-        /* background-color: var(--primaryBackgroundColor); */
-    }
-}
+
 
 
 .title{
@@ -235,7 +225,11 @@ html{
     max-width: 75rem;
 }
 
-
+.beach-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the container while maintaining the aspect ratio */
+}
 
 
 
