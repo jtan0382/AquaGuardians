@@ -3,7 +3,6 @@ from flask import render_template, request
 from models.Recommendation import fetch_merged_data, score_beaches
 
 def index():
-    print("TEST MASUK")
     # Model parameters
     MODEL_PARAMS = {
         'a': 0.4,  # Weight for hazard rating
