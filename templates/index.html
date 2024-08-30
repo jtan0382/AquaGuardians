@@ -36,6 +36,9 @@
 					<form action="/" method="post">
 						<div class="card">
 							<div class="card-body rounded-5">
+								<div class="d-flex justify-content-center">
+									<h5>Password</h5>
+								</div>
 								<div class="row mt-3">
 									<div class="col-md-12">
 										<label for="password">Password</label>
@@ -59,12 +62,16 @@
 										</button>
 									</div>
 								</div>
-							</div>
-							<!-- <div class="card-footer"> -->
-							<!-- {% if error %} -->
 
-							<!-- {% endif %} -->
-							<!-- </div> -->
+								{% if error %}
+								<div class="row mt-3">
+									<div class="col-md-12">
+										<div class="alert alert-danger">{{error}}</div>
+									</div>
+								</div>
+
+								{% endif %}
+							</div>
 						</div>
 					</form>
 				</div>

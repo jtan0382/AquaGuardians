@@ -33,7 +33,7 @@ def login():
         else:
             return render_template('index.html', error="Incorrect password")
     
-    return render_template('index.html')
+    return render_template('index.html', error="Incorrect password")
 
 
 
