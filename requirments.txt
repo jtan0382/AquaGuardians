@@ -6,6 +6,7 @@ haversine==2.8.1
 importlib_metadata==8.2.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
+jsonify==0.5
 MarkupSafe==2.1.5
 numpy==2.0.2
 pandas==2.2.2
