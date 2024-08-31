@@ -7,7 +7,7 @@ def fetch_merged_data():
     conn = get_db_connection()
     
     # SQL query to fetch merged data
-    query = """SELECT beach_facilities_safety.[KEY], BEACH_NAME, LATITUDE, LONGITUDE, HAZARD_RAT, image_address
+    query = """SELECT *
            FROM beach_facilities_safety
            JOIN beach_longlat
                ON beach_facilities_safety.[KEY] = beach_longlat.[KEY]
