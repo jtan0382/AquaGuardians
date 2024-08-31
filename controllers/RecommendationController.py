@@ -22,7 +22,7 @@ from haversine import haversine, Unit
 #     # Calculate the top 3 beaches based on user's location
 #     top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
 #     print(f"beaches: {top_beaches}")
-
+# TEST
 
 #     # Render the result in the template
 #     return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
