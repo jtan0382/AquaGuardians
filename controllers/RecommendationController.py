@@ -22,51 +22,78 @@ from haversine import haversine, Unit
 #     # Calculate the top 3 beaches based on user's location
 #     top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
 #     print(f"beaches: {top_beaches}")
-
+# TEST
 
 #     # Render the result in the template
 #     return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
 
 def index():
-
-    MODEL_PARAMS = {
+    if request.method == 'GET':
+        MODEL_PARAMS = {
         'a': 0.4,  # Weight for hazard rating
         'b': 0.6   # Weight for distance
-    }
-
-    
-
-    if request.method == 'POST':
-        data = request.get_json()
-        latitude = data.get('latitude')
-        longitude = data.get('longitude')
+        }
 
 
-        # Store latitude and longitude in the session
-        session['latitude'] = latitude
-        session['longitude'] = longitude
-
-                # Fetch the merged data
+        latitude = float(request.args.get("latitude", 0))
+        longitude = float(request.args.get("longitude", 0))
+        
+        # Fetch the merged data
         df_merged = fetch_merged_data()
-        #print(f"merged: {df_merged}")
+        # print(f"merged: {df_merged}")
         
         # Calculate the top 3 beaches based on user's location
         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-        print(f"beaches: {top_beaches}")
+        print(top_beaches.to_dict(orient='records'))
 
 
-        # return render_template("recommendation.html", latitude=latitude, longitude=longitude)
-            # Render the result in the template
+        # Render the result in the template
         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
     else:
+        latitude = "0213213"
+        longitude = "12321312"
+        return render_template("recommendation.html", latitude = latitude, longitude = longitude)
 
-        # Retrieve latitude and longitude from the session
-        latitude = session.get('latitude')
-        longitude = session.get('longitude')
+    # MODEL_PARAMS = {
+    #     'a': 0.4,  # Weight for hazard rating
+    #     'b': 0.6   # Weight for distance
+    # }
 
-        return render_template("recommendation.html", latitude=latitude, longitude=longitude)
+    
+
+    # if request.method == 'POST':
+    #     data = request.get_json()
+    #     latitude = data.get('latitude')
+    #     longitude = data.get('longitude')
+
+
+    #     # Store latitude and longitude in the session
+    #     session['latitude'] = latitude
+    #     session['longitude'] = longitude
+        
+
+    #             # Fetch the merged data
+    #     # df_merged = fetch_merged_data()
+    #     #print(f"merged: {df_merged}")
+        
+    #     # Calculate the top 3 beaches based on user's location
+    #     # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+    #     # print(f"beaches: {top_beaches}")
+
+
+    #     # return render_template("recommendation.html", latitude=latitude, longitude=longitude)
+    #         # Render the result in the template
+    #     return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches="this is string")
+
+    # else:
+
+    #     # Retrieve latitude and longitude from the session
+    #     latitude = session.get('latitude')
+    #     longitude = session.get('longitude')
+
+    #     return render_template("recommendation.html", latitude=latitude, longitude=longitude)
 
 
 def calculate_distance(lat1, lon1, lat2, lon2):
@@ -96,10 +123,10 @@ def score_beaches(df, user_lon, user_lat, model):
     
     top_beaches['beach_info'] = top_beaches.apply(generate_beach_info, axis=1)
     info = top_beaches[['beach_info']].iloc[0]
-    print(info)
+    # print(info)
     # Select the required columns to display
-    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address', 'beach_info']]
-    #print(result)
+    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','beach_info']]
+    print(result)
 
     return result
 
@@ -127,5 +154,9 @@ def generate_beach_info(row):
         info += picnic_status + '. '
     info += warning
 
-    print(info)
+    # print(info)
     return info
+
+def detail():
+    
+    return render_template("recommendation.html", top_beaches="this is string")
