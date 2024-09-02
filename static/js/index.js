@@ -8,42 +8,65 @@ document
 		}
 	});
 
-// GET LOCATION
+// // GET LOCATION
+// function getLocation() {
+// 	if (navigator.geolocation) {
+// 		navigator.geolocation.getCurrentPosition(
+// 			function (position) {
+// 				const latitude = position.coords.latitude;
+// 				const longitude = position.coords.longitude;
+
+// 				// Create the data object to send in the POST request
+// 				const data = { latitude: latitude, longitude: longitude };
+
+// 				// Send a POST request using fetch API
+// 				fetch("/recommendation", {
+// 					method: "POST",
+// 					headers: {
+// 						"Content-Type": "application/json",
+// 					},
+// 					body: JSON.stringify(data),
+// 				})
+// 					.then((response) => {
+// 						if (response.ok) {
+// 							console.log("The response is ok");
+// 							// If the POST request was successful, redirect to /recommendation
+// 							window.location.href = "/recommendation";
+// 						} else {
+// 							console.error("Failed to send location data");
+// 						}
+// 					})
+// 					.catch((error) => console.error("Error:", error));
+// 			},
+// 			function (error) {
+// 				console.error("Geolocation error:", error);
+// 				window.location.href = "/testblock";
+// 			}
+// 		);
+// 	} else {
+// 		window.location.href = "/test";
+// 	}
+// }
+
+// GET
+
 function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
 			function (position) {
 				const latitude = position.coords.latitude;
 				const longitude = position.coords.longitude;
-
-				// Create the data object to send in the POST request
-				const data = { latitude: latitude, longitude: longitude };
-
-				// Send a POST request using fetch API
-				fetch("/recommendation", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(data),
-				})
-					.then((response) => {
-						if (response.ok) {
-							// If the POST request was successful, redirect to /recommendation
-							window.location.href = "/recommendation";
-						} else {
-							console.error("Failed to send location data");
-						}
-					})
-					.catch((error) => console.error("Error:", error));
+				window.location.href = `/recommendation?latitude=${latitude}&longitude=${longitude}`;
 			},
 			function (error) {
 				console.error("Geolocation error:", error);
-				window.location.href = "/testblock";
+				window.location.href = "/recommendation";
 			}
+			// { maximumAge: 0, timeout: 10000, enableHighAccuracy: true }
 		);
 	} else {
-		window.location.href = "/test";
+		// Redirect without location if geolocation is not supported
+		window.location.href = "/recommendation";
 	}
 }
 
@@ -59,26 +82,195 @@ function getLocation() {
 // 	console.log("testsss");
 // }
 
+// document.addEventListener("DOMContentLoaded", function () {
+// 	const beachModal = document.getElementById("beachModal");
+// 	beachModal.addEventListener("show.bs.modal", function (event) {
+// 		// Button that triggered the modal
+// 		const button = event.relatedTarget;
+
+// 		// Extract info from data-* attributes
+// 		const beachName = button.getAttribute("data-beach-name");
+// 		const beachLocation = button.getAttribute("data-beach-location");
+// 		const beachWarnings = button.getAttribute("data-beach-warning");
+// 		const beachAmenities = button.getAttribute("data-beach-amenities");
+
+// 		// const beachImage = button.getAttribute("data-beach-image");
+// 		const beachDescription = button.getAttribute("data-beach-description");
+
+// 		// Update the modal's content
+// 		const modalTitle = beachModal.querySelector(".modal-title");
+// 		const modalLocation = beachModal.querySelector(".modal-location");
+// 		const warningsContainer = beachModal.querySelector(".warning-container");
+// 		const amenitiesContainer = beachModal.querySelector(".amenities-container");
+
+// 		console.log(beachWarnings);
+// 		console.log(beachAmenities);
+
+// 		// const modalImage = beachModal.querySelector("#beachModalImage");
+// 		const modalDescription = beachModal.querySelector(".modal-description");
+
+// 		modalTitle.textContent = beachName;
+// 		modalLocation.textContent = beachLocation;
+// 		modalDescription.textContent = beachDescription;
+
+// 		console.log(beachName);
+// 		console.log(beachLocation);
+
+// 		// modalWarning.textContent += beachWarning;
+// 		// modalAmminities.textContent += beachAmminities;
+// 		if (beachWarnings) {
+// 			const warningsArray = beachWarnings.split(",");
+// 			warningsArray.forEach(function (warning) {
+// 				// Add the original p tag as requested with the same value for each amenity
+// 				const warningElement = document.createElement("p");
+// 				console.log(warningElement);
+// 				warningElement.textContent = warning.trim();
+// 				warningsContainer.appendChild(warningElement);
+
+// 				// // Create duplicate p tags with the same content
+// 				// amenitiesArray.forEach(function () {
+// 				// 	const duplicateElement = document.createElement("p");
+// 				// 	duplicateElement.textContent = amenity.trim();
+// 				// 	amenitiesContainer.appendChild(duplicateElement);
+// 				// });
+// 			});
+// 		}
+// 		if (beachAmenities) {
+// 			const amenitiesArray = beachAmenities.split(",");
+// 			amenitiesArray.forEach(function (amenity) {
+// 				// Add the original p tag as requested with the same value for each amenity
+// 				const amenityElement = document.createElement("p");
+// 				console.log(amenityElement);
+// 				amenityElement.textContent = amenity.trim();
+// 				amenitiesContainer.appendChild(amenityElement);
+
+// 				// Create duplicate p tags with the same content
+// 				// amenitiesArray.forEach(function () {
+// 				// 	const duplicateElement = document.createElement("p");
+// 				// 	duplicateElement.textContent = amenity.trim();
+// 				// 	amenitiesContainer.appendChild(duplicateElement);
+// 				// });
+// 			});
+// 		}
+// 	});
+
+// 	// Event listener untuk saat modal ditutup
+// 	beachModal.addEventListener("hidden.bs.modal", function () {
+// 		const modalWarning = beachModal.querySelector(".modal-warning");
+// 		const amenitiesContainer = beachModal.querySelector(".amenities-container");
+
+// 		modalWarning.innerHTML = "";
+// 		amenitiesContainer.innerHTML = "";
+// 	});
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
 	const beachModal = document.getElementById("beachModal");
+
 	beachModal.addEventListener("show.bs.modal", function (event) {
 		// Button that triggered the modal
 		const button = event.relatedTarget;
 
 		// Extract info from data-* attributes
 		const beachName = button.getAttribute("data-beach-name");
-		const beachImage = button.getAttribute("data-beach-image");
+		// const beachLatitude = button.getAttribute("data-beach-latitude");
+		// const beachLongitude = button.getAttribute("data-beach-longitude");
+		const beachLocation = button.getAttribute("data-beach-location");
+
+		const beachWarnings = button.getAttribute("data-beach-warning");
+		const beachAmenities = button.getAttribute("data-beach-amenities");
 		const beachDescription = button.getAttribute("data-beach-description");
 
 		// Update the modal's content
 		const modalTitle = beachModal.querySelector(".modal-title");
-		const modalImage = beachModal.querySelector("#beachModalImage");
-		const modalDescription = beachModal.querySelector(".beach-description");
+		// const modalLocation = beachModal.querySelector(".modal-location");
+		const warningContainer = beachModal.querySelector(".warning-container");
+		const amenitiesContainer = beachModal.querySelector(".amenities-container");
+		const modalDescription = beachModal.querySelector(".modal-description");
 
 		modalTitle.textContent = beachName;
-		modalImage.src = beachImage;
-		if (modalDescription) {
-			modalDescription.textContent = beachDescription;
+		// modalLocation.textContent = beachLocation;
+		modalDescription.textContent = beachDescription;
+
+		// Location Image
+		// const titleContainer = document.getElementById("title-container");
+
+		// const linkElement = document.createElement("a");
+		// linkElement.href = `https://maps.google.com/?q=${beachLatitude}, ${beachLongitude}`;
+		// // console.log(`https://maps.google.com/?q=${beachLocation}`);
+		// // // linkElement.target = "_blank";
+
+		// const imgElement = document.createElement("img");
+		// imgElement.src = "/img/icons/location.jpeg";
+		// imgElement.alt = `${beachLatitude}, ${beachLongitude}`;
+		// imgElement.classList.add("location-icon");
+
+		// linkElement.appendChild(imgElement);
+		// titleContainer.appendChild(linkElement);
+
+		// Clear existing warnings and amenities before adding new ones
+		warningContainer.innerHTML = "";
+		amenitiesContainer.innerHTML = "";
+
+		if (beachWarnings) {
+			const warningsArray = beachWarnings.split(",");
+			warningsArray.forEach(function (warning) {
+				const warningElement = document.createElement("div");
+				warningElement.classList.add("warning-item");
+
+				warningElement.classList.add("d-flex");
+
+				warning = warning.trim().toLowerCase();
+
+				const imgElement = document.createElement("img");
+				imgElement.classList.add("img-fluid");
+				imgElement.src = `/img/warning/${warning}.jpeg`;
+				console.log(`/img/warning/${warning}.jpeg`);
+				imgElement.alt = `${warning} `;
+				imgElement.classList.add("warning-icon");
+				warningElement.appendChild(imgElement);
+				warningContainer.appendChild(warningElement);
+			});
+		} else {
+			const warningElement = document.createElement("p");
+			warningElement.classList.add("text");
+			const text = document.createTextNode("No Warning shown");
+			warningElement.appendChild(text);
+			warningContainer.appendChild(warningElement);
 		}
+
+		if (beachAmenities) {
+			const amenitiesArray = beachAmenities.split(",");
+			amenitiesArray.forEach(function (amenity) {
+				const amenityElement = document.createElement("div");
+				amenityElement.classList.add("amenity-item");
+
+				amenityElement.classList.add("d-flex");
+
+				amenity = amenity.trim().toLowerCase();
+
+				const imgElement = document.createElement("img");
+				imgElement.classList.add("img-fluid");
+				imgElement.src = `/img/amenities/${amenity}.png`;
+				console.log(`/img/amenities/${amenity}.png`);
+				imgElement.alt = `${amenity} Amenity`;
+				imgElement.classList.add("amenity-icon");
+				amenityElement.appendChild(imgElement);
+				amenitiesContainer.appendChild(amenityElement);
+			});
+		} else {
+			const amenityElement = document.createElement("p");
+			amenityElement.classList.add("text");
+			const text = document.createTextNode("No Amenities shown");
+			amenityElement.appendChild(text);
+			amenitiesContainer.appendChild(amenityElement);
+		}
+	});
+
+	// Event listener to clear content when modal is hidden
+	beachModal.addEventListener("hidden.bs.modal", function () {
+		// No need to use querySelector again, as references are stored
+		warningContainer.innerHTML = "";
+		amenitiesContainer.innerHTML = "";
 	});
 });

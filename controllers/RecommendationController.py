@@ -123,21 +123,40 @@ def score_beaches(df, user_lon, user_lat, model):
     # Sort by score to get the top 3 beaches
     top_beaches = df.sort_values(by='score').head(3)
     
+    top_beaches['toilets'] = top_beaches['NO_TOILETS'].apply(lambda x: x > 0)
+    top_beaches['showers'] = top_beaches['NO_SHOWERS'].apply(lambda x: x > 0)
+
     top_beaches['beach_info'] = top_beaches.apply(generate_beach_info, axis=1)
-    info = top_beaches[['beach_info']].iloc[0]
-    # print(info)
+    warning_mapping = {
+    'BLUEBOTTLE': 'bluebottle',
+    'SHARKS': 'sharks'
+    }
+
+    amenities_mapping = {
+    'toilets': 'toilet',
+    'showers':'shower',
+    'BBQ': 'bbq',
+    'PICNIC': 'picnic',
+    'PLAYGROUND': 'park'
+    }
+
+    top_beaches['amenities'] = top_beaches.apply(lambda row: ', '.join([amenities_mapping[col] for col in amenities_mapping if row[col]]), axis=1)
+
+
+    top_beaches['warning'] = top_beaches.apply(lambda row: ', '.join([warning_mapping[col] for col in warning_mapping if row[col]]), axis=1)    # print(info)
     # Select the required columns to display
-    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','beach_info']]
+    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','amenities','warning','beach_info']]
     print(result)
 
     return result
 
 def generate_beach_info(row):
     beach_name = row['BEACH_NAME']
-    hazard_rating = row['transformed_hazard']
-    shops_status = 'surrounded by shops' if row['SHOPS'] == 1 else ''
-    playground_status = 'has playgrounds' if row['PLAYGROUND'] == 1 else ''
-    picnic_status = 'and picnic areas' if row['PICNIC'] == 1 else ''
+    hazard_rating = row['HAZARD_RAT']
+    shops_status = 'Shops' if row['SHOPS'] == 1 else ''
+    playground_status = 'Playgrounds' if row['PLAYGROUND'] == 1 else ''
+    picnic_status = 'Picnics' if row['PICNIC'] == 1 else ''
+    bbq_status = 'BBQs' if row['BBQ'] == 1 else ''
     warning = ''
     
     if row['BLUEBOTTLE'] == 1:
@@ -147,18 +166,12 @@ def generate_beach_info(row):
     if not warning:
         warning = 'Safe from hazardous sea life.'
     
-    info = f"The {beach_name} is rated {hazard_rating} by Aquaguardians. "
-    if shops_status:
-        info += shops_status + '. '
-    if playground_status:
-        info += playground_status + ' '
-    if picnic_status:
-        info += picnic_status + '. '
+    info = f"The {beach_name} is rated {hazard_rating}/10 by The Victorian Government. The available amenities are: {shops_status}, {playground_status}, {picnic_status} "
     info += warning
 
     # print(info)
     return info
 
 def detail():
-    
+    pass
     return render_template("recommendation.html", top_beaches="this is string")

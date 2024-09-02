@@ -5,7 +5,7 @@
 
     --background-color: #F6F1F1;
     /* --primary-color: #e6e6e6; */
-    --primary-color: #146C94;
+    --primary-color: #75dddd;
 
     
 	--ff-gothic: 'Gothic A1', sans-serif;
@@ -125,10 +125,14 @@
 
 .seperator {
 	display: block;
-	border-bottom: 0.1rem solid var(--primary-color);
-	transform: scaleX(0.05);
+	border-bottom: 0.2rem solid var(--primary-color);
+	transform: scaleX(0.5);
 	transform-origin: 0 0;
 }
+
+/* PASSWORD */
+
+/* END OF PASSWORD */
 
 
 
@@ -224,13 +228,44 @@
 .beach-description{
     max-width: 75rem;
 }
-
-.beach-image{
+.image-container {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fills the container while maintaining the aspect ratio */
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 20px; /* Rounded corners */
 }
 
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    border-radius: inherit; /* Inherit border radius from the container */
+}
+
+.beach-image{
+    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
+    background-size: cover; /* Make the background image cover the entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* AMENITIES */
+
+.amenities-container .amenity-item .amenity-icon{
+    width: 3rem;
+    height: 3rem;
+}
+
+.warning-container .warning-item .warning-icon{
+    width: 3rem;
+    height: 3rem;
+}
+
+/* END OF AMENITIES */
 
 
 /* RECOMMENDATION END */
@@ -278,6 +313,8 @@
     .beach-class {
         width: 100%; /* Allows the image to take the full width of the row */
     }
+    
+    
 }
 
 /* MEDIA QUERY END */
