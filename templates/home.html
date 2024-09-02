@@ -25,15 +25,26 @@ block content %}
 			</p>
 			<div class="d-flex gap-3 mb-3">
 				<!-- <a href="" class="btn btn-primary hero-button"
-							>See Safe Beaches near You</a
-						> -->
+						>See Safe Beaches near You</a
+					> -->
 
-				<button
+					<form
+						id="locationForm"
+						method="POST"
+						action="/recommendation"
+					>
+						<input type="hidden" name="latitude" id="latitude" />
+						<input type="hidden" name="longitude" id="longitude" />
+						<a class="btn btn-primary hero-button rounded-5" onclick="getLocation()"
+						>See Safe Beaches near You</a
+					>
+
+				<!-- <button
 					class="btn btn-primary hero-button rounded-5"
 					onclick="getLocation()"
 				>
 					See Safe Beaches near You
-				</button>
+				</button> -->
 			</div>
 		</div>
 	</div>
@@ -45,11 +56,11 @@ block content %}
 			<div class="col-md-1"></div>
 			<div class="col-sm-12 col-md-10">
 				<!-- <div class="row">
-							<div class="col-md-6 left-about">test</div>
-							<div class="col-md-6 right-about">
-								<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
-							</div>
-						</div> -->
+						<div class="col-md-6 left-about">test</div>
+						<div class="col-md-6 right-about">
+							<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
+						</div>
+					</div> -->
 
 				<!-- About Information -->
 

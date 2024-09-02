@@ -47,12 +47,15 @@
 				/* background-color: var(--background-color); */
 			}
 
-			nav a.navbar-brand:hover,
-			nav li.nav-item > a:hover {
+			a.navbar-brand:hover,
+			nav li.nav-item a:hover {
 				color: var(--primary-color);
 			}
+			nav li.nav-item a{
+				color: var(--background-color);
+			}
 			/* .navbar-nav .nav-link.active {
-				color: var(--primary-color);
+				color: var(--background-color);
 			} */
 
 			.navbar a.title {
@@ -99,10 +102,26 @@
 											>Water Safety</a
 										>
 									</li>
-									<li class="nav-item active">
+									<!-- <li class="nav-item active">
 										<a class="nav-link subtitle" onclick="getLocation()"
 											>Safe Beaches</a
 										>
+									</li> -->
+
+									<!-- Safe Beaches Nav Item with Form -->
+									<li class="nav-item active">
+										<form
+											id="locationForm"
+											method="POST"
+											action="/recommendation"
+										>
+											<input type="hidden" name="latitude" id="latitude" />
+											<input type="hidden" name="longitude" id="longitude" />
+											<a class="btn nav-link subtitle" onclick="getLocation()"
+											>Safe Beaches</a
+										>
+											</button>
+										</form>
 									</li>
 								</ul>
 							</div>
