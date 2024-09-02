@@ -255,9 +255,10 @@
 
 /* AMENITIES */
 
-.amenities-container .amenity-item .amenity-icon{
-    width: 3rem;
-    height: 3rem;
+.amenities-container .amenity-item .amenity-icon,
+.location-icon{
+    width: 2rem;
+    height: 2rem;
 }
 
 .warning-container .warning-item .warning-icon{

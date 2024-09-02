@@ -1,231 +1,233 @@
 
 
 {% extends "template.html" %} {% block title %}Recommendation{%
-	endblock %} {% block content %}
-	<div class="container-fluid">
-		<section id="banner" class="banner">
-			<div class="row">
-				<div
-					class="col-sm-12 colmd-12 col-lg-12 col-xl-6 rounded-5 d-flex align-items-end"
-					style="
-						background-image: url('/img/recommendation-banner.jpg');
-						height: 500px; /* You can set this to maintain the aspect ratio */
-						background-position: center;
-						background-size: cover;
-						width: 100%;
-						height: 50vh;
-					"
-				>
-					<div data-aos="fade-up" data-aos-duration="1000">
-						<div class="row w-100">
-							<div class="col-md-1"></div>
-							<!-- Aligning to the grid's padding -->
-							<div class="col-md-10">
-								<p class="title" style="color: #fff">
-									Top 3 safest beaches in your current state of residence
-								</p>
-							</div>
-							<div class="col-md-1"></div>
-							<!-- Optional for symmetry -->
+endblock %} {% block content %}
+<div class="container-fluid">
+	<section id="banner" class="banner">
+		<div class="row">
+			<div
+				class="col-sm-12 colmd-12 col-lg-12 col-xl-6 rounded-5 d-flex align-items-end"
+				style="
+					background-image: url('/img/recommendation-banner.jpg');
+					height: 500px; /* You can set this to maintain the aspect ratio */
+					background-position: center;
+					background-size: cover;
+					width: 100%;
+					height: 50vh;
+				"
+			>
+				<div data-aos="fade-up" data-aos-duration="1000">
+					<div class="row w-100">
+						<div class="col-md-1"></div>
+						<!-- Aligning to the grid's padding -->
+						<div class="col-md-10">
+							<p class="title" style="color: #fff">
+								Top 3 safest beaches in your current state of residence
+							</p>
 						</div>
+						<div class="col-md-1"></div>
+						<!-- Optional for symmetry -->
 					</div>
-				</div>
-			</div>
-		</section>
-	
-		<!-- <p>Your current location is:</p>
-		<p>Latitude: {{ latitude }}</p>
-		<p>Longitude: {{ longitude }}</p> -->
-		<!-- <p>Top Beaches: {{ top_beaches }}</p> -->
-	
-		<!-- {{longitude}} {{latitude}} -->
-	
-		<section id="list-beaches" class="list-beaches">
-			<div data-aos="fade-up">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-						<div data-aos="fade-up" data-aos-duration="1000">
-							<div class="row">
-								<!-- {% for beach in top_beaches %} -->
-								<!-- {{beach['beach_info']}} -->
-								<!-- {% endfor %} -->
-								{% for beach in top_beaches %}
-								<div class="col-md-4 my-3">
-									<a
-										type="button"
-										data-bs-toggle="modal"
-										data-bs-target="#beachModal"
-										data-beach-name="{{beach['BEACH_NAME']}}"
-										data-beach-location="{{beach['latitude'], beach['longitude']}}"
-										data-beach-warning="{{beach['warning']}}"
-										data-beach-amenities="{{beach['amenities']}}"
-										data-beach-description="{{beach['beach_info']}}"
-									>
-										<img
-											src="{{beach['image_address']}}"
-											alt=""
-											class="img-fluid rounded-5 beach-image"
-										/>
-									</a>
-	
-									<div class="d-flex justify-content-center align-items-center">
-										<p class="subtitle">{{beach['BEACH_NAME']}}</p>
-									</div>
-								</div>
-								{% endfor %}
-								<!-- <div class="col-md-4 my-3">
-									<a href="">
-										<img
-											src="/img/bellsbeach.jpg"
-											alt=""
-											class="img-fluid rounded-5 beach-image"
-										/>
-									</a>
-	
-									<div class="d-flex justify-content-center align-items-center">
-										<p class="subtitle">TEST</p>
-									</div>
-								</div>
-								<div class="col-md-4 my-3">
-									<a href="">
-										<img
-											src="/img/bellsbeach.jpg"
-											alt=""
-											class="img-fluid rounded-5 beach-image"
-										/>
-									</a>
-	
-									<div class="d-flex justify-content-center align-items-center">
-										<p class="subtitle">TEST</p>
-									</div>
-								</div>
-								<div class="col-md-4 my-3">
-									<a href="">
-										<img
-											src="/img/bellsbeach.jpg"
-											alt=""
-											class="img-fluid rounded-5 beach-image"
-										/>
-									</a>
-	
-									<div class="d-flex justify-content-center align-items-center">
-										<p class="subtitle">TEST</p>
-									</div>
-								</div> -->
-							</div>
-						</div>
-	
-						<!-- Card Content -->
-	
-						<!-- <div data-aos="fade-up" data-aos-duration="1000">
-							<div class="row">
-								{% for beach in top_beaches %}
-								<div class="col-md-4 my-3">
-									<a
-										type="button"
-										data-bs-toggle="modal"
-										data-bs-target="#bellsbeach1"
-									>
-										<img
-											src="{{beach['image_address']}}"
-											alt="{{beach['BEACH_NAME']}}"
-											class="img-fluid rounded-5 beach-image"
-										/>
-									</a>
-	
-									<div class="d-flex justify-content-center align-items-center">
-										<p class="subtitle">{{beach['BEACH_NAME']}}</p>
-									</div>
-								</div>
-								{% endfor %}
-							</div>
-						</div> -->
-	
-						<!-- Card Content End -->
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	
-	<!-- Beach Modal -->
-	<!-- #1 -->
-	<div
-		class="modal fade"
-		id="beachModal"
-		tabindex="-1"
-		role="dialog"
-		aria-labelledby="beachModalLabel"
-		aria-hidden="true"
-	>
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="d-flex justify-content-end">
-						<button
-						type="button"
-						class="close"
-						data-bs-dismiss="modal"
-						aria-label="Close"
-						style="background-color: transparent !important;"
-					>
-						<span aria-hidden="true">&times;</span>
-					</div>
-					
-					</button>
-					<div class="row mx-3 mb-3">
-						<div class="col-md-12">
-							<div class="seperator"></div>
-							<div class="d-flex title-container">
-								<p class="subtitle modal-title"></p>
-							</div>
-						</div>
-					</div>
-					<div class="row mx-3 mb-3">
-						<div class="col-md-12">
-							<div class="seperator"></div>
-							<p class="subtitle">Amenities</p>
-							<div class="d-flex amenities-container">
-								<!-- <p class="text">Amminities:</p>
-								<p class="text modal-amminities"></p> -->
-							</div>
-						</div>
-					</div>
-					<div class="row mx-3 mb-3">
-						<div class="col-md-12">
-							<div class="seperator"></div>
-							<p class="subtitle">Warning</p>
-							<div class="d-flex warning-container">
-								<!-- <p class="text">Amminities:</p>
-								<p class="text modal-amminities"></p> -->
-							</div>
-						</div>
-					</div>
-					<div class="row mx-3 mb-3">
-						<div class="col-md-12">
-							<div class="text .modal-description"></div>
-						</div>
-					</div>
-					<div class="row mx-3 mb-3">
-						<div class="col-md-12">
-							<div class="seperator"></div>
-	
-							<p class="text modal-description"></p>
-						</div>
-					</div>
-	
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-						Close
-					</button>
-					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 				</div>
 			</div>
 		</div>
+	</section>
+
+	<!-- <p>Your current location is:</p>
+	<p>Latitude: {{ latitude }}</p>
+	<p>Longitude: {{ longitude }}</p> -->
+	<!-- <p>Top Beaches: {{ top_beaches }}</p> -->
+
+	{{longitude}} {{latitude}}
+
+	<section id="list-beaches" class="list-beaches">
+		<div data-aos="fade-up">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div data-aos="fade-up" data-aos-duration="1000">
+						<div class="row">
+							<!-- {% for beach in top_beaches %} -->
+							<!-- {{beach['beach_info']}} -->
+							<!-- {% endfor %} -->
+							{% for beach in top_beaches %}
+							<div class="col-md-4 my-3">
+								<a
+									type="button"
+									data-bs-toggle="modal"
+									data-bs-target="#beachModal"
+									data-beach-name="{{beach['BEACH_NAME']}}"
+									data-beach-latitude="{{beach['LATITUDE']}}"
+									data-beach-longitude="{{beach['LONGITUDE']}}"
+									data-beach-warning="{{beach['warning']}}"
+									data-beach-amenities="{{beach['amenities']}}"
+									data-beach-description="{{beach['beach_info']}}"
+								>
+									<img
+										src="{{beach['image_address']}}"
+										alt=""
+										class="img-fluid rounded-5 beach-image"
+									/>
+								</a>
+
+								<div class="d-flex justify-content-center align-items-center">
+									<p class="subtitle">{{beach['BEACH_NAME']}}</p>
+								</div>
+							</div>
+							{% endfor %}
+							<!-- <div class="col-md-4 my-3">
+								<a href="">
+									<img
+										src="/img/bellsbeach.jpg"
+										alt=""
+										class="img-fluid rounded-5 beach-image"
+									/>
+								</a>
+
+								<div class="d-flex justify-content-center align-items-center">
+									<p class="subtitle">TEST</p>
+								</div>
+							</div>
+							<div class="col-md-4 my-3">
+								<a href="">
+									<img
+										src="/img/bellsbeach.jpg"
+										alt=""
+										class="img-fluid rounded-5 beach-image"
+									/>
+								</a>
+
+								<div class="d-flex justify-content-center align-items-center">
+									<p class="subtitle">TEST</p>
+								</div>
+							</div>
+							<div class="col-md-4 my-3">
+								<a href="">
+									<img
+										src="/img/bellsbeach.jpg"
+										alt=""
+										class="img-fluid rounded-5 beach-image"
+									/>
+								</a>
+
+								<div class="d-flex justify-content-center align-items-center">
+									<p class="subtitle">TEST</p>
+								</div>
+							</div> -->
+						</div>
+					</div>
+
+					<!-- Card Content -->
+
+					<!-- <div data-aos="fade-up" data-aos-duration="1000">
+						<div class="row">
+							{% for beach in top_beaches %}
+							<div class="col-md-4 my-3">
+								<a
+									type="button"
+									data-bs-toggle="modal"
+									data-bs-target="#bellsbeach1"
+								>
+									<img
+										src="{{beach['image_address']}}"
+										alt="{{beach['BEACH_NAME']}}"
+										class="img-fluid rounded-5 beach-image"
+									/>
+								</a>
+
+								<div class="d-flex justify-content-center align-items-center">
+									<p class="subtitle">{{beach['BEACH_NAME']}}</p>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div> -->
+
+					<!-- Card Content End -->
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- Beach Modal -->
+<!-- #1 -->
+<div
+	class="modal fade"
+	id="beachModal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="beachModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="d-flex justify-content-end">
+					<button
+					type="button"
+					class="close"
+					data-bs-dismiss="modal"
+					aria-label="Close"
+					style="background-color: transparent !important;"
+				>
+					<span aria-hidden="true">&times;</span>
+				</div>
+				
+				</button>
+				<div class="row mx-3 mb-3">
+					<div class="col-md-12">
+						<div class="seperator"></div>
+						<div class="d-flex">
+							<p class="subtitle modal-title"></p>
+							<div id="title-container"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row mx-3 mb-3">
+					<div class="col-md-12">
+						<div class="seperator"></div>
+						<p class="subtitle">Amenities</p>
+						<div class="d-flex amenities-container">
+							<!-- <p class="text">Amminities:</p>
+							<p class="text modal-amminities"></p> -->
+						</div>
+					</div>
+				</div>
+				<div class="row mx-3 mb-3">
+					<div class="col-md-12">
+						<div class="seperator"></div>
+						<p class="subtitle">Warning</p>
+						<div class="d-flex warning-container">
+							<!-- <p class="text">Amminities:</p>
+							<p class="text modal-amminities"></p> -->
+						</div>
+					</div>
+				</div>
+				<div class="row mx-3 mb-3">
+					<div class="col-md-12">
+						<div class="text .modal-description"></div>
+					</div>
+				</div>
+				<div class="row mx-3 mb-3">
+					<div class="col-md-12">
+						<div class="seperator"></div>
+
+						<p class="text modal-description"></p>
+					</div>
+				</div>
+
+				
+			</div>
+			<!-- <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Close
+				</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div> -->
+		</div>
 	</div>
-	
-	{% endblock %}
+</div>
+
+{% endblock %}
 	
