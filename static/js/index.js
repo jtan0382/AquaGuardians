@@ -47,51 +47,53 @@ document
 // 		window.location.href = "/test";
 // 	}
 // }
-function getLocation() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(
-			function (position) {
-				const latitude = position.coords.latitude;
-				const longitude = position.coords.longitude;
 
-				// Populate the form with the latitude and longitude
-				document.getElementById("latitude").value = latitude;
-				document.getElementById("longitude").value = longitude;
-
-				// Submit the form
-				document.getElementById("locationForm").submit();
-			},
-			function (error) {
-				console.error("Geolocation error:", error);
-				window.location.href = "/testblock";
-			}
-		);
-	} else {
-		window.location.href = "/test";
-	}
-}
-
-// GET
-
+// POST
 // function getLocation() {
 // 	if (navigator.geolocation) {
 // 		navigator.geolocation.getCurrentPosition(
 // 			function (position) {
 // 				const latitude = position.coords.latitude;
 // 				const longitude = position.coords.longitude;
-// 				window.location.href = `/recommendation?latitude=${latitude}&longitude=${longitude}`;
+
+// 				// Populate the form with the latitude and longitude
+// 				document.getElementById("latitude").value = latitude;
+// 				document.getElementById("longitude").value = longitude;
+
+// 				// Submit the form
+// 				document.getElementById("locationForm").submit();
 // 			},
 // 			function (error) {
 // 				console.error("Geolocation error:", error);
-// 				window.location.href = "/recommendation";
+// 				window.location.href = "/testblock";
 // 			}
-// 			// { maximumAge: 0, timeout: 10000, enableHighAccuracy: true }
 // 		);
 // 	} else {
-// 		// Redirect without location if geolocation is not supported
-// 		window.location.href = "/recommendation";
+// 		window.location.href = "/test";
 // 	}
 // }
+
+// GET
+
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(
+			function (position) {
+				const latitude = position.coords.latitude;
+				const longitude = position.coords.longitude;
+				window.location.href = `/recommendation?latitude=${latitude}&longitude=${longitude}`;
+			},
+			function (error) {
+				console.error("Geolocation error:", error);
+				window.location.href = "/recommendation";
+			}
+			// { maximumAge: 0, timeout: 10000, enableHighAccuracy: true }
+		);
+	} else {
+		// Redirect without location if geolocation is not supported
+		window.location.href = "/recommendation";
+	}
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 	const beachModal = document.getElementById("beachModal");

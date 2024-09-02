@@ -29,56 +29,56 @@ from haversine import haversine, Unit
 
 
 # POST
+# def index():
+#     MODEL_PARAMS = {
+#         'a': 0.4,  # Weight for hazard rating
+#         'b': 0.6   # Weight for distance
+#     }
+#     if request.method == 'POST':
+#         latitude = float(request.form.get('latitude', 0))
+#         longitude = float(request.form.get('longitude', 0))
+#         # Fetch the merged data
+#         df_merged = fetch_merged_data()
+#         # print(f"merged: {df_merged}")
+        
+#         # Calculate the top 3 beaches based on user's location
+#         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+#         print(top_beaches.to_dict(orient='records'))
+
+
+#         # Render the result in the template
+#         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
+
+#     else:
+#         return render_template('recommendation.html')
+
 def index():
-    MODEL_PARAMS = {
+
+        
+    if request.method == 'GET':
+        MODEL_PARAMS = {
         'a': 0.4,  # Weight for hazard rating
         'b': 0.6   # Weight for distance
-    }
-    if request.method == 'POST':
-        latitude = float(request.form.get('latitude', 0))
-        longitude = float(request.form.get('longitude', 0))
+        }
+
+
+        latitude = float(request.args.get("latitude", 0))
+        longitude = float(request.args.get("longitude", 0))
+        
         # Fetch the merged data
         df_merged = fetch_merged_data()
         # print(f"merged: {df_merged}")
         
         # Calculate the top 3 beaches based on user's location
         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-        print(top_beaches.to_dict(orient='records'))
+        # print(top_beaches.to_dict(orient='records'))
 
 
         # Render the result in the template
         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
     else:
-        return render_template('recommendation.html')
-
-# def index():
-
-        
-#     if request.method == 'GET':
-#         MODEL_PARAMS = {
-#         'a': 0.4,  # Weight for hazard rating
-#         'b': 0.6   # Weight for distance
-#         }
-
-
-#         latitude = float(request.args.get("latitude", 0))
-#         longitude = float(request.args.get("longitude", 0))
-        
-        # # Fetch the merged data
-        # df_merged = fetch_merged_data()
-        # # print(f"merged: {df_merged}")
-        
-        # # Calculate the top 3 beaches based on user's location
-        # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-        # print(top_beaches.to_dict(orient='records'))
-
-
-        # # Render the result in the template
-        # return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
-
-#     else:
-#         return render_template("recommendation.html", latitude = latitude, longitude = longitude)
+        return render_template("recommendation.html", latitude = latitude, longitude = longitude)
 
     # MODEL_PARAMS = {
     #     'a': 0.4,  # Weight for hazard rating
