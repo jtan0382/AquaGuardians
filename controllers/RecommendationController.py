@@ -29,6 +29,8 @@ from haversine import haversine, Unit
 
 
 def index():
+
+        
     if request.method == 'GET':
         MODEL_PARAMS = {
         'a': 0.4,  # Weight for hazard rating
