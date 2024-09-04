@@ -1,0 +1,67 @@
+
+
+/* RECOMMENDATION PAGE */
+
+/* RECOMMENDATION */
+
+.list-beaches{
+    padding: var(--sectionPadding);
+}
+
+.beach-description{
+    max-width: 75rem;
+}
+.image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 20px; /* Rounded corners */
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    border-radius: inherit; /* Inherit border radius from the container */
+}
+
+.beach-image{
+    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
+    background-size: cover; /* Make the background image cover the entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+.recom-card{
+    transition: all 0.3s;
+}
+
+.recom-card:hover{
+    transform: scale(1.15);
+}
+
+/* AMENITIES */
+
+.amenities-container .amenity-item .amenity-icon,
+.location-icon{
+    width: 2rem;
+    height: 2rem;
+}
+
+.warning-container .warning-item .warning-icon{
+    width: 3rem;
+    height: 3rem;
+}
+
+/* END OF AMENITIES */
+
+
+/* RECOMMENDATION END */
+
+/* RECOMMENDATION PAGE END */
+

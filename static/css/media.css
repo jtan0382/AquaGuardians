@@ -1,0 +1,21 @@
+
+/* MEDIA QUERY */
+
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column; /* Stacks flex children vertically */
+    }
+
+    .beach-class {
+        width: 100%; /* Allows the image to take the full width of the row */
+    }
+    
+
+    .flag-image {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+    
+}
+
+/* MEDIA QUERY END */

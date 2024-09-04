@@ -4,7 +4,7 @@
     --nav-font: "Poppins", sans-serif; */
 
     --background-color: #F6F1F1;
-    /* --primary-color: #e6e6e6; */
+    --secondary-background-color: #e6e6e6;
     --primary-color: #75dddd;
 
     
@@ -151,128 +151,6 @@
 
 /* FOOTER END */
 
-/* INDEX PAGE */
-
-.hero-image {
-    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
-    background-size: cover; /* Make the background image cover the entire section */
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 80vh; 
-    border-radius: 20px;
-}
-
-.hero-title{
-
-    color: var(--background-color);
-    font-size: var(--fs-800);
-    font-weight: var(--fw-bold);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-
-.hero-text{
-    color: var(--background-color);
-    font-size: var(--fs-600);
-    font-weight: var(--fw-bold);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
-
-.hero-button{
-    background: linear-gradient(
-        var(--linear-degree),
-        var(--linear-first-color),
-        var(--linear-second-color),
-        var(--linear-third-color)
-    );
-    font-weight: var(--fw-bold);
-    font-size: var(--fs-500);
-    text-transform: uppercase;
-}
-
-/* ABOUT */
-
-.about{
-    padding: var(--sectionPadding)
-}
-
-.about div.d-flex{
-    gap:var(--flex-gap);
-    
-}
-
-.about>div.d-flex{
-
-    flex-direction: row-reverse;
-  }
-
-.about-information{
-    max-width: 75rem;
-}
-
-
-
-/* END OF ABOUT */
-
-
-/* END OF INDEX PAGE */
-
-
-/* RECOMMENDATION PAGE */
-
-/* RECOMMENDATION */
-
-.list-beaches{
-    padding: var(--sectionPadding);
-}
-
-.beach-description{
-    max-width: 75rem;
-}
-.image-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    overflow: hidden;
-    border-radius: 20px; /* Rounded corners */
-}
-
-.image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the image covers the container without distortion */
-    border-radius: inherit; /* Inherit border radius from the container */
-}
-
-.beach-image{
-    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
-    background-size: cover; /* Make the background image cover the entire section */
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* AMENITIES */
-
-.amenities-container .amenity-item .amenity-icon,
-.location-icon{
-    width: 2rem;
-    height: 2rem;
-}
-
-.warning-container .warning-item .warning-icon{
-    width: 3rem;
-    height: 3rem;
-}
-
-/* END OF AMENITIES */
-
-
-/* RECOMMENDATION END */
-
-/* RECOMMENDATION PAGE END */
-
 
 /* WATER SAFETY */
 
@@ -280,7 +158,7 @@
 
     padding: var(--sectionPadding)
 } */
-
+/* 
 .warning-information{
     max-width: 25rem;
     text-align: justify;
@@ -299,23 +177,7 @@
 .life-image{
     width: 10rem;
     height: 10rem;
-}
+} */
 
 
 /* END OF WATER SAFETY */
-
-/* MEDIA QUERY */
-
-@media (max-width: 768px) {
-    .d-flex {
-        flex-direction: column; /* Stacks flex children vertically */
-    }
-
-    .beach-class {
-        width: 100%; /* Allows the image to take the full width of the row */
-    }
-    
-    
-}
-
-/* MEDIA QUERY END */
