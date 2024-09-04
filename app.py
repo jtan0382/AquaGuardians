@@ -45,9 +45,15 @@ def index():
 def home():
     return render_template('home.html')
 
-@app.route("/water-safety")
+@app.route("/beach-safety")
 def safety():
-    return render_template("water-safety.html")
+    return render_template("beach-safety.html")
+
+@app.route("/rip-current")
+def rip():
+    return render_template("rip-current.html")
+
+
 
 
 
