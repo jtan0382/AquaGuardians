@@ -194,6 +194,6 @@ def generate_beach_info(row):
     # print(info)
     return info
 
-def detail():
-    pass
-    return render_template("recommendation.html", top_beaches="this is string")
+# def detail():
+#     pass
+#     return render_template("recommendation.html", top_beaches="this is string")

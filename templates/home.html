@@ -1,6 +1,6 @@
 {% extends "template.html" %} {% block title %}Aqua Guardians{% endblock %} {%
 block content %}
-
+<!-- 
 <section id="hero" class="hero">
 	<div class="d-flex flex-column justify-content-end hero-image">
 		<div class="container-fluid">
@@ -8,38 +8,89 @@ block content %}
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-10">
-						<p class="hero-title">Protect Your Family</p>
+						<p class="hero-title">Stay Safe at the Beach</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<p class="subtitle">
+							Did you know! 27.8% of premature death of migrant children was due
+							to drowning, they may not be familiar with local water safety
+							conditions.
+						</p>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<button
+							class="btn btn-primary hero-button rounded-5"
+							onclick="getLocation()"
+						>
+							See Safe Beaches near You
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> -->
+
+<section id="hero" class="hero">
+	<div class="d-flex flex-column justify-content-end hero-image">
+		<div class="container-fluid">
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10 my-3">
+						<div class="text-content">
+							<!-- Wrap the text content in a new div -->
+							<p class="hero-title">Stay Safe at the Beach</p>
+							<p class="subtitle">
+								Did you know! 27.8% of premature death of migrant children was
+								due to drowning, they may not be familiar with local water
+								safety conditions.
+							</p>
+							<button
+								class="btn btn-primary hero-button rounded-5"
+								onclick="getLocation()"
+							>
+								See Safe Beaches near You
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<div data-aos="fade-up" data-aos-duration="1000">
-	<div class="row mt-3">
+
+<!-- <div data-aos="fade-up" data-aos-duration="1000"> -->
+<!-- <div class="row mt-3">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<p class="subtitle">
 				Did you know! 27.8% of premature death of migrant children was due to
 				drowning, they may not be familiar with local water safety conditions.
 			</p>
-			<div class="d-flex gap-3 mb-3">
-				<!-- <a href="" class="btn btn-primary hero-button"
-							>See Safe Beaches near You</a
-						> -->
+			<div class="d-flex gap-3 mb-3"> -->
+<!-- <a href="" class="btn btn-primary hero-button"
+                        >See Safe Beaches near You</a
+                    > -->
 
-				<!-- <form
-							id="locationForm"
-							method="POST"
-							action="/recommendation"
-						>
-							<input type="hidden" name="latitude" id="latitude" />
-							<input type="hidden" name="longitude" id="longitude" />
-							<a class="btn btn-primary hero-button rounded-5" onclick="getLocation()"
-							>See Safe Beaches near You</a
-						> -->
+<!-- <form
+						id="locationForm"
+						method="POST"
+						action="/recommendation"
+					>
+						<input type="hidden" name="latitude" id="latitude" />
+						<input type="hidden" name="longitude" id="longitude" />
+						<a class="btn btn-primary hero-button rounded-5" onclick="getLocation()"
+						>See Safe Beaches near You</a
+					> -->
 
-				<button
+<!-- <button
 					class="btn btn-primary hero-button rounded-5"
 					onclick="getLocation()"
 				>
@@ -47,8 +98,8 @@ block content %}
 				</button>
 			</div>
 		</div>
-	</div>
-</div>
+	</div> -->
+<!-- </div> -->
 
 <div data-aos="fade-up" data-aos-duration="1000">
 	<section id="about" class="about">
@@ -56,11 +107,11 @@ block content %}
 			<div class="col-md-1"></div>
 			<div class="col-sm-12 col-md-10">
 				<!-- <div class="row">
-							<div class="col-md-6 left-about">test</div>
-							<div class="col-md-6 right-about">
-								<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
-							</div>
-						</div> -->
+                        <div class="col-md-6 left-about">test</div>
+                        <div class="col-md-6 right-about">
+                            <img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
+                        </div>
+                    </div> -->
 
 				<!-- About Information -->
 

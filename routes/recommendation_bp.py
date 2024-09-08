@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.RecommendationController import index, detail
+from controllers.RecommendationController import index
 recommendation_bp = Blueprint('recommendation_bp', __name__)
 recommendation_bp.route('/', methods=['GET'])(index)
 # recommendation_bp.route('/detail', methods=['GET'])(detail)

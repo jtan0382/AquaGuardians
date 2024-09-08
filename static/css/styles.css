@@ -75,6 +75,7 @@
 }
 
 .text{
+    font-size: var(--fs-500);
 
     /* color: var(--primary-color); */
     /* color: var(--background-color); */

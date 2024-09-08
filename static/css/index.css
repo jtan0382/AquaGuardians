@@ -1,14 +1,47 @@
 
 /* INDEX PAGE */
 
-.hero-image {
-    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
-    background-size: cover; /* Make the background image cover the entire section */
+/* .hero-image {
+    background-image: url('/img/hero.jpg');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 92vh; 
     border-radius: 20px;
+    opacity: 0.5;
+} */
+
+.hero-image {
+    position: relative;
+    /* height: 92vh; */
+    height: 80vh;
+
+    border-radius: 20px;
 }
+
+.hero-image::before {
+    content: '';
+    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
+    background-size: cover; /* Make the background image cover the entire section */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Apply opacity only to the background image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    z-index: 0; /* Make sure the background is behind the content */
+}
+
+.text-content {
+    position: relative;
+    z-index: 1; /* Ensure text stays above the background */
+}
+
+
+
 
 .hero-title{
 
@@ -48,7 +81,7 @@
     
 }
 
-.about>div.d-flex{
+.about div.d-flex{
 
     flex-direction: row-reverse;
   }

@@ -52,27 +52,34 @@ endblock %} {% block content %}
 							<!-- {% endfor %} -->
 							{% for beach in top_beaches %}
 							<div class="col-md-4 my-3">
-								<a
-									type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#beachModal"
-									data-beach-name="{{beach['BEACH_NAME']}}"
-									data-beach-latitude="{{beach['LATITUDE']}}"
-									data-beach-longitude="{{beach['LONGITUDE']}}"
-									data-beach-warning="{{beach['warning']}}"
-									data-beach-amenities="{{beach['amenities']}}"
-									data-beach-description="{{beach['beach_info']}}"
-								>
-									<img
-										src="{{beach['image_address']}}"
-										alt=""
-										class="img-fluid rounded-5 beach-image"
-									/>
-								</a>
+								<div class="card recom-card rounded-5">
+									<div class="card-body">
+										<div class="d-flex justify-content-center align-items-center">
+											<p class="subtitle">{{beach['BEACH_NAME']}}</p>
+										</div>
+											<a
+											type="button"
+											data-bs-toggle="modal"
+											data-bs-target="#beachModal"
+											data-beach-name="{{beach['BEACH_NAME']}}"
+											data-beach-latitude="{{beach['LATITUDE']}}"
+											data-beach-longitude="{{beach['LONGITUDE']}}"
+											data-beach-warning="{{beach['warning']}}"
+											data-beach-amenities="{{beach['amenities']}}"
+											data-beach-description="{{beach['beach_info']}}"
+										>
+											<img
+												src="{{beach['image_address']}}"
+												alt=""
+												class="img-fluid rounded-5 beach-image"
+											/>
+										</a>
+									</div>
+										
 
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="subtitle">{{beach['BEACH_NAME']}}</p>
+									
 								</div>
+								
 							</div>
 							{% endfor %}
 							<!-- <div class="col-md-4 my-3">
@@ -230,4 +237,3 @@ endblock %} {% block content %}
 </div>
 
 {% endblock %}
-	

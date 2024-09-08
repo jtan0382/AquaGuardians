@@ -1,0 +1,180 @@
+{% extends "template.html" %} {% block title %}Aqua Guardians{% endblock %} {%
+block content %}
+
+<!-- Back -->
+<div class="row my-3">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<a href="/beach-safety">
+			<img
+				src="/img/icons/back.png"
+				alt="Back"
+				style="width: 3rem; height: 3rem"
+			/>
+		</a>
+	</div>
+</div>
+
+<section id="rip-information" class="rip-information">
+	<div data-aos="fade-up" data-aos-duration="1000">
+		<div class="row my-3">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<p class="text">
+					Rip currents are one of the greatest, and most common, hazards on
+					Australian beaches. On average, rip currents are responsible for at
+					least 26 drownings deaths in Australia each year. In addition,
+					lifeguards perform countless rescues each and every year to assist
+					swimmers who have been caught in rip currents.
+				</p>
+
+				<br />
+				<p class="text">
+					There are many myths about the ocean, but rips are the number one
+					hazard on Australian beaches. Avoid rips by swimming at a patrolled
+					beach between the red and yellow flags.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Rip Current -->
+<section id="rip-current-information" class="rip-current-information">
+	<div class="row my-3">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<p class="title">Let's learn about the beach current</p>
+		</div>
+	</div>
+
+	<!-- Image -->
+	<div class="row my-3">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 rip-current-image"></div>
+	</div>
+</section>
+<!-- End of Rip Current -->
+
+<!-- How to spot and save -->
+<section id="rip-tips" class="rip-tips">
+	<div class="row my-3">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-6">
+					<p class="subtitle">HOW TO SPOT A RIP CURRENT</p>
+					<p class="text">The key signs to look for are:</p>
+					<ul>
+						<li class="text">Deeper and/or darker water</li>
+						<li class="text">Fewer breaking waves</li>
+						<li class="text">
+							Sandy coloured water extending beyond the surf zone
+						</li>
+						<li class="text">Debris or seaweed</li>
+						<li class="text">Significant water movement</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<p class="subtitle">HOW TO SURVIVE A RIP CURRENT</p>
+					<p class="text">
+						If you’re caught in a rip current, stay calm, conserve your energy
+						and consider these options:
+					</p>
+					<ul>
+						<li class="text">Stay calm</li>
+						<li class="text">
+							Seek help. Raise your arm and call out. You may be rescued
+						</li>
+						<li class="text">
+							Float with the current. It may return you to a shallow sandbank
+						</li>
+						<li class="text">
+							Swim parallel to the beach or towards the breaking waves. You may
+							escape the rip current
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row my-3">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<p class="text">
+				Sometimes it can be easier to look for where the waves are breaking
+				consistently, and then look to each side where they don’t break
+				consistently. Those areas are rip currents.
+			</p>
+		</div>
+	</div>
+</section>
+<!-- End -->
+
+<!-- Guess -->
+<section id="rip-guess" class="rip-guess">
+	<div class="row my-3">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<p class="title">Guess The Rips!</p>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="row mb-5">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<div class="guess-image">
+				<!-- Dot start -->
+
+				<!-- 1st Dot -->
+				<a
+					class="dot dot-left"
+					data-bs-toggle="collapse"
+					href="#dot-left"
+					role="button"
+					aria-expanded="false"
+					aria-controls="dot-left"
+				>
+				</a>
+				<div class="collapse" id="dot-left">
+					<div class="card card-body">This is not rips</div>
+				</div>
+
+				<!-- 2nd Dot -->
+				<a
+					class="dot dot-middle"
+					data-bs-toggle="collapse"
+					href="#dot-middle"
+					role="button"
+					aria-expanded="false"
+					aria-controls="dot-middle"
+				></a>
+				<div class="collapse" id="dot-middle">
+					<div class="card card-body">This is rips</div>
+				</div>
+
+				<!-- 3rd Dot -->
+				<a
+					class="dot dot-right"
+					data-bs-toggle="collapse"
+					href="#dot-right"
+					role="button"
+					aria-expanded="false"
+					aria-controls="dot-right"
+				></a>
+
+				<div class="collapse" id="dot-right">
+					<div class="card card-body">This is not rips</div>
+				</div>
+
+				<!-- End Dot -->
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End of Guess -->
+
+{% endblock %}

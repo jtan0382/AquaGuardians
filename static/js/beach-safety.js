@@ -16,11 +16,10 @@ document.querySelector("#checkFlags").addEventListener("click", function () {
 
 		// Compare the user answer with the correct answer
 		if (userAnswer === correctAnswer) {
-			correctCount++; 
+			correctCount++;
 		} else {
-			
 			const wrongFlagImage = document.createElement("img");
-			wrongFlagImage.src = flagImageSrc; 
+			wrongFlagImage.src = flagImageSrc;
 			wrongFlagImage.classList.add(
 				"img-fluid",
 				"rounded-3",
@@ -32,5 +31,5 @@ document.querySelector("#checkFlags").addEventListener("click", function () {
 		}
 	});
 
+	
 });
-
