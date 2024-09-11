@@ -1,5 +1,5 @@
-{% extends "template.html" %} {% block title %}Aqua Guardians{% endblock %} {%
-block content %}
+{% extends "template.html" %} {% block title %}Beach Safety - Aqua Guardians{%
+endblock %} {% block content %}
 
 <section id="safety-information" class="safety-information">
 	<div data-aos="fade-up" data-aos-duration="1000">
@@ -211,11 +211,16 @@ block content %}
 
 	<div data-aos="fade-up" data-aos-duration="1000">
 		<!-- Wrong Answer -->
-		<div class="d-flex justify-content-center align-content-center">
+		<div class="d-flex flex-column">
 			<!-- Title -->
-			<div><p class="title">Wrong Answers:</p></div>
+			<div class="d-flex justify-content-center align-content-center">
+				<p class="title">Wrong Answers:</p>
+			</div>
 			<!-- Flags -->
-			<div id="wrong-flags-container" class="d-flex mx-3"></div>
+			<div
+				id="wrong-flags-container"
+				class="d-flex justify-content-center gap-3"
+			></div>
 		</div>
 	</div>
 </section>
@@ -227,7 +232,7 @@ block content %}
 		<div
 			class="d-flex flex-column justify-content-center align-content-center text-center"
 		>
-			<p class="title">LEARNING MORE ABOUT THE RIP KNOWLEDGE</p>
+			<p class="title">LEARNING MORE ABOUT THE RIP CURRENT KNOWLEDGE</p>
 			<p class="text">How to spot a rip current</p>
 			<div class="d-flex justify-content-center">
 				<a href="/rip-current" class="btn btn-primary rounded-5 px-5">

@@ -72,7 +72,7 @@
 
 /* ABOUT */
 
-.about{
+.about, .emergency-plan{
     padding: var(--sectionPadding)
 }
 
@@ -93,6 +93,14 @@
 
 
 /* END OF ABOUT */
+
+/* EMERGENCY PLAN */
+
+.emergency-plan{
+    background-color: var(--secondary-background-color);
+}
+
+/* END OF EMERGENCY PLAN */
 
 
 /* END OF INDEX PAGE */

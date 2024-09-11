@@ -3,9 +3,9 @@
     --heading-font: "Raleway", sans-serif;
     --nav-font: "Poppins", sans-serif; */
 
-    --background-color: #F6F1F1;
-    --secondary-background-color: #e6e6e6;
-    --primary-color: #75dddd;
+    --background-color: #FEF9D9;
+    --secondary-background-color: #8EACCD;
+    --primary-color: #D2E0FB;
 
     
 	--ff-gothic: 'Gothic A1', sans-serif;
@@ -54,6 +54,7 @@
 
 
 
+
 .title{
     font-size: var(--fs-700);
     font-weight: var(--fw-bold);
@@ -62,7 +63,7 @@
 
 .footer-title{
     color: var(--background-color);
-    font-size: var(--fs-800);
+    font-size: var(--fs-700);
     font-weight: var(--fw-bold);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
@@ -86,7 +87,7 @@
 
     color: var(--background-color);
 
-    font-size: var(--fs-600);
+    font-size: var(--fs-500);
     font-weight: var(--fw-bold);
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
@@ -115,13 +116,18 @@
 
 
 .footer{
-    padding: var(--sectionPadding)
+    /* padding: var(--sectionPadding) */
+    padding: 3rem 0;
     
 }
 
 .footer-icon{
     width: 2.5rem; 
     height: 2.5rem; 
+}
+
+.useful-links>a{
+    text-decoration: none;
 }
 
 .seperator {
