@@ -1,56 +1,11 @@
+from controllers.WeatherDataUsingApi import Weather
 import sys
 from flask import render_template, request, session
 from models.Recommendation import fetch_merged_data
 import numpy as np
 from haversine import haversine, Unit
 
-# def index():
-#     # Model parameters
-#     MODEL_PARAMS = {
-#         'a': 0.4,  # Weight for hazard rating
-#         'b': 0.6   # Weight for distance
-#     }
 
-
-#     latitude = float(request.args.get("latitude", 0))
-#     longitude = float(request.args.get("longitude", 0))
-    
-#     # Fetch the merged data
-#     df_merged = fetch_merged_data()
-#     # print(f"merged: {df_merged}")
-    
-#     # Calculate the top 3 beaches based on user's location
-#     top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-#     print(f"beaches: {top_beaches}")
-# TEST
-
-#     # Render the result in the template
-#     return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
-
-
-# POST
-# def index():
-#     MODEL_PARAMS = {
-#         'a': 0.4,  # Weight for hazard rating
-#         'b': 0.6   # Weight for distance
-#     }
-#     if request.method == 'POST':
-#         latitude = float(request.form.get('latitude', 0))
-#         longitude = float(request.form.get('longitude', 0))
-#         # Fetch the merged data
-#         df_merged = fetch_merged_data()
-#         # print(f"merged: {df_merged}")
-        
-#         # Calculate the top 3 beaches based on user's location
-#         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-#         print(top_beaches.to_dict(orient='records'))
-
-
-#         # Render the result in the template
-#         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
-
-#     else:
-#         return render_template('recommendation.html')
 
 def index():
 
@@ -80,45 +35,7 @@ def index():
     else:
         return render_template("recommendation.html", latitude = latitude, longitude = longitude)
 
-    # MODEL_PARAMS = {
-    #     'a': 0.4,  # Weight for hazard rating
-    #     'b': 0.6   # Weight for distance
-    # }
-
     
-
-    # if request.method == 'POST':
-    #     data = request.get_json()
-    #     latitude = data.get('latitude')
-    #     longitude = data.get('longitude')
-
-
-    #     # Store latitude and longitude in the session
-    #     session['latitude'] = latitude
-    #     session['longitude'] = longitude
-        
-
-    #             # Fetch the merged data
-    #     # df_merged = fetch_merged_data()
-    #     #print(f"merged: {df_merged}")
-        
-    #     # Calculate the top 3 beaches based on user's location
-    #     # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-    #     # print(f"beaches: {top_beaches}")
-
-
-    #     # return render_template("recommendation.html", latitude=latitude, longitude=longitude)
-    #         # Render the result in the template
-    #     return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches="this is string")
-
-    # else:
-
-    #     # Retrieve latitude and longitude from the session
-    #     latitude = session.get('latitude')
-    #     longitude = session.get('longitude')
-
-    #     return render_template("recommendation.html", latitude=latitude, longitude=longitude)
-
 
 def calculate_distance(lat1, lon1, lat2, lon2):
     user_location = (lat1, lon1)
@@ -168,32 +85,69 @@ def score_beaches(df, user_lon, user_lat, model):
     top_beaches['warning'] = top_beaches.apply(lambda row: ', '.join([warning_mapping[col] for col in warning_mapping if row[col]]), axis=1)    # print(info)
     # Select the required columns to display
     result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','amenities','warning','beach_info']]
-    print(result)
+    weather = Weather()
+    result_final = weather.get_weather_details(result)
 
-    return result
+    result_final['safety'] = result_final['beaufort_scale'].apply(lambda x: 'safe' if x < 99 else 'unsafe')
+    # print(result_final)
+    def aggregate_rows(group):
+        static_info = group.iloc[0].copy()
+    
+        # Concatenate Beaufort scale values based on safety
+        safe_beaufort = group.loc[group['safety'] == 'safe', 'safe_time'].astype(str).tolist()
+        unsafe_beaufort = group.loc[group['safety'] == 'unsafe', 'safe_time'].astype(str).tolist()
+
+        # Join the Beaufort values into a single string
+        static_info['safe_beaufort'] = ', '.join(safe_beaufort)
+        static_info['unsafe_beaufort'] = ', '.join(unsafe_beaufort)
+
+        return static_info
+
+
+    aggregated_df = result_final.groupby(
+        ['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 
+        'image_address', 'amenities', 'warning', 'beach_info', 
+        'sunrise', 'sunset', 'temperature_2m_max', 
+        'temperature_2m_min', 'uv_index_max', 'max_wind_speed', 'safety']
+        ).apply(aggregate_rows).reset_index(drop=True)
+
+
+    
+    return aggregated_df
 
 def generate_beach_info(row):
     beach_name = row['BEACH_NAME']
     hazard_rating = row['HAZARD_RAT']
-    shops_status = 'Shops' if row['SHOPS'] == 1 else ''
-    playground_status = 'Playgrounds' if row['PLAYGROUND'] == 1 else ''
-    picnic_status = 'Picnics' if row['PICNIC'] == 1 else ''
-    bbq_status = 'BBQs' if row['BBQ'] == 1 else ''
-    warning = ''
     
+    # Collect available amenities only if they are not empty
+    amenities = []
+    if row['SHOPS'] == 1:
+        amenities.append('Shops')
+    if row['PLAYGROUND'] == 1:
+        amenities.append('Playgrounds')
+    if row['PICNIC'] == 1:
+        amenities.append('Picnic areas')
+    if row['BBQ'] == 1:
+        amenities.append('BBQs')
+
+    # Handling warnings for hazardous sea life
+    warning = ''
     if row['BLUEBOTTLE'] == 1:
         warning = 'Warning: Bluebottle jellyfish present. '
     if row['SHARKS'] == 1:
         warning = 'Warning: Sharks spotted. '
     if not warning:
         warning = 'Safe from hazardous sea life.'
-    
-    info = f"The {beach_name} is rated {hazard_rating}/10 by The Victorian Government. The available amenities are: {shops_status}, {playground_status}, {picnic_status} "
-    info += warning
 
-    # print(info)
+    # Construct amenities section if there are any, otherwise skip
+    amenities_str = ', '.join(amenities)
+    if amenities_str:
+        amenities_str = f"The available amenities are: {amenities_str}. "
+
+    # Construct final info string
+    info = f"The {beach_name} is rated {hazard_rating}/10 by The Victorian Government (1 being safest). {amenities_str}{warning}"
+
     return info
 
-# def detail():
-#     pass
-#     return render_template("recommendation.html", top_beaches="this is string")
+
+
