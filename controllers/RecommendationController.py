@@ -28,8 +28,12 @@ def index():
         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
         # print(top_beaches.to_dict(orient='records'))
 
+        print(top_beaches)
+
 
         # Render the result in the template
+        # return render_template("recommendation.html", latitude = latitude, longitude = longitude)
+
         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
     else:
@@ -148,6 +152,5 @@ def generate_beach_info(row):
     info = f"The {beach_name} is rated {hazard_rating}/10 by The Victorian Government (1 being safest). {amenities_str}{warning}"
 
     return info
-
 
 

@@ -1,0 +1,168 @@
+{% extends "template.html" %} {% block title %}Emergency Procedures - Aqua
+Guardians{% endblock %} {% block content %}
+
+<div class="row my-5">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<div class="d-flex flex-column gap-3">
+			<p class="title">Emergency Procedures</p>
+			<audio controls src="/media/emergency-plan.mp3"></audio>
+		</div>
+	</div>
+</div>
+
+<section id="emergency-procedures" class="emergency-procedures">
+	<div class="container py-5">
+		<div class="main-timeline">
+			<div class="emergency-timeline emergency-left">
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step1"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step1">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">STEP 1: Stay calm</p>
+							<p class="text">
+								After drowning, your child may lose consciousness or breath; you
+								must remain calm and act quickly to ensure your own and your
+								child's safety.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="emergency-timeline emergency-right">
+				<!-- <div class="emergency-circle"></div> -->
+
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step2"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step2">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">STEP 2: Call for help immediately</p>
+							<p class="text">
+								Call the person next to you for help and dial 000 or 112 as soon
+								as possible, so that you can give initial first aid at the same
+								time while help is on the way.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="emergency-timeline emergency-left">
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step3"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step3">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">STEP 3: Remove the child from the water</p>
+							<p class="text">
+								If it is safe to do so, remove the child from the water quickly.
+								If possible, use floats or ropes to help to avoid getting into
+								danger again yourself.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="emergency-timeline emergency-right">
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step4"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step4">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">STEP 4: Check for breathing and heartbeat</p>
+							<p class="text">
+								As soon as your child is rescued to shore, check their breathing
+								and pulse. If the child is not breathing or has a heartbeat,
+								prepare to perform cardiopulmonary resuscitation (CPR).
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="emergency-timeline emergency-left">
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step5"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step5">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">
+								STEP 5: Perform cardiopulmonary resuscitation (CPR)
+							</p>
+							<p class="text">
+								1.Chest compressions: Lay the child flat on a hard surface with
+								hands folded over the center of the chest and apply 100-120
+								compressions per minute to a depth of about 4-5 cm.
+								<br />2.Artificial respiration: After every 30 compressions,
+								perform 2 artificial respirations, pinch the child's nose and
+								blow mouth-to-mouth to see if the chest rises and falls.
+								<br />3.Continued First Aid: Continue chest compressions and
+								artificial respiration until first aiders arrive.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="emergency-timeline emergency-right">
+				<a
+					class="emergency-circle"
+					data-bs-toggle="collapse"
+					href="#emergency-step6"
+					role="button"
+					aria-expanded="false"
+					aria-controls="collapseExample"
+				>
+				</a>
+				<div class="collapse" id="emergency-step6">
+					<div class="card">
+						<div class="card-body p-4">
+							<p class="title">STEP 6: Keep warm and wait for help</p>
+							<p class="text">
+								While waiting for help, make sure your child stays warm to avoid
+								further heat loss. Wrap the child in a blanket or dry clothing,
+								but avoid moving them excessively
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

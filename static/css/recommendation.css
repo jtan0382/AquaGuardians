@@ -65,3 +65,29 @@
 
 /* RECOMMENDATION PAGE END */
 
+/* Weather */
+
+.temperature_min{
+    padding: 0.5rem 2.5rem;
+    background-color: #d0f0d6;
+}
+
+.temperature_max{
+    padding: 0.5rem 2.5rem;
+    background-color: #ffec89;
+}
+
+.weather-icon{
+    width: 3rem;
+    height: 3rem;
+}
+
+.safe-time-text{
+    padding: 1rem;
+    background-color: var(--primary-color);
+}
+
+
+
+
+/* End of weather */

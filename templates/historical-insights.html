@@ -1,0 +1,30 @@
+{% extends "template.html" %} {% block title %}Historical Insights - Aqua
+Guardians{% endblock %} {% block content %}
+
+<section
+	id="historical-insights"
+	class="historical-insights"
+	style="min-height: 80vh"
+>
+	<div class="row my-5">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<!-- <div class="row my-3">
+				<div class="col-md-12">
+					<p class="title">Insights:</p>
+				</div>
+			</div> -->
+			<div class="row">
+				<div class="col-md-12">
+					<iframe
+						src="https://poornisha-sk.shinyapps.io/Rshiny_implementation/"
+						title="Interactive Drowning Statistics"
+						style="height: 80vh; width: 100%; border: none"
+					></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

@@ -8,6 +8,14 @@ document
 		}
 	});
 
+// $(".emergency-circle").click(function () {
+// 	var collapseContent = $(this).attr("href");
+// 	$(collapseContent).collapse("toggle");
+// 	var ariaExpanded =
+// 		$(this).attr("aria-expanded") === "true" ? "false" : "true";
+// 	$(this).attr("aria-expanded", ariaExpanded);
+// });
+
 // GET LOCATION
 // function getLocation() {
 // 	if (navigator.geolocation) {
@@ -207,4 +215,3 @@ function getLocation() {
 // 		// titleContainer.innerHTML = "";
 // 	});
 // });
-

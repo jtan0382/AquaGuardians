@@ -28,6 +28,7 @@ def login():
 
         if bcrypt.checkpw(password, HASHED_PASSWORD):
             session['authenticated'] = True
+            session.permanent = False
             return redirect(url_for('home'))
         
         else:
@@ -45,13 +46,34 @@ def index():
 def home():
     return render_template('home.html')
 
-@app.route("/beach-safety")
-def safety():
-    return render_template("beach-safety.html")
+
+@app.route("/historical-insights")
+def historical():
+    return render_template("historical-insights.html")
+
+# @app.route("/beach-safety")
+# def safety():
+#     return render_template("beach-safety.html")
+
+
+@app.route("/emergency")
+def emergency():
+    return render_template("emergency-procedures.html")
+
 
 @app.route("/rip-current")
 def rip():
     return render_template("rip-current.html")
+
+
+@app.route("/beach-flags")
+def flags():
+    return render_template("beach-flags.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # Render the custom error page
+    return render_template('error_page.html')
 
 
 
