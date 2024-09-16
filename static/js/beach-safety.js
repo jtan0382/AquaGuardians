@@ -100,7 +100,7 @@ document.querySelector("#checkFlags").addEventListener("click", function () {
 		// Compare the user answer with the correct answer
 		if (userAnswer === correctAnswer) {
 			correctCount++;
-			// wrongTitle.textContent = "Your answers are correct!";
+			wrongTitle.textContent = "Your answers are correct!";
 		} else {
 			wrongTitle.textContent = "Wrong Answer: ";
 

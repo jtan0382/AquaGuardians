@@ -22,7 +22,7 @@ endblock %} {% block content %}
 						<!-- Aligning to the grid's padding -->
 						<div class="col-md-10">
 							<p class="title" style="color: #fff">
-								Top 3 safest beaches in your current state of residence
+								Top 3 safest beaches near your current location
 							</p>
 						</div>
 						<div class="col-md-1"></div>
@@ -51,6 +51,7 @@ endblock %} {% block content %}
 							<!-- {{beach['beach_info']}} -->
 							<!-- {% endfor %} -->
 							{% for beach in top_beaches %}
+							
 							<div class="col-md-4 my-3">
 								<div class="card recom-card rounded-5">
 									<div class="card-body">
@@ -349,3 +350,4 @@ endblock %} {% block content %}
 </div>
 
 {% endblock %}
+	
