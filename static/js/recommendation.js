@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		// console.log(uvIndex);
 		// console.log(windSpeed);
 		// console.log(wave);
-		// console.log(safeBeaufort);
+		console.log(safeBeaufort);
 		// console.log(unsafeBeaufort);
 
 		// const beachDescription = button.getAttribute("data-beach-description");
@@ -64,9 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		modalDescription.textContent = beachDescription;
 		temperatureMinText.textContent = Math.round(tempMin) + "°C";
 		temperatureMaxText.textContent = Math.round(tempMax) + "°C";
-		uvIndexText.textContent = Math.round(uvIndex).toFixed(2);
-		windSpeedText.textContent = Math.round(windSpeed).toFixed(2);
-		waveText.textContent = Math.round(wave).toFixed(2);
+		uvIndexText.textContent = uvIndex;
+		windSpeedText.textContent = windSpeed;
+		waveText.textContent = wave;
+		// uvIndexText.textContent = Math.round(uvIndex).toFixed(2);
+		// windSpeedText.textContent = Math.round(windSpeed).toFixed(2);
+		// waveText.textContent = Math.round(wave).toFixed(2);
 
 		// Clear existing content
 		titleContainer.innerHTML = ""; // Clear the location container
