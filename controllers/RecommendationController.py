@@ -27,8 +27,8 @@ def index():
         # Calculate the top 3 beaches based on user's location
         top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
         # print(top_beaches.to_dict(orient='records'))
-
-        print(top_beaches)
+        print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
+        
 
 
         # Render the result in the template
@@ -114,6 +114,8 @@ def score_beaches(df, user_lon, user_lat, model):
         'sunrise', 'sunset', 'temperature_2m_max', 
         'temperature_2m_min', 'uv_index_max', 'max_wind_speed', 'safety']
         ).apply(aggregate_rows).reset_index(drop=True)
+    
+    aggregated_df = aggregated_df.drop_duplicates(subset='BEACH_NAME', keep='first')
 
 
     
