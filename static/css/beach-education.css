@@ -1,0 +1,27 @@
+.phone-card{
+    border: 0.2rem solid black;
+    padding: 0.5rem;
+}
+
+.phone-card-response{
+    padding: 0.5rem;
+}
+
+.first-response{
+    background-color: var(--darker-white);
+
+}
+
+
+.second-response{
+    background-color: var(--secondary-color);
+
+}
+
+.phone-response-button{
+    background-color: black;
+}
+
+.phone-button{
+    border: 0.1rem solid black;
+}
