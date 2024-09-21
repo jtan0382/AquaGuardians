@@ -51,6 +51,11 @@ def home():
 def historical():
     return render_template("historical-insights.html")
 
+
+@app.route("/beach-education")
+def safety():
+    return render_template("beach-education.html")
+
 # @app.route("/beach-safety")
 # def safety():
 #     return render_template("beach-safety.html")
