@@ -1,353 +1,427 @@
-
-
 {% extends "template.html" %} {% block title %}Safe beaches - Aqua Guardian{%
 endblock %} {% block content %}
-<div class="container-fluid">
-	<section id="banner" class="banner">
-		<div class="row">
-			<div
-				class="col-sm-12 colmd-12 col-lg-12 col-xl-6 rounded-5 d-flex align-items-end"
-				style="
-					background-image: url('/img/recommendation-banner.jpg');
-					height: 500px; /* You can set this to maintain the aspect ratio */
-					background-position: center;
-					background-size: cover;
-					width: 100%;
-					height: 50vh;
-				"
-			>
-				<div data-aos="fade-up" data-aos-duration="1000">
-					<div class="row w-100">
-						<div class="col-md-1"></div>
-						<!-- Aligning to the grid's padding -->
-						<div class="col-md-10">
-							<p class="title" style="color: #fff">
-								Top 3 safest beaches near your current location
-							</p>
+
+<!-- <p>{{data}}</p>
+<p>{{user_address}}</p>
+<p>{{filters}}</p> -->
+
+<section id="recommendation-search-banner" class="recommendation-search-banner">
+	<div
+		class="d-flex justify-content-center align-items-center recommendation-banner"
+	>
+		<div class="d-flex recommendation-content flex-column">
+			<p class="title text-background-color text-bold text-center">
+				Find the safest beaches across Victoria
+			</p>
+			<div class="search-container d-flex">
+				<form action="/recommendation" method="POST" class="w-100">
+					<div class="search-input-prepend m-1">
+						<a
+							class="btn"
+							id="dropdownMenuButton"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						>
+							<img src="/img/icons/menu.png" class="icon" alt="Filter Menu" />
+						</a>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<div class="form-check mx-3">
+								<input
+									class="form-check-input"
+									type="checkbox"
+									name="filters"
+									value="bbq"
+									id="bbq"
+								/>
+								<label class="form-check-label" for="bbq"> BBQ </label>
+							</div>
+							<div class="form-check mx-3">
+								<input
+									class="form-check-input"
+									type="checkbox"
+									name="filters"
+									value="picnic"
+									id="picnic"
+								/>
+								<label class="form-check-label" for="picnic"> Picnic </label>
+							</div>
+							<div class="form-check mx-3">
+								<input
+									class="form-check-input"
+									type="checkbox"
+									name="filters"
+									value="playground"
+									id="playground"
+								/>
+								<label class="form-check-label" for="playground">
+									Playground
+								</label>
+							</div>
 						</div>
-						<div class="col-md-1"></div>
-						<!-- Optional for symmetry -->
 					</div>
-				</div>
+					<input
+						id="address-input"
+						type="text"
+						name="user-input"
+						class="search-field rounded-5"
+						placeholder="Search by activity, beach, or suburb"
+						aria-label="Search"
+						autocomplete="shipping street-address"
+					/>
+
+					<div class="search-input-append m-1">
+						<button class="btn" type="submit">
+							<img src="/img/icons/search.png" class="icon" alt="Search Icon" />
+						</button>
+					</div>
+				</form>
 			</div>
-		</div>
-	</section>
-
-	<!-- <p>Your current location is:</p>
-	<p>Latitude: {{ latitude }}</p>
-	<p>Longitude: {{ longitude }}</p> -->
-	<!-- <p>Top Beaches: {{ top_beaches }}</p> -->
-
-	<!-- {{longitude}} {{latitude}} -->
-
-	<section id="list-beaches" class="list-beaches">
-		<div data-aos="fade-up">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<div data-aos="fade-up" data-aos-duration="1000">
-						<div class="row">
-							<!-- {% for beach in top_beaches %} -->
-							<!-- {{beach['beach_info']}} -->
-							<!-- {% endfor %} -->
-							{% for beach in top_beaches %}
-							
-							<div class="col-md-4 my-3">
-								<div class="card recom-card rounded-5">
-									<div class="card-body">
-											<a
-											type="button"
-											data-bs-toggle="modal"
-											data-bs-target="#beachModal"
-											data-beach-name="{{beach['BEACH_NAME']}}"
-											data-beach-latitude="{{beach['LATITUDE']}}"
-											data-beach-longitude="{{beach['LONGITUDE']}}"
-											data-beach-warning="{{beach['warning']}}"
-											data-beach-amenities="{{beach['amenities']}}"
-											data-beach-description="{{beach['beach_info']}}"
-											data-beach-temp-min="{{beach['temperature_2m_min']}}"
-											data-beach-temp-max="{{beach['temperature_2m_max']}}"
-											data-uv-index="{{beach['uv_index_max']}}"
-											data-wind-speed="{{beach['max_wind_speed']}}"
-											data-wave="{{beach['wave_height']}}"
-											data-safe-beaufort="{{beach['safe_beaufort']}}"
-											data-unsafe-beaufort="{{beach['unsafe_beaufort']}}"
-
-
-										>
-											<img
-												src="{{beach['image_address']}}"
-												alt=""
-												class="img-fluid rounded-5 beach-image"
-											/>
-										</a>
-										<div class="d-flex justify-content-center align-items-center">
-											<p class="subtitle">{{beach['BEACH_NAME']}}</p>
-										</div>
-									</div>
-										
-
-									
-								</div>
-								
-							</div>
-							{% endfor %}
-
-							<!-- Static Information -->
-							<!-- <div class="col-md-4 my-3">
-								<a type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#beachModal"
-									data-beach-name="beach1"
-									data-beach-latitude="lat1"
-									data-beach-longitude="long1"
-									data-beach-warning="warning1"
-									data-beach-amenities="amenities1"
-									data-beach-description="description1">
-									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5 beach-image"
-									/>
-								</a>
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="subtitle">TEST</p>
-								</div>
-							</div>
-							<div class="col-md-4 my-3">
-								<a type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#beachModal"
-									data-beach-name="beach1"
-									data-beach-latitude="lat1"
-									data-beach-longitude="long1"
-									data-beach-warning="warning1"
-									data-beach-amenities="amenities1"
-									data-beach-description="description1">
-									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5 beach-image"
-									/>
-								</a>
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="subtitle">TEST</p>
-								</div>
-							</div>
-							<div class="col-md-4 my-3">
-								<a type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#beachModal"
-									data-beach-name="beach1"
-									data-beach-latitude="lat1"
-									data-beach-longitude="long1"
-									data-beach-warning="warning1"
-									data-beach-amenities="amenities1"
-									data-beach-description="description1">
-									<img
-										src="/img/bellsbeach.jpg"
-										alt=""
-										class="img-fluid rounded-5 beach-image"
-									/>
-								</a>
-
-								
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="subtitle">TEST</p>
-								</div>
-							</div> -->
-
-							<!-- End of static information -->
-						</div>
-					</div>
-
-					<!-- Card Content -->
-
-					<!-- <div data-aos="fade-up" data-aos-duration="1000">
-						<div class="row">
-							{% for beach in top_beaches %}
-							<div class="col-md-4 my-3">
-								<a
-									type="button"
-									data-bs-toggle="modal"
-									data-bs-target="#bellsbeach1"
-								>
-									<img
-										src="{{beach['image_address']}}"
-										alt="{{beach['BEACH_NAME']}}"
-										class="img-fluid rounded-5 beach-image"
-									/>
-								</a>
-
-								<div class="d-flex justify-content-center align-items-center">
-									<p class="subtitle">{{beach['BEACH_NAME']}}</p>
-								</div>
-							</div>
-							{% endfor %}
-						</div>
-					</div> -->
-
-					<!-- Card Content End -->
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
-
-<!-- Beach Modal -->
-<!-- #1 -->
-<div
-	class="modal fade"
-	id="beachModal"
-	tabindex="-1"
-	role="dialog"
-	aria-labelledby="beachModalLabel"
-	aria-hidden="true"
->
-	<div class="modal-dialog  modal-xl" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<div class="d-flex justify-content-end">
-					<button
-					type="button"
-					class="close"
-					data-bs-dismiss="modal"
-					aria-label="Close"
-					style="background-color: transparent !important;"
-				>
-					<span aria-hidden="true">&times;</span>
-				</div>
-				
-				</button>
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<!-- <div class="seperator"></div> -->
-						<div class="d-flex">
-							<p class="subtitle modal-title"></p>
-							<div id="title-container"></div>
-						</div>
-					</div>
-				</div>
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<!-- <div class="seperator"></div> -->
-						<p class="subtitle">Amenities</p>
-						<div class="d-flex amenities-container">
-							<!-- <p class="text">Amminities:</p>
-							<p class="text modal-amminities"></p> -->
-						</div>
-					</div>
-				</div>
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<!-- <div class="seperator"></div> -->
-						<p class="subtitle">Warning</p>
-						<div class="d-flex warning-container">
-							<!-- <p class="text">Amminities:</p>
-							<p class="text modal-amminities"></p> -->
-						</div>
-					</div>
-				</div>
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<div class="text .modal-description"></div>
-					</div>
-				</div>
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<!-- <div class="seperator"></div> -->
-
-						<p class="text modal-description"></p>
-					</div>
-				</div>
-
-				<!-- Weather -->
-				<div class="row mx-3 mb-3">
-					<div class="col-md-12">
-						<div class="row my-3">
-							<div class="col-md-12"><p class="title">Weather</p></div>
-						</div>
-						<div class="row my-3">
-							<div class="col-md-12">
-								<!-- Temperature -->
-								<div class="row mb-3">
-									<div class="col-md-12">
-										<!-- <div class="seperator"></div> -->
-										<div class="d-flex gap-3">
-											<p class="text temperature_min modal-temperature-min">
-												
-											</p>
-											<p class="text temperature_max modal-temperature-max">
-												
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<!-- Condition -->
-								<div class="row mb-3">
-									<div class="col-md-12">
-										<!-- <div class="seperator"></div> -->
-										<div class="d-flex gap-3">
-											<!-- uv index -->
-											<div class="d-flex gap-3 justify-content-center align-items-center">
-												<img src="/img/weather/uv-index.png" alt="" class="weather-icon img-fluid">
-												
-												<p class="text modal-uv-index"></p>
-												
-											</div>
-
-											<!-- wind -->
-											<div class="d-flex gap-3 justify-content-center align-items-center">
-												<img src="/img/weather/wind.png" alt="" class="weather-icon img-fluid">
-												
-												<p class="text modal-wind-speed"></p>
-												
-											</div>
-
-											<!-- wave -->
-											<div class="d-flex gap-3 justify-content-center align-items-center">
-												<img src="/img/weather/wave.png" alt="" class="weather-icon img-fluid">
-												
-												<p class="text modal-wave"></p>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Safe time -->
-						<div class="row my-3">
-							<div class="col-md-12"><p class="title">Safe time:</p></div>
-						</div>
-
-						<div class="row my-3"></div>
-							<div class="col-md-12">
-								<!-- <p class="text modal-save-beaufort"></p> -->
-								<div class="d-flex flex-wrap safe-beaufort-container gap-2"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				
-
-				
-			</div>
-			<!-- <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-					Close
-				</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div> -->
 		</div>
 	</div>
-</div>
+</section>
+
+<section
+	id="safety-covered"
+	class="safety-covered background-darker-white section-padding"
+>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<div class="d-flex flex-column">
+				<p class="subtitle text-bold text-center">
+					Pack and Go-We've Got the Safety Covered
+				</p>
+
+				<div class="d-flex justify-content-between">
+					<div
+						class="d-flex flex-column justify-content-center align-items-center"
+					>
+						<img src="/img/victoria.png" alt="Victoria" class="my-3" />
+						<p class="text text-align-center">
+							Backed by the Victorian Government
+						</p>
+						<p class="text text-align-center text-information">
+							Hazard ratings are provided by the Government of Victoria,
+							ensuring reliability.
+						</p>
+					</div>
+					<div
+						class="d-flex flex-column justify-content-center align-items-center"
+					>
+						<img src="/img/weather.png" alt="Victoria" class="my-3" />
+						<p class="text text-align-center">Live Weather Conditions</p>
+						<p class="text text-align-center text-information">
+							In addition to hazard ratings, real-time weather data is
+							considered to ensure accurate safety assessments.
+						</p>
+					</div>
+					<div
+						class="d-flex flex-column justify-content-center align-items-center"
+					>
+						<img src="/img/warning.png" alt="Victoria" class="my-3" />
+						<p class="text text-align-center">Beach Safety Alerts</p>
+						<p class="text text-align-center text-information">
+							Stay informed with latest updates on hazards like strong currents,
+							jellyfish, or other beach-specific warnings.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="top-beach" class="top-beach section-padding">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-xl-1"></div>
+			<div class="col-12 col-xl-10 my-3">
+				<p class="subtitle text-bold">
+					Top recommendations for your next beach trip
+				</p>
+				<div class="d-flex justify-content-between gap-3">
+					{% for beach in top_beaches %}
+					<form action="/recommendation/detail" method="POST">
+						<div class="d-flex flex-column top-beach-card rounded-5 flex-fill">
+							<div class="top-image-container">
+								<img
+									src="{{beach['image_address']}}"
+									alt=""
+									class="top-beach-image w-100"
+								/>
+								<div class="top-beach-name-container m-3">
+									<span class="text text-bold text-color top-beach-name"
+										>{{beach['BEACH_NAME']}}</span
+									>
+								</div>
+							</div>
+
+							<div class="d-flex justify-content-center align-items-center m-3">
+								<p class="text text-information text-align-justify">
+									{{beach['beach_info']}}
+								</p>
+							</div>
+
+							<!-- <div class="d-flex mt-auto">
+								<a href="#" class="btn btn-outline-primary rounded-3 w-100 m-3">
+									<span class="text"> View → </span>
+								</a>
+							</div> -->
+
+							<div
+								class="d-flex justify-content-between align-items-center mt-auto"
+							>
+								<div class="d-flex mx-3">
+									{% for x in range(5) %} {% if x < 3 %}
+									<img
+										src="/img/icons/star-full.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% else %}
+									<img
+										src="/img/icons/star.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% endif %} {% endfor %}
+								</div>
+								<input
+									type="hidden"
+									name="beach_name"
+									value="{{beach['BEACH_NAME']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_lat"
+									value="{{beach['LATITUDE']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_long"
+									value="{{beach['LONGITUDE']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_warning"
+									value="{{beach['warning']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_amenities"
+									value="{{beach['amenities']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_info"
+									value="{{beach['beach_info']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_temperature_2m_min"
+									value="{{beach['temperature_2m_min']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_temperature_2m_max"
+									value="{{beach['temperature_2m_max']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_uv"
+									value="{{beach['uv_index_max']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_wind"
+									value="{{beach['max_wind_speed']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_wave"
+									value="{{beach['wave_height']}}"
+								/>
+								<input
+									type="hidden"
+									name="beach_beaufort"
+									value="{{beach['safe_beaufort']}}"
+								/>
+
+								<button
+									type="submit"
+									class="btn btn-warning rounded-5 w-100 m-3"
+								>
+									<span class="text"> View → </span>
+								</button>
+							</div>
+						</div>
+					</form>
+
+					{% endfor %}
+					<!-- <div class="d-flex flex-column top-beach-card rounded-5">
+							<div class="top-image-container">
+								<img
+									src="/img/bellsbeach.jpg"
+									alt=""
+									class="top-beach-image w-100"
+								/>
+								<div class="top-beach-name-container m-3">
+									<span class="text text-bold text-color top-beach-name"
+										>Beach Name</span
+									>
+								</div>
+							</div>
+
+							<div class="d-flex justify-content-center align-items-center m-3">
+								<p class="text text-information text-align-justify">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
+									at vero harum qui, laboriosam et voluptatem repudiandae beatae
+									illo laborum mollitia id voluptate nam modi optio vel
+									necessitatibus fugiat reiciendis?
+								</p>
+								<input
+									type="hidden"
+									name="clothing"
+									value="the value of clothing"
+								/>
+							</div>
+
+							<div
+								class="d-flex justify-content-between align-items-center mt-auto star-footer"
+							>
+								<div class="d-flex mx-3">
+									{% for x in range(5) %} {% if x < 3 %}
+									<img
+										src="/img/icons/star-full.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% else %}
+									<img
+										src="/img/icons/star.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% endif %} {% endfor %}
+								</div>
+								<button
+									type="submit"
+									class="btn btn-warning rounded-5 w-100 m-3"
+								>
+									<span class="text"> View → </span>
+								</button>
+							</div>
+						</div>
+
+						<div class="d-flex flex-column top-beach-card rounded-5">
+							<div class="top-image-container">
+								<img
+									src="/img/bellsbeach.jpg"
+									alt=""
+									class="top-beach-image w-100"
+								/>
+								<div class="top-beach-name-container m-3">
+									<span class="text text-bold text-color top-beach-name"
+										>Beach Name</span
+									>
+								</div>
+							</div>
+
+							<div class="d-flex justify-content-center align-items-center m-3">
+								<p class="text text-information text-align-justify">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
+									at vero harum qui, laboriosam et voluptatem repudiandae beatae
+									illo laborum mollitia id voluptate nam modi optio vel
+									necessitatibus fugiat reiciendis?
+								</p>
+							</div>
+
+							<div
+								class="d-flex justify-content-between align-items-center mt-auto star-footer"
+							>
+								<div class="d-flex mx-3">
+									{% for x in range(5) %} {% if x < 3 %}
+									<img
+										src="/img/icons/star-full.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% else %}
+									<img
+										src="/img/icons/star.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% endif %} {% endfor %}
+								</div>
+								<a href="#" class="btn btn-warning rounded-5 w-100 m-3">
+									<span class="text"> View → </span>
+								</a>
+							</div>
+						</div>
+
+						<div class="d-flex flex-column top-beach-card rounded-5">
+							<div class="top-image-container">
+								<img
+									src="/img/bellsbeach.jpg"
+									alt=""
+									class="top-beach-image w-100"
+								/>
+								<div class="top-beach-name-container m-3">
+									<span class="text text-bold text-color top-beach-name"
+										>Beach Name</span
+									>
+								</div>
+							</div>
+
+							<div class="d-flex justify-content-center align-items-center m-3">
+								<p class="text text-information text-align-justify">
+									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
+									at vero harum qui, laboriosam et voluptatem repudiandae beatae
+									illo laborum mollitia id voluptate nam modi optio vel
+									necessitatibus fugiat reiciendis?
+								</p>
+							</div>
+
+							<div
+								class="d-flex justify-content-between align-items-center mt-auto star-footer"
+							>
+								<div class="d-flex mx-3">
+									{% for x in range(5) %} {% if x < 3 %}
+									<img
+										src="/img/icons/star-full.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% else %}
+									<img
+										src="/img/icons/star.png"
+										alt="rating star"
+										class="star-icon"
+									/>
+									{% endif %} {% endfor %}
+								</div>
+								<a href="#" class="btn btn-warning rounded-5 w-100 m-3">
+									<span class="text"> View → </span>
+								</a>
+							</div>
+						</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="historical" class="historical section-padding">
+	<div class="d-flex flex-column justify-content-center align-items-center">
+		<p class="subtitle text-center">
+			Click on Historical Insights to learn about past drowning accidents and
+			discover valuable insights.
+		</p>
+		<a href="/historical-insights" class="btn btn-primary rounded-5"
+			><span class="text p-3"> Historical Insights </span></a
+		>
+	</div>
+</section>
 
 {% endblock %}
-	

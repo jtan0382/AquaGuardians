@@ -1,12 +1,12 @@
-document
-	.getElementById("emergency-call")
-	.addEventListener("click", function (event) {
-		event.preventDefault(); // Prevent the default action (calling the number immediately)
-		const userConfirmed = confirm("Do you want to call emergency services?");
-		if (userConfirmed) {
-			window.location.href = this.href; // Redirect to the tel: link if confirmed
-		}
-	});
+// document
+// 	.getElementById("emergency-call")
+// 	.addEventListener("click", function (event) {
+// 		event.preventDefault(); // Prevent the default action (calling the number immediately)
+// 		const userConfirmed = confirm("Do you want to call emergency services?");
+// 		if (userConfirmed) {
+// 			window.location.href = this.href; // Redirect to the tel: link if confirmed
+// 		}
+// 	});
 
 // $(".emergency-circle").click(function () {
 // 	var collapseContent = $(this).attr("href");
@@ -93,15 +93,40 @@ function getLocation() {
 			},
 			function (error) {
 				console.error("Geolocation error:", error);
-				window.location.href = "/recommendation";
+				// window.location.href = "/recommendation";
 			}
 			// { maximumAge: 0, timeout: 10000, enableHighAccuracy: true }
 		);
 	} else {
 		// Redirect without location if geolocation is not supported
-		window.location.href = "/recommendation";
+		// window.location.href = "/recommendation";
 	}
 }
+
+const script = document.getElementById("search-js");
+// wait for the Mapbox Search JS script to load before using it
+script.onload = function () {
+
+	// instantiate a <mapbox-address-autofill> element using the MapboxAddressAutofill class
+	const autofillElement = new mapboxsearch.MapboxAddressAutofill();
+
+	autofillElement.accessToken =
+		"pk.eyJ1IjoiamVoZXpraWVsMTY5OSIsImEiOiJjbHo5c3V0MmswZXZ4MnBxMjE0bDdodXYzIn0.qH5jxjHeSV9Q6I0F6f0wlA";
+
+	// set the <mapbox-address-autofill> element's options
+	autofillElement.options = {
+		country: "AU", // Set country to Australia
+		region: "VIC", // Specify Victoria as the region
+	};
+
+	const the_input = document.getElementById("address-input");
+	const the_form = the_input.parentElement;
+
+	// append the <input> to <mapbox-address-autofill>
+	autofillElement.appendChild(the_input);
+	// append <mapbox-address-autofill> to the <form>
+	the_form.appendChild(autofillElement);
+};
 
 // document.addEventListener("DOMContentLoaded", function () {
 // 	const beachModal = document.getElementById("beachModal");

@@ -51,14 +51,9 @@ def home():
 def historical():
     return render_template("historical-insights.html")
 
-
 @app.route("/beach-education")
 def safety():
     return render_template("beach-education.html")
-
-# @app.route("/beach-safety")
-# def safety():
-#     return render_template("beach-safety.html")
 
 
 @app.route("/emergency")
@@ -71,14 +66,14 @@ def rip():
     return render_template("rip-current.html")
 
 
-@app.route("/beach-flags")
-def flags():
-    return render_template("beach-flags.html")
+# @app.route("/beach-flags")
+# def flags():
+#     return render_template("beach-flags.html")
 
 @app.errorhandler(404)
 def page_not_found(e):
     # Render the custom error page
-    return render_template('error_page.html')
+    return render_template('not_found.html')
 
 
 

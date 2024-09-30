@@ -1,0 +1,127 @@
+{% extends "template.html" %} {% block title %}Detail Beach - Aqua Guardians{%
+endblock %} {% block content %}
+<div class="row section-padding">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<div class="row my-3">
+			<div class="col-md-12">
+				<div class="d-flex gap-3">
+					<p class="subtitle text-bold">{{name}}</p>
+					<a href="https://maps.google.com/?q={{lat}},{{long}}">
+						<img
+							src="/img/icons/location.png"
+							alt="location"
+							class="img-fluid"
+							style="width: 2.5rem; height: 2.5rem"
+						/>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row my-3">
+			<div class="col-md-12">
+				<!-- Amenities & Warning -->
+				<div class="d-flex gap-3">
+					<!-- Amenities -->
+					<div class="d-flex flex-column flex-fill list-of-amenity">
+						<p class="subtitle">Amenities</p>
+						<!-- Image -->
+						<div class="d-flex gap-2 flex-wrap">
+							{% if amenity %} {% for amenity in amenities %}
+
+							<img
+								src="/img/amenities/{{amenity}}.png"
+								alt="{{amenity}}"
+								class="img-fluid icon"
+							/>
+
+							{% endfor %} {% else %}
+							<p class="text">No Amenities Shown</p>
+							{% endif %}
+						</div>
+					</div>
+					<!-- Warning -->
+
+					<div class="d-flex flex-column flex-fill list-of-warning">
+						<p class="subtitle">Warning</p>
+						<!-- Image -->
+						<div class="d-flex gap-2 flex-wrap">
+							{% if warnings %} {% for warning in warnings %}
+
+							<img
+								src="/img/warning/{{warning}}.jpeg"
+								alt="{{warning}}"
+								class="img-fluid icon"
+							/>
+
+							{% endfor %}{% else %}
+							<p class="text">No Warning Shown</p>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- End of List -->
+
+		<div class="row my-3">
+			<div class="col-md-12">
+				<p class="text">{{info}}</p>
+			</div>
+		</div>
+
+		<!-- Weather -->
+
+		<div class="row my-3">
+			<div class="col-md-12">
+				<p class="subtitle text-bold">Weather</p>
+
+				<div class="d-flex gap-3 weather-information">
+					<div><span class="text">{{temp_min}}</span></div>
+					<div><span class="text"> {{temp_max}} </span></div>
+				</div>
+
+				<!-- Weather Condition -->
+				<div class="d-flex gap-3 mt-3">
+					<!-- UV -->
+					<div class="d-flex gap-3 mt-3 align-items-center">
+						<img
+							src="/img/weather/uv-index.png"
+							alt=""
+							class="icon img-fluid"
+						/>
+						<p class="text m-0">{{uv}}</p>
+					</div>
+					<!-- Wind -->
+					<div class="d-flex gap-3 mt-3 align-items-center">
+						<img src="/img/weather/wind.png" alt="" class="icon img-fluid" />
+						<p class="text m-0">{{wind}}</p>
+					</div>
+					<!-- Wave -->
+					<div class="d-flex gap-3 mt-3 align-items-center">
+						<img src="/img/weather/wave.png" alt="" class="icon img-fluid" />
+						<p class="text m-0">{{wave}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row my-3">
+			<div class="col-md-12">
+				<p class="subtitle text-bold">Safe Time:</p>
+				<div class="d-flex flex-wrap safe-beaufort-container gap-2">
+					{% if safe_times %} {% for safe_time in safe_times %}
+					<div><span class="text">{{safe_time}}</span></div>
+
+					{% endfor %}{% else %}
+					<p class="text">No Safe Time Shown</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

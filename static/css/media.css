@@ -1,8 +1,8 @@
 
 /* MEDIA QUERY */
 
-@media (max-width: 768px) {
-    .d-flex {
+@media only screen and (max-width: 767px) {
+    .d-flex{
         flex-direction: column; /* Stacks flex children vertically */
     }
 
@@ -19,7 +19,38 @@
     .social-media{
         flex-direction: row;
     }
-    
+
+    .star-footer{
+        flex-direction: row;
+
+    }
+
+    .star-footer>div{
+        flex-direction: row;
+
+    }
+
+    .list-of-amenity > div, .list-of-warning > div{
+        flex-direction: row;
+    }
+
+}
+/* Tablet */
+@media only screen and (min-width: 767px) and (max-width: 1023px){
+    .star-footer{
+        flex-direction: column;
+    }
+
+}
+
+/* Laptop */
+@media only screen and (min-width: 1024px) and (max-width: 1439px){
+
+}
+
+/* Desktop */
+@media only screen and (min-width: 1440px) {
+
 }
 
 /* MEDIA QUERY END */

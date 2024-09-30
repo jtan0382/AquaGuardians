@@ -1,93 +1,138 @@
 
-
-/* RECOMMENDATION PAGE */
-
-/* RECOMMENDATION */
-
-.list-beaches{
-    padding: var(--sectionPadding);
-}
-
-.beach-description{
-    max-width: 75rem;
-}
-.image-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    overflow: hidden;
-    border-radius: 20px; /* Rounded corners */
-}
-
-.image-container img {
+/* .recommendation-banner{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the image covers the container without distortion */
-    border-radius: inherit; /* Inherit border radius from the container */
-}
+    height: 50vh;
+    background-size: cover;
+    
+} */
 
-.beach-image{
-    background-image: url('/img/hero.jpg'); /* Ensure the image path is correct */
-    background-size: cover; /* Make the background image cover the entire section */
-    background-position: center;
-    background-repeat: no-repeat;
+
+.recommendation-banner {
+    position: relative;
+
+    height: 40vh;
     
 }
 
-.recom-card{
-    transition: all 0.3s;
+.recommendation-banner::before {
+    content: '';
+    background-image: url('/img/recommendation-banner.jpeg'); 
+
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+   
+    opacity: 0.7; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* border-radius: 20px; */
+    z-index: 0; 
 }
 
-.recom-card:hover{
-    transform: scale(1.15);
+.recommendation-content {
+    position: relative;
+    z-index: 1; 
 }
 
-/* AMENITIES */
+.search-field{
+    width: 100%;
+    padding: 0.8rem 3rem;
 
-.amenities-container .amenity-item .amenity-icon,
-.location-icon{
+}
+
+.search-container .search-input-append,
+.search-container .search-input-prepend{
+    position: absolute;
+}
+
+.search-container .search-input-append{
+    right: 0;
+}
+
+.search-container img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Safety */
+
+
+.safety-covered img{
+    width: 8rem;
+    height: 8rem;
+}
+
+.safety-covered p.text-information{
+    max-width: 30rem;
+}
+
+/* Recommendation */
+
+.top-beach-card{
+    border: 0.1rem solid var(--text-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.top-beach-image{
+    border-radius: 1.9rem;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 20rem;
+    opacity: 0.7; 
+    z-index: 0;
+
+}
+
+.top-image-container{
+    position: relative;
+}
+
+.top-image-container>.top-beach-name-container{
+    position: absolute;
+    bottom: 0;
+    
+}
+
+/* .historical{
+    height: 30vh;
+} */
+
+
+.top-beach .text-information{
+    max-width: 30rem;
+}
+
+.star-icon{
     width: 2rem;
     height: 2rem;
 }
+/* End of Recommendation */
 
-.warning-container .warning-item .warning-icon{
-    width: 3rem;
-    height: 3rem;
+/* Detail */
+
+.weather-information>div:nth-child(1){
+    
+    padding: 0.5rem 2.5rem;
+    background-color: #ffec89;
 }
-
-/* END OF AMENITIES */
-
-
-/* RECOMMENDATION END */
-
-/* RECOMMENDATION PAGE END */
-
-/* Weather */
-
-.temperature_min{
+.weather-information>div:nth-child(2){
+    
     padding: 0.5rem 2.5rem;
     background-color: #d0f0d6;
 }
 
-.temperature_max{
-    padding: 0.5rem 2.5rem;
-    background-color: #ffec89;
-}
 
-.weather-icon{
-    width: 3rem;
-    height: 3rem;
-}
-
-.safe-time-text{
+.safe-beaufort-container>div{
     padding: 1rem;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
-
-
-
-/* End of weather */
+/* End of Detail */

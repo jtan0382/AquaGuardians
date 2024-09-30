@@ -5,12 +5,45 @@ from models.Recommendation import fetch_merged_data
 import numpy as np
 from haversine import haversine, Unit
 
+from controllers.WeatherDataUsingApi import Weather
+import sys
+from flask import render_template, request, session
+from models.Recommendation import fetch_merged_data
+import numpy as np
+from haversine import haversine, Unit
 
+
+
+def getTop3Beaches(longitude, latitude, MODEL_PARAMS):
+    # Do inside this for fetching data.
+
+    # Fetch the merged data
+    df_merged = fetch_merged_data()
+    # print(f"merged: {df_merged}")
+    
+    # Calculate the top 3 beaches based on user's location
+    top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+
+    return top_beaches
 
 def index():
+    # Filtered data
+    if request.method == "POST":
+        user_address = request.form.get('user-input address-search')
+        filters = request.form.getlist('filters')
 
+        data = request.form
+
+        # print(f"Address: {user_address}")
+        # print(f"Selected Filters: {filters}")
+        print(f"DATA: {user_address} and {filters}")
+        # print(f"data: {data}")
+
+        return render_template("recommendation.html", data = data, user_address = user_address, filters = filters)
+
+    # Current Location
         
-    if request.method == 'GET':
+    elif request.method == 'GET':
         MODEL_PARAMS = {
         'a': 0.4,  # Weight for hazard rating
         'b': 0.6   # Weight for distance
@@ -21,12 +54,15 @@ def index():
         longitude = float(request.args.get("longitude", 0))
         
         # Fetch the merged data
-        df_merged = fetch_merged_data()
-        # print(f"merged: {df_merged}")
+        # df_merged = fetch_merged_data()
+        # # print(f"merged: {df_merged}")
         
-        # Calculate the top 3 beaches based on user's location
-        top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+        # # Calculate the top 3 beaches based on user's location
+        # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
         # print(top_beaches.to_dict(orient='records'))
+        top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS)
+        
+        
         print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
         
 
@@ -156,3 +192,42 @@ def generate_beach_info(row):
     return info
 
 
+def detail():
+
+    if request.method == 'POST':
+        beach_name = request.form.get('beach_name')
+        beach_lat = request.form.get('beach_lat')
+        beach_long = request.form.get('beach_long')
+        beach_warning = request.form.get('beach_warning')
+        beach_amenities = request.form.get('beach_amenities')
+        beach_info = request.form.get('beach_info')
+        beach_temp_2m_min = request.form.get('beach_temperature_2m_min')
+        beach_temp_2m_max = request.form.get('beach_temperature_2m_max')
+        beach_uv = request.form.get('beach_uv')
+        beach_wind = request.form.get('beach_wind')
+        beach_wave = request.form.get('beach_wave')
+        beach_beaufort = request.form.get('beach_beaufort')
+
+        warning = [x.strip() for x in beach_warning.split(',')]
+        amenities = [x.strip() for x in beach_amenities.split(',')]
+        safe_time = [x.strip() for x in beach_beaufort.split(',')]
+
+
+
+        # test = request.form['clothing']
+        return render_template("detail.html", 
+                               name = beach_name, 
+                               lat = beach_lat, 
+                               long = beach_long,
+                               warnings = warning,
+                               amenities = amenities,
+                               info = beach_info,
+                               temp_min = beach_temp_2m_min,
+                               temp_max = beach_temp_2m_max,
+                               uv = beach_uv,
+                               wind = beach_wind,
+                               wave = beach_wave,
+                               safe_times = safe_time)    
+        
+    else:
+        pass
