@@ -1,6 +1,10 @@
 .phone-card{
     border: 0.2rem solid black;
     padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh;
 }
 
 .phone-card-response{
@@ -22,6 +26,21 @@
     background-color: black;
 }
 
-.phone-button{
-    border: 0.1rem solid black;
+.phone-line {
+    height: 0.1rem; /* Height of the line */
+    width: 50%; /* Width to take up half of the container */
+    background-color: black; /* Color of the line */
+    margin: 0 auto; /* Centers the line horizontally */
+}
+
+.beach-flags img{
+    width: 1rem;
+    height: 1rem;
+}
+
+.phone-camera{
+    width: 1rem;
+    height: 1rem;
+    background-color: black;
+    border-radius: 50%;
 }
