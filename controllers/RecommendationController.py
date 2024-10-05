@@ -60,17 +60,25 @@ def index():
         # # Calculate the top 3 beaches based on user's location
         # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
         # print(top_beaches.to_dict(orient='records'))
-        top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS)
+        try:
+
+            # top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS)
+            # return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
+            return render_template("recommendation.html", latitude=latitude, longitude=longitude)
+    
+
+        except:
+            return render_template("error_page.html", e = "Oops! Please refresh your website, there is an issue on database.")
         
         
-        print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
+        
+        # print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
         
 
 
         # Render the result in the template
         # return render_template("recommendation.html", latitude = latitude, longitude = longitude)
 
-        return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
     else:
         return render_template("recommendation.html", latitude = latitude, longitude = longitude)
@@ -196,27 +204,31 @@ def detail():
 
     if request.method == 'POST':
         beach_name = request.form.get('beach_name')
+        beach_image = request.form.get('beach_image')
+
         beach_lat = request.form.get('beach_lat')
         beach_long = request.form.get('beach_long')
         beach_warning = request.form.get('beach_warning')
         beach_amenities = request.form.get('beach_amenities')
         beach_info = request.form.get('beach_info')
-        beach_temp_2m_min = request.form.get('beach_temperature_2m_min')
-        beach_temp_2m_max = request.form.get('beach_temperature_2m_max')
-        beach_uv = request.form.get('beach_uv')
-        beach_wind = request.form.get('beach_wind')
-        beach_wave = request.form.get('beach_wave')
+        beach_temp_2m_min = round(float(request.form.get('beach_temperature_2m_min')))
+        beach_temp_2m_max = round(float(request.form.get('beach_temperature_2m_max')))
+        beach_uv = round(float(request.form.get('beach_uv')),2)
+        beach_wind = round(float(request.form.get('beach_wind')), 2)
+        beach_wave = round(float(request.form.get('beach_wave')), 2)
         beach_beaufort = request.form.get('beach_beaufort')
+        print(beach_beaufort)
 
         warning = [x.strip() for x in beach_warning.split(',')]
         amenities = [x.strip() for x in beach_amenities.split(',')]
         safe_time = [x.strip() for x in beach_beaufort.split(',')]
 
-
+        print(safe_time)
 
         # test = request.form['clothing']
         return render_template("detail.html", 
                                name = beach_name, 
+                               image = beach_image,
                                lat = beach_lat, 
                                long = beach_long,
                                warnings = warning,
@@ -230,4 +242,4 @@ def detail():
                                safe_times = safe_time)    
         
     else:
-        pass
+        return render_template("detail.html")

@@ -1,9 +1,34 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, jsonify
 from routes.recommendation_bp import recommendation_bp
 from authentication import authenticate
 import os
 from dotenv import load_dotenv
 import bcrypt
+import math
+
+
+# Define your categories and item counts
+categories = {
+    'inform': 4,
+    'colouring': 4,
+    'qna': 8,
+    'writing': 16
+}
+
+def get_items_for_category(category, count, page, per_page):
+    start = (page - 1) * per_page
+    end = start + per_page
+    items = []
+    for i in range(start, min(end, count)):
+        items.append({
+            'category': category,
+            'image': f'/img/colour/{category}/{i}/cover.png',
+            'pdf': f'/img/colour/{category}/{i}/file.pdf'
+        })
+    return items
+
+
+
 
 load_dotenv()
 
@@ -65,10 +90,38 @@ def emergency():
 def rip():
     return render_template("rip-current.html")
 
+@app.route('/get_items/<category>')
+def get_items(category):
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 9))  # 3x3 grid
 
-# @app.route("/beach-flags")
-# def flags():
-#     return render_template("beach-flags.html")
+    if category == 'all':
+        all_items = []
+        total_count = sum(categories.values())
+        for cat, count in categories.items():
+            all_items.extend(get_items_for_category(cat, count, 1, total_count))
+        items = all_items[(page-1)*per_page : page*per_page]
+    elif category in categories:
+        items = get_items_for_category(category, categories[category], page, per_page)
+        total_count = categories[category]
+    else:
+        return jsonify({'items': [], 'total_pages': 0})
+
+    total_pages = math.ceil(total_count / per_page)
+
+    return jsonify({
+        'items': items,
+        'total_pages': total_pages
+    })
+
+@app.route("/colour")
+def colour():
+    return render_template("colour.html")
+
+@app.route("/error_page")
+def error():
+    return render_template("error_page.html")
+
 
 @app.errorhandler(404)
 def page_not_found(e):
