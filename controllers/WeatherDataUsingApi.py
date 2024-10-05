@@ -343,6 +343,11 @@ class Weather:
         df_hourly_final.rename(columns={'date': 'date_safe'}, inplace=True)
         df_hourly_final['safe_date'] = df_hourly_final['date_safe'].dt.date
         df_hourly_final['safe_time'] = df_hourly_final['date_safe'].dt.time
-
+        
+        # Filter out times before 8:00 AM and after 5:00 PM because not suitable for swimming
+        df_hourly_final = df_hourly_final[
+        (df_hourly_final['safe_time'] >= pd.to_datetime('08:00', format='%H:%M').time()) &
+        (df_hourly_final['safe_time'] <= pd.to_datetime('17:00', format='%H:%M').time())
+        ]
         return daily_weather_dataframe, df_hourly_final
 

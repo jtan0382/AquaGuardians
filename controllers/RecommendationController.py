@@ -11,6 +11,7 @@ from flask import render_template, request, session
 from models.Recommendation import fetch_merged_data
 import numpy as np
 from haversine import haversine, Unit
+import requests # added to call Mapbox API
 
 
 
@@ -26,56 +27,123 @@ def getTop3Beaches(longitude, latitude, MODEL_PARAMS):
 
     return top_beaches
 
+# #Original Version
+# def index():
+#     # Filtered data
+#     if request.method == "POST":
+#         user_address = request.form.get('user-input address-search')
+#         filters = request.form.getlist('filters')
+
+#         data = request.form
+
+#         # print(f"Address: {user_address}")
+#         # print(f"Selected Filters: {filters}")
+#         print(f"DATA: {user_address} and {filters}")
+#         # print(f"data: {data}")
+
+#         return render_template("recommendation.html", data = data, user_address = user_address, filters = filters)
+
+#     # Current Location if address not provided in the search bar
+        
+#     elif request.method == 'GET':
+#         MODEL_PARAMS = {
+#         'a': 0.4,  # Weight for hazard rating
+#         'b': 0.6   # Weight for distance
+#         }
+
+
+#         latitude = float(request.args.get("latitude", 0))
+#         longitude = float(request.args.get("longitude", 0))
+        
+#         # Fetch the merged data
+#         # df_merged = fetch_merged_data()
+#         # # print(f"merged: {df_merged}")
+        
+#         # # Calculate the top 3 beaches based on user's location
+#         # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+#         # print(top_beaches.to_dict(orient='records'))
+#         top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS)
+        
+        
+#         print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
+        
+
+
+#         # Render the result in the template
+#         # return render_template("recommendation.html", latitude = latitude, longitude = longitude)
+
+#         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
+
+#     else:
+#         return render_template("recommendation.html", latitude = latitude, longitude = longitude)
+
 def index():
     # Filtered data
     if request.method == "POST":
         user_address = request.form.get('user-input address-search')
         filters = request.form.getlist('filters')
 
-        data = request.form
+        # Convert user address to latitude and longitude using Mapbox API
+        latitude, longitude = get_coordinates_from_address(user_address)
+        if latitude is None or longitude is None:
+            # Handle the case where coordinates are not found
+            return render_template("recommendation.html", error="Address not found. Please enter a valid address.")
 
-        # print(f"Address: {user_address}")
-        # print(f"Selected Filters: {filters}")
-        print(f"DATA: {user_address} and {filters}")
-        # print(f"data: {data}")
-
-        return render_template("recommendation.html", data = data, user_address = user_address, filters = filters)
-
-    # Current Location
-        
-    elif request.method == 'GET':
         MODEL_PARAMS = {
-        'a': 0.4,  # Weight for hazard rating
-        'b': 0.6   # Weight for distance
+            'a': 0.4,  # Weight for hazard rating
+            'b': 0.6   # Weight for distance
         }
 
+        # Fetch the merged data
+        df_merged = fetch_merged_data()
+
+        # Apply default filter (SIGHTSEEING = True) if no user filter is selected
+        if not filters:
+            df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+        else:
+            # Apply filters based on user selection
+            if 'Swimming' in filters:
+                df_merged = df_merged[(df_merged['SIGHTSEEING'] == True) & 
+                                      (df_merged['PATROL'] == True) & 
+                                      (df_merged['SWIM'] == True)]
+            elif 'Surfing' in filters:
+                df_merged = df_merged[(df_merged['SIGHTSEEING'] == True) & 
+                                      (df_merged['SURF'] == True)]
+            elif 'Fishing' in filters:
+                df_merged = df_merged[(df_merged['SIGHTSEEING'] == True) & 
+                                      (df_merged['FISH'] == True)]
+
+        # Calculate the top 3 beaches based on user's location
+        top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+
+        print(f"DATA: {user_address} and {filters}")
+
+        return render_template("recommendation.html", top_beaches=top_beaches.to_dict(orient='records'), user_address=user_address, filters=filters)
+
+    # Current Location if address not provided in the search bar
+    elif request.method == 'GET':
+        MODEL_PARAMS = {
+            'a': 0.4,  # Weight for hazard rating
+            'b': 0.6   # Weight for distance
+        }
 
         latitude = float(request.args.get("latitude", 0))
         longitude = float(request.args.get("longitude", 0))
-        
-        # Fetch the merged data
-        # df_merged = fetch_merged_data()
-        # # print(f"merged: {df_merged}")
-        
-        # # Calculate the top 3 beaches based on user's location
-        # top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
-        # print(top_beaches.to_dict(orient='records'))
-        top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS)
-        
-        
+
+        # Fetch the merged data and apply default filter for current location
+        df_merged = fetch_merged_data()
+        df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+
+        # Calculate the top 3 beaches based on user's location
+        top_beaches = score_beaches(df_merged, longitude, latitude, MODEL_PARAMS)
+
         print(top_beaches['BEACH_NAME'], top_beaches['safe_beaufort'])
-        
-
-
-        # Render the result in the template
-        # return render_template("recommendation.html", latitude = latitude, longitude = longitude)
 
         return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
 
     else:
-        return render_template("recommendation.html", latitude = latitude, longitude = longitude)
-
-    
+        return render_template("recommendation.html")
+   
 
 def calculate_distance(lat1, lon1, lat2, lon2):
     user_location = (lat1, lon1)
@@ -124,7 +192,7 @@ def score_beaches(df, user_lon, user_lat, model):
 
     top_beaches['warning'] = top_beaches.apply(lambda row: ', '.join([warning_mapping[col] for col in warning_mapping if row[col]]), axis=1)    # print(info)
     # Select the required columns to display
-    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','amenities','warning','beach_info']]
+    result = top_beaches[['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 'image_address','amenities','warning','beach_info','safety_rating']] #safety_rating added
     weather = Weather()
     result_final = weather.get_weather_details(result)
 
@@ -148,7 +216,7 @@ def score_beaches(df, user_lon, user_lat, model):
         ['BEACH_NAME', 'LATITUDE', 'LONGITUDE', 'distance_kilometers', 
         'image_address', 'amenities', 'warning', 'beach_info', 
         'sunrise', 'sunset', 'temperature_2m_max', 
-        'temperature_2m_min', 'uv_index_max', 'max_wind_speed', 'safety']
+        'temperature_2m_min', 'uv_index_max', 'max_wind_speed', 'safety','safety_rating'] #safety_rating added
         ).apply(aggregate_rows).reset_index(drop=True)
     
     aggregated_df = aggregated_df.drop_duplicates(subset='BEACH_NAME', keep='first')
@@ -207,6 +275,7 @@ def detail():
         beach_wind = request.form.get('beach_wind')
         beach_wave = request.form.get('beach_wave')
         beach_beaufort = request.form.get('beach_beaufort')
+        safety_rating = request.form.get('safety_rating') # safety_rating added
 
         warning = [x.strip() for x in beach_warning.split(',')]
         amenities = [x.strip() for x in beach_amenities.split(',')]
@@ -227,7 +296,34 @@ def detail():
                                uv = beach_uv,
                                wind = beach_wind,
                                wave = beach_wave,
-                               safe_times = safe_time)    
+                               safe_times = safe_time,
+                                safety_rating = safety_rating)    
         
     else:
         pass
+
+
+def get_coordinates_from_address(address):
+    #mapbox_token can be replaced with other accounts
+    mapbox_token = "pk.eyJ1IjoienpobzAwNDQiLCJhIjoiY2xsb3VxNGhrMDAwZzNlbjM3eXllaHh1bCJ9.lD_ws4oyrrhimYBAT8vk2w"
+    base_url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{address}.json"
+    params = {
+        "access_token": mapbox_token,
+        "limit": 1
+    }
+
+    response = requests.get(base_url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        if len(data['features']) > 0:
+            coordinates = data['features'][0]['geometry']['coordinates']
+            longitude, latitude = coordinates
+            return latitude, longitude
+        else:
+            print("No coordinates found for the given address.")
+            return None, None
+    else:
+        print(f"Error: {response.status_code}, {response.text}")
+        return None, None
+    
+
