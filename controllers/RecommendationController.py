@@ -349,9 +349,17 @@ def detail():
         sunrise = request.form.get('sunrise')
         sunset = request.form.get('sunset')
 
-        warning = [x.strip() for x in beach_warning.split(',')]
-        amenities = [x.strip() for x in beach_amenities.split(',')]
-        # safe_time = [x.strip() for x in beach_beaufort.split(',')]
+        # Initialize variables as empty lists
+        warning = []
+        amenities = []
+        
+        if beach_warning:
+            warning = [x.strip() for x in beach_warning.split(',')]
+
+        if beach_amenities:
+            amenities = [x.strip() for x in beach_amenities.split(',')]
+
+        
 
 
 
