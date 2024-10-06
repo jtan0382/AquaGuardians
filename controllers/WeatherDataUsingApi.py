@@ -32,6 +32,10 @@ class Weather:
         # print("*"*40)
         
         df_merged_1 = pd.merge(beach_df, df_sun_details, on='key', how='inner')
+
+        # # Combine sunrise and sunset into a single variable called safe_beaufort
+        # df_merged_1['safe_beaufort'] = df_merged_1.apply(lambda row: f"Sunrise: {row['sunrise']}, Sunset: {row['sunset']}", axis=1)
+
         df_merged_1['date'] = pd.to_datetime(df_merged_1['date']).dt.date
         df_daily_details['date_daily'] = pd.to_datetime(df_daily_details['date_daily']).dt.date
         df_merged_2 = pd.merge(df_merged_1, 
@@ -81,6 +85,12 @@ class Weather:
         # print("*"*40)
         # print("Final DF")
         # print(filter_final_df)
+
+        # # Check if filter_final_df is empty
+        # if filter_final_df.empty:
+        #     print("No safe time available")
+        #     return "There is no safe time today for swimming"
+        # print("Returning DataFrame with data")
         return filter_final_df
 
         
@@ -344,5 +354,10 @@ class Weather:
         df_hourly_final['safe_date'] = df_hourly_final['date_safe'].dt.date
         df_hourly_final['safe_time'] = df_hourly_final['date_safe'].dt.time
 
+        # # Filter out times before 8:00 AM and after 5:00 PM because not suitable for swimming
+        # df_hourly_final = df_hourly_final[
+        # (df_hourly_final['safe_time'] >= pd.to_datetime('08:00', format='%H:%M').time()) &
+        # (df_hourly_final['safe_time'] <= pd.to_datetime('17:00', format='%H:%M').time())
+        # ]
         return daily_weather_dataframe, df_hourly_final
 

@@ -30,12 +30,17 @@ endblock %} {% block content %}
 					class="d-flex justify-content-center beach-header-information gap-2"
 				>
 					<div class="d-flex flex-column flex-fill">
-						<span class="text text-center">3</span>
+						{% if warnings %}
+						<span class="text text-center">{{ warnings | length }}</span>
+
+						{% else %}
+						<span class="text text-center">0</span>
+						{% endif %}
 
 						<p class="text text-center">Warnings</p>
 					</div>
 					<div class="d-flex flex-column flex-fill">
-						<span class="text text-center">3</span>
+						<span class="text text-center">{{ safety_rating }}</span>
 
 						<p class="text text-center">Safety <br />Ratings</p>
 					</div>
@@ -71,7 +76,7 @@ endblock %} {% block content %}
 
 							<!-- Image -->
 							<div class="d-flex gap-2">
-								{% if amenity %} {% for amenity in amenities %}
+								{% if amenities %} {% for amenity in amenities %}
 
 								<img
 									src="/img/amenities/{{amenity}}.png"

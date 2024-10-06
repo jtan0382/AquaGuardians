@@ -1,0 +1,21 @@
+{% extends "template.html" %} {% block title %}Error Page - Aqua Guardians{%
+endblock %} {% block content %}
+
+<section id="not-found-page" class="not-found-page">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<div class="d-flex flex-column justify-content-center align-items-center">
+				<h1>😯</h1>
+				<p class="title">
+					{{ e }}
+				</p>
+				<a href="/home" class="btn btn-outline-primary my-3 rounded-5 p-2"
+					>Home Page</a
+				>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

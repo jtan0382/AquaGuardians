@@ -3,8 +3,10 @@
     --secondary-color: #9DBDFF;
     --background-color: #FFF;
 
+
     /* --background-color: #EBF4F6; */
     --darker-white: #F5F4FB;
+    --more-darker: #D9D9D9;
     --text-color: #1B262C;
 
     
@@ -112,6 +114,10 @@
 
 .background-darker-white{
     background-color: var(--darker-white);
+}
+
+.background-more-darker{
+    background-color: var(--more-darker);
 }
 
 /* PADDING */

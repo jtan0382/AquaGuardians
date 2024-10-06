@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="/css/rip-current.css" />
 		<link rel="stylesheet" href="/css/recommendation.css" />
 		<link rel="stylesheet" href="/css/emergency-procedures.css" />
+		<link rel="stylesheet" href="/css/colour.css" />
 
 		<!-- Logo -->
 		<link rel="icon" href="/img/logo.png" type="image/png" />
@@ -145,12 +146,12 @@
 									<div class="dropdown-menu">
 										<a
 											class="text dropdown-item text-primary-color"
-											href="colour"
+											href="/colour"
 											>Colour</a
 										>
 										<a
 											class="text dropdown-item text-primary-color"
-											href="emergency"
+											href="/emergency"
 											>Emergency Plan</a
 										>
 									</div>
@@ -171,7 +172,7 @@
 				</nav>
 			</section>
 
-			{% block content %}{% endblock %}
+			{% block content %}{% endblock %} {{ mapbox_api_key }}
 
 			<section
 				id="footer"

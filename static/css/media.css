@@ -30,7 +30,16 @@
 
     }
 
-    .list-of-amenity > div, .list-of-warning > div{
+    /* .list-of-amenity > div, .list-of-warning > div{
+        flex-direction: row;
+    } */
+
+    .beach-header .beach-info{
+        flex-direction: row;
+
+    }
+
+    .list-of-amenity > .d-flex, .list-of-warning > .d-flex{
         flex-direction: row;
     }
 

@@ -135,4 +135,34 @@
     background-color: var(--secondary-color);
 }
 
+.beach-header-information span{
+    padding: 1rem 0.4rem;
+}
+
+.beach-header-information .d-flex:nth-child(1) span{
+    background-color: #F0BB51;
+
+}
+
+
+.beach-header-information .d-flex span{
+    background-color: #3CBB6F;
+    border-radius: 0.5rem;
+}
+
+.beach-information-section img{
+    width: 40rem;
+    height: 20rem;
+}
+
+.beach-information-section span.text{
+    max-width: 50rem;
+}
+
+.current-weather img{
+    width: 17rem;
+    height: 17rem;
+}
+
 /* End of Detail */
+

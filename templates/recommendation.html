@@ -166,7 +166,7 @@ endblock %} {% block content %}
 								class="d-flex justify-content-between align-items-center mt-auto"
 							>
 								<div class="d-flex mx-3">
-									{% for x in range(5) %} {% if x < 3 %}
+									{% for x in range(5) %} {% if x < beach['safety_rating'] %}
 									<img
 										src="/img/icons/star-full.png"
 										alt="rating star"
@@ -242,8 +242,20 @@ endblock %} {% block content %}
 								/>
 								<input
 									type="hidden"
-									name="beach_beaufort"
-									value="{{beach['safe_beaufort']}}"
+									name="safety_rating"
+									value="{{beach['safety_rating']}}"
+								/>
+
+								<input
+									type="hidden"
+									name="sunrise"
+									value="{{beach['sunrise']}}"
+								/>
+
+								<input
+									type="hidden"
+									name="sunset"
+									value="{{beach['sunset']}}"
 								/>
 
 								<button
@@ -257,154 +269,6 @@ endblock %} {% block content %}
 					</form>
 
 					{% endfor %}
-					<!-- <div class="d-flex flex-column top-beach-card rounded-5">
-							<div class="top-image-container">
-								<img
-									src="/img/bellsbeach.jpg"
-									alt=""
-									class="top-beach-image w-100"
-								/>
-								<div class="top-beach-name-container m-3">
-									<span class="text text-bold text-color top-beach-name"
-										>Beach Name</span
-									>
-								</div>
-							</div>
-	
-							<div class="d-flex justify-content-center align-items-center m-3">
-								<p class="text text-information text-align-justify">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
-									at vero harum qui, laboriosam et voluptatem repudiandae beatae
-									illo laborum mollitia id voluptate nam modi optio vel
-									necessitatibus fugiat reiciendis?
-								</p>
-								<input
-									type="hidden"
-									name="clothing"
-									value="the value of clothing"
-								/>
-							</div>
-	
-							<div
-								class="d-flex justify-content-between align-items-center mt-auto star-footer"
-							>
-								<div class="d-flex mx-3">
-									{% for x in range(5) %} {% if x < 3 %}
-									<img
-										src="/img/icons/star-full.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% else %}
-									<img
-										src="/img/icons/star.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% endif %} {% endfor %}
-								</div>
-								<a
-									href="/recommendation/detail"
-									class="btn btn-warning rounded-5 w-100 m-3"
-								>
-									<span class="text"> View Static </span>
-								</a>
-							</div>
-						</div>
-	
-						<div class="d-flex flex-column top-beach-card rounded-5">
-							<div class="top-image-container">
-								<img
-									src="/img/bellsbeach.jpg"
-									alt=""
-									class="top-beach-image w-100"
-								/>
-								<div class="top-beach-name-container m-3">
-									<span class="text text-bold text-color top-beach-name"
-										>Beach Name</span
-									>
-								</div>
-							</div>
-	
-							<div class="d-flex justify-content-center align-items-center m-3">
-								<p class="text text-information text-align-justify">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
-									at vero harum qui, laboriosam et voluptatem repudiandae beatae
-									illo laborum mollitia id voluptate nam modi optio vel
-									necessitatibus fugiat reiciendis?
-								</p>
-							</div>
-	
-							<div
-								class="d-flex justify-content-between align-items-center mt-auto star-footer"
-							>
-								<div class="d-flex mx-3">
-									{% for x in range(5) %} {% if x < 3 %}
-									<img
-										src="/img/icons/star-full.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% else %}
-									<img
-										src="/img/icons/star.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% endif %} {% endfor %}
-								</div>
-								<a href="#" class="btn btn-warning rounded-5 w-100 m-3">
-									<span class="text"> View → </span>
-								</a>
-							</div>
-						</div>
-	
-						<div class="d-flex flex-column top-beach-card rounded-5">
-							<div class="top-image-container">
-								<img
-									src="/img/bellsbeach.jpg"
-									alt=""
-									class="top-beach-image w-100"
-								/>
-								<div class="top-beach-name-container m-3">
-									<span class="text text-bold text-color top-beach-name"
-										>Beach Name</span
-									>
-								</div>
-							</div>
-	
-							<div class="d-flex justify-content-center align-items-center m-3">
-								<p class="text text-information text-align-justify">
-									Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam
-									at vero harum qui, laboriosam et voluptatem repudiandae beatae
-									illo laborum mollitia id voluptate nam modi optio vel
-									necessitatibus fugiat reiciendis?
-								</p>
-							</div>
-	
-							<div
-								class="d-flex justify-content-between align-items-center mt-auto star-footer"
-							>
-								<div class="d-flex mx-3">
-									{% for x in range(5) %} {% if x < 3 %}
-									<img
-										src="/img/icons/star-full.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% else %}
-									<img
-										src="/img/icons/star.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% endif %} {% endfor %}
-								</div>
-								<a href="#" class="btn btn-warning rounded-5 w-100 m-3">
-									<span class="text"> View → </span>
-								</a>
-							</div>
-						</div> -->
 				</div>
 			</div>
 		</div>
