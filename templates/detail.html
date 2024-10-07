@@ -221,11 +221,20 @@ endblock %} {% block content %}
 						>
 							<div class="beaufort-time m-3">
 								<div class="d-flex gap-3">
-									{{safe_times}} {% if safe_times %} {% for safe_time in
-									safe_times %}
-									<div><span class="text">{{safe_time}}</span></div>
-
-									{% endfor %}{% else %}
+									<!-- {{safe_times}} {% if safe_times %} {% for safe_time in
+										safe_times %}
+										<div><span class="text">{{safe_time}}</span></div>
+	
+										{% endfor %}{% else %}
+										<p class="text">No Safe Time Shown</p>
+										{% endif %} -->
+									{% if safe_times %}
+									<div class="d-flex gap-3">
+										{% for safe_time in safe_times %}
+										<div><span class="text">{{ safe_time }}</span></div>
+										{% endfor %}
+									</div>
+									{% else %}
 									<p class="text">No Safe Time Shown</p>
 									{% endif %}
 								</div>

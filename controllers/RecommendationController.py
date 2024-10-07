@@ -17,7 +17,15 @@ from flask import render_template, request, session
 
 from flask import render_template, request
 
+from datetime import datetime, time
 
+def is_between_sunset_and_sunrise(time_str, sunset_time, sunrise_time):
+    time_obj = datetime.strptime(time_str, "%H:%M:%S").time()
+    
+    if sunset_time <= sunrise_time:
+        return time_obj >= sunset_time or time_obj <= sunrise_time
+    else:
+        return time_obj >= sunset_time and time_obj <= sunrise_time
 
 # Currently Working index
 def index():
@@ -349,12 +357,12 @@ def detail():
         beach_wave = round(float(request.form.get('beach_wave')), 2)
         beach_beaufort = request.form.get('safe_beaufort')
         safety_rating = request.form.get('safety_rating') # safety_rating added
-        sunrise = request.form.get('sunrise')
-        sunset = request.form.get('sunset')
+
 
         # Initialize variables as empty lists
         warning = []
         amenities = []
+        safe_times = []
         
         if beach_warning:
             warning = [x.strip() for x in beach_warning.split(',')]
@@ -363,9 +371,17 @@ def detail():
             amenities = [x.strip() for x in beach_amenities.split(',')]
 
         
-
-
-
+        if beach_beaufort:
+            all_times = [x.strip() for x in beach_beaufort.split(',')]
+            
+            # Assume sunset and sunrise times are defined (you'll need to set these)
+            sunset_time = time(20, 0)  # 8:00 PM
+            sunrise_time = time(6, 0)  # 6:00 AM
+            
+            safe_times = [
+                time for time in all_times 
+                if is_between_sunset_and_sunrise(time, sunset_time, sunrise_time)
+            ]
         # test = request.form['clothing']
         return render_template("detail.html", 
                                name = beach_name, 
@@ -381,7 +397,7 @@ def detail():
                                wind = beach_wind,
                                wave = beach_wave,
                                safety_rating = safety_rating,
-                               safe_times = beach_beaufort)    
+                               safe_times = safe_times)    
         
     else:
         pass
