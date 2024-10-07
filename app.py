@@ -86,9 +86,9 @@ def emergency():
     return render_template("emergency-procedures.html")
 
 
-@app.route("/rip-current")
-def rip():
-    return render_template("rip-current.html")
+# @app.route("/rip-current")
+# def rip():
+#     return render_template("rip-current.html")
 
 @app.route('/get_items/<category>')
 def get_items(category):
