@@ -1,5 +1,6 @@
 {% extends "template.html" %} {% block title %}Beach Flags - Aqua Guardian{%
 endblock %} {% block content %}
+<script type="module" src="/js/beach-education.js"></script>
 
 <section id="beach-flags" class="beach-flags">
 	<div class="row section-padding">
@@ -8,12 +9,12 @@ endblock %} {% block content %}
 			<div class="row px-3">
 				<div class="col-4"></div>
 				<div class="col-4">
-					<div class="phone-card rounded-5">
-						<!-- <div class="d-flex flex-column gap-3"> -->
-						<!-- First Row -->
+					<div class="phone-card rounded-5 d-flex flex-column" style="max-height: 100vh; height: auto;">
+						
+						<!-- Header Row -->
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="text-left">
-								<span class="text">9.30</span>
+								<span class="text">AquaGuardians</span>
 							</div>
 							<div class="d-flex justify-content-center align-items-center">
 								<div class="phone-camera"></div>
@@ -24,46 +25,41 @@ endblock %} {% block content %}
 							</div>
 						</div>
 
-						<div class="phone-card-response rounded-5">
-							<div class="first-response">
-								<span class="text"
-									>Welcome to Safety tutorials</span
-								>
+						<!-- Container for received messages -->
+						<div id="message-wrapper" class="container flex-grow-1" style="overflow-y: auto; padding: auto; height: 300px;"> <!-- Scrollable container -->
+							<div class="container">
+									<div class="row" id="sms-container-top">
+										<!-- From messages will be appended here -->
+										
+									</div>
+							</div>
+
+							<script type="module">
+								import { renderReceivedMessage } from '/js/beach-education.js';
+							
+								// Example calls to render messages
+								renderReceivedMessage("Welcome to Beach Safety Module!", 'sms-container-top');
+								renderReceivedMessage("This is an interactive learning module where instructions will appear as received messages. Follow the instructions and choose an option accordingly.", 'sms-container-top');
+								renderReceivedMessage("Sometimes, there may be only one option! Make sure to scroll down to read the full instructions.", 'sms-container-top');
+							</script>
+							
+
+							<!-- Middle Container for replies -->
+							<div class="container">
+								<div class="row" id="sms-container-middle"> <!-- Container for messages -->
+								<!-- Reply messages will be appended here -->
+								</div>
 							</div>
 						</div>
 
-						<div class="phone-card-response rounded-5">
-							<div class="first-response">
-								<span class="text"
-									>In this tutorials we will...</span
-								>
-							</div>
-						</div>
-
-						<div class="phone-card-response rounded-5">
-							<div class="second-response">
-								<span class="text"
-									>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-									non porro deserunt voluptates delectus id nobis laborum nisi
-									nulla expedita dolore rem, esse mollitia atque, quae tempore
-									repellendus! Illum magni dolorem itaque quae ut. Perspiciatis
-									officia explicabo et perferendis reiciendis adipisci natus
-									eligendi. Corrupti magni harum debitis culpa deleniti
-									fugit.
-									hbiibiviv
-									
-									sdfsd</span
-								>
-							</div>
-						</div>
-
-						<!-- Last -->
-						<div class="d-flex flex-column mt-auto">
-							<button class="phone-response-button w-100 my-2 rounded-3 p-3">
+						<!-- Button Section -->
+						<div id="button-section" class="d-flex flex-column mt-auto" style="padding: 30px 0;">
+							<button id="gotItButton" class="phone-response-button w-100 my-2 rounded-3 p-3">
 								<span class="text text-background-color">GOT IT</span>
 							</button>
-							<div class="phone-line"></div>
 						</div>
+						<div class="phone-line"></div>
+					
 					</div>
 					<!-- </div> -->
 				</div>
