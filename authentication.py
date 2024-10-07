@@ -3,7 +3,7 @@
 from flask import redirect, url_for, session, request
 
 # List of routes that don't require authentication
-EXEMPT_ROUTES = ['index', 'home', 'historical-insights', 'detail', "beach-education", "emergency", "colour"]
+EXEMPT_ROUTES = ['login', 'index', 'home', 'historical-insights', 'detail', "beach-education", "emergency", "colour"]
 
 def authenticate():
     """Check if the user is authenticated before accessing any route."""
