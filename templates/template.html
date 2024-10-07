@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="/css/rip-current.css" />
 		<link rel="stylesheet" href="/css/recommendation.css" />
 		<link rel="stylesheet" href="/css/emergency-procedures.css" />
+		<link rel="stylesheet" href="/css/colour.css" />
+		<link rel="stylesheet" href="/css/insights.css" />
 
 		<!-- Logo -->
 		<link rel="icon" href="/img/logo.png" type="image/png" />
@@ -42,6 +44,9 @@
 			defer
 			src="https://api.mapbox.com/search-js/v1.0.0-beta.21/web.js"
 		></script>
+
+		<!-- D3JS -->
+		<script src="https://d3js.org/d3.v7.min.js"></script>
 
 		<style>
 			.nav-btn:hover {
@@ -119,12 +124,12 @@
 									<div class="dropdown-menu">
 										<a
 											class="text dropdown-item text-primary-color"
-											href="historical-insights"
+											href="/historical-insights"
 											>Historical Insights</a
 										>
 										<a
 											class="text dropdown-item text-primary-color"
-											href="beach-education"
+											href="/beach-education"
 											>Learn how to be safe at the beaches</a
 										>
 									</div>
@@ -145,13 +150,13 @@
 									<div class="dropdown-menu">
 										<a
 											class="text dropdown-item text-primary-color"
-											href="colour"
+											href="/colour"
 											>Colour</a
 										>
 										<a
 											class="text dropdown-item text-primary-color"
-											href="emergency"
-											>Emergency Plan</a
+											href="/emergency"
+											>Emergency Procedures</a
 										>
 									</div>
 								</div>
@@ -171,7 +176,7 @@
 				</nav>
 			</section>
 
-			{% block content %}{% endblock %}
+			{% block content %}{% endblock %} {{ mapbox_api_key }}
 
 			<section
 				id="footer"
@@ -204,23 +209,28 @@
 								</div>
 								<!-- Links -->
 								<div class="d-flex gap-3 useful-links">
-									<a
-										class="text text-background-color a-none"
-										href="/historical-insights"
-										>Historical Insights</a
-									>
 									<div class="d-flex flex-column">
 										<a
 											class="text text-background-color a-none"
-											href="/beach-flags"
-											>Beach Flags</a
+											href="/historical-insights"
+											>Historical Insights</a
+										>
+										<a
+											class="text text-background-color a-none"
+											href="/beach-education"
+											>Learn how to be safe at the beaches</a
+										>
+									</div>
+									<div class="d-flex flex-column">
+										<a class="text text-background-color a-none" href="/colour"
+											>Colour</a
 										>
 										<!-- <a class="footer-text" href="/beach-safety">Flags</a> -->
-										<a
+										<!-- <a
 											class="text text-background-color a-none"
 											href="/rip-current"
 											>Rip Current</a
-										>
+										> -->
 										<a
 											class="text text-background-color a-none"
 											href="/emergency"
@@ -257,8 +267,10 @@
 		></script>
 
 		<script src="/js/index.js"></script>
-		<script src="/js/recommendation.js"></script>
-		<script src="/js/beach-safety.js"></script>
+		<script src="/js/insights.js"></script>
+
+		<!-- <script src="/js/recommendation.js"></script> -->
+		<!-- <script src="/js/beach-safety.js"></script> -->
 		<!-- <script src="/js/emergency-procedures.js"></script> -->
 
 		<!-- AOS -->

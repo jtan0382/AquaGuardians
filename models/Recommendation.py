@@ -8,14 +8,26 @@ def fetch_merged_data():
     
     # SQL query to fetch merged data
     query = """SELECT *
-           FROM beach_facilities_safety
-           JOIN beach_longlat
-               ON beach_facilities_safety.[KEY] = beach_longlat.[KEY]
-           JOIN beach_image
-               ON beach_facilities_safety.[KEY] = beach_image.[KEY]"""
+           FROM beach_activities
+        JOIN beach_facilities
+            ON beach_activities.[KEY] = beach_facilities.[KEY]
+        JOIN beach_haz
+            ON beach_activities.[KEY] = beach_haz.[KEY]
+        JOIN beach_img
+            ON beach_activities.[KEY] = beach_img.[KEY]
+        JOIN beach_longlat
+            ON beach_activities.[KEY] = beach_longlat.[KEY]
+        JOIN beach_name
+            ON beach_activities.[KEY] = beach_name.[KEY]
+        JOIN beach_rating
+            ON beach_activities.[KEY] = beach_rating.[KEY]
+        JOIN beach_warnings
+            ON beach_activities.[KEY] = beach_warnings.[KEY]"""
                
     # Fetch data into a pandas DataFrame
     table = pd.read_sql(query, conn)
     conn.close()
+    # Drop duplicate columns
+    table = table.loc[:, ~table.columns.duplicated()]
     
     return table

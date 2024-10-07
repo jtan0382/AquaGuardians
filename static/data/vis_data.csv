@@ -1,0 +1,21 @@
+measure_name,sex_name,age_category,val
+Deaths,Female,Children (5-9 years),0.3481
+Deaths,Female,Infants (1-11 months),1.3769
+Deaths,Female,Newborn (0-28 days),0.7684
+Deaths,Female,Older Children (10-17 years),0.2281
+Deaths,Female,Young Toddlers (1-4 years),4.6233
+Deaths,Male,Children (5-9 years),0.8776
+Deaths,Male,Infants (1-11 months),1.6777
+Deaths,Male,Newborn (0-28 days),1.2147
+Deaths,Male,Older Children (10-17 years),0.7288
+Deaths,Male,Young Toddlers (1-4 years),6.8845
+YLDS,Female,Children (5-9 years),0.3245
+YLDS,Female,Infants (1-11 months),0.0853
+YLDS,Female,Newborn (0-28 days),0.0623
+YLDS,Female,Older Children (10-17 years),0.4518
+YLDS,Female,Young Toddlers (1-4 years),0.1694
+YLDS,Male,Children (5-9 years),0.3368
+YLDS,Male,Infants (1-11 months),0.0777
+YLDS,Male,Newborn (0-28 days),0.0508
+YLDS,Male,Older Children (10-17 years),0.479
+YLDS,Male,Young Toddlers (1-4 years),0.1725
