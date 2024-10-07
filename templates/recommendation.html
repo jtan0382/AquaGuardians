@@ -1,290 +1,314 @@
 {% extends "template.html" %} {% block title %}Safe beaches - Aqua Guardian{%
 endblock %} {% block content %}
 
-<!-- <p>{{data}}</p>
-	<p>{{user_address}}</p>
-	<p>{{filters}}</p> -->
-
-<section id="recommendation-search-banner" class="recommendation-search-banner">
-	<div
-		class="d-flex justify-content-center align-items-center recommendation-banner"
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section
+		id="recommendation-search-banner"
+		class="recommendation-search-banner"
 	>
-		<div class="d-flex recommendation-content flex-column">
-			<p class="title text-background-color text-bold text-center">
-				Find the safest beaches across Victoria
-			</p>
-			<div class="search-container d-flex">
-				<form action="/recommendation" method="POST" class="w-100">
-					<div class="search-input-prepend m-1">
-						<a
-							class="btn"
-							id="dropdownMenuButton"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						>
-							<img src="/img/icons/menu.png" class="icon" alt="Filter Menu" />
-						</a>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<div class="form-check mx-3">
-								<input
-									class="form-check-input"
-									type="checkbox"
-									name="filters"
-									value="swimming"
-									id="swimming"
-								/>
-								<label class="form-check-label" for="swimming">
-									Swimming
-								</label>
-							</div>
-							<div class="form-check mx-3">
-								<input
-									class="form-check-input"
-									type="checkbox"
-									name="filters"
-									value="surfing"
-									id="surfing"
-								/>
-								<label class="form-check-label" for="surfing"> Surfing </label>
-							</div>
-							<div class="form-check mx-3">
-								<input
-									class="form-check-input"
-									type="checkbox"
-									name="filters"
-									value="fishing"
-									id="fishing"
-								/>
-								<label class="form-check-label" for="fishing"> Fishing </label>
+		<div
+			class="d-flex justify-content-center align-items-center recommendation-banner"
+		>
+			<div class="d-flex recommendation-content flex-column">
+				<p class="title text-background-color text-bold text-center">
+					Find the safest beaches across Victoria
+				</p>
+				<div class="search-container d-flex">
+					<form action="/recommendation" method="POST" class="w-100">
+						<div class="search-input-prepend m-1">
+							<a
+								class="btn"
+								id="dropdownMenuButton"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								<img src="/img/icons/menu.png" class="icon" alt="Filter Menu" />
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<div class="form-check mx-3">
+									<input
+										class="form-check-input"
+										type="checkbox"
+										name="filters"
+										value="swimming"
+										id="swimming"
+									/>
+									<label class="form-check-label" for="swimming">
+										Swimming
+									</label>
+								</div>
+								<div class="form-check mx-3">
+									<input
+										class="form-check-input"
+										type="checkbox"
+										name="filters"
+										value="surfing"
+										id="surfing"
+									/>
+									<label class="form-check-label" for="surfing">
+										Surfing
+									</label>
+								</div>
+								<div class="form-check mx-3">
+									<input
+										class="form-check-input"
+										type="checkbox"
+										name="filters"
+										value="fishing"
+										id="fishing"
+									/>
+									<label class="form-check-label" for="fishing">
+										Fishing
+									</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<input
-						id="address-input"
-						type="text"
-						name="user-input"
-						class="search-field rounded-5"
-						placeholder="Search by activity, beach, or suburb"
-						aria-label="Search"
-						autocomplete="shipping street-address"
-					/>
+						<input
+							id="address-input"
+							type="text"
+							name="user-input"
+							class="search-field rounded-5"
+							placeholder="Search by activity, beach, or suburb"
+							aria-label="Search"
+							autocomplete="shipping street-address"
+						/>
 
-					<div class="search-input-append m-1">
-						<button class="btn" type="submit">
-							<img src="/img/icons/search.png" class="icon" alt="Search Icon" />
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section
-	id="safety-covered"
-	class="safety-covered background-darker-white section-padding"
->
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<div class="d-flex flex-column">
-				<p class="title text-bold text-center">
-					Pack and Go-We've Got the Safety Covered
-				</p>
-
-				<div class="d-flex justify-content-between">
-					<div
-						class="d-flex flex-column justify-content-center align-items-center"
-					>
-						<img src="/img/victoria.png" alt="Victoria" class="my-3" />
-						<p class="text text-align-center">
-							Backed by the Victorian Government
-						</p>
-						<p class="text text-align-center text-information">
-							Hazard ratings are provided by the Government of Victoria,
-							ensuring reliability.
-						</p>
-					</div>
-					<div
-						class="d-flex flex-column justify-content-center align-items-center"
-					>
-						<img src="/img/weather.png" alt="Victoria" class="my-3" />
-						<p class="text text-align-center">Live Weather Conditions</p>
-						<p class="text text-align-center text-information">
-							In addition to hazard ratings, real-time weather data is
-							considered to ensure accurate safety assessments.
-						</p>
-					</div>
-					<div
-						class="d-flex flex-column justify-content-center align-items-center"
-					>
-						<img src="/img/warning.png" alt="Victoria" class="my-3" />
-						<p class="text text-align-center">Beach Safety Alerts</p>
-						<p class="text text-align-center text-information">
-							Stay informed with latest updates on hazards like strong currents,
-							jellyfish, or other beach-specific warnings.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section id="top-beach" class="top-beach section-padding">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12 col-xl-1"></div>
-			<div class="col-12 col-xl-10 my-3">
-				<p class="title text-bold">
-					Top recommendations for your next beach trip
-				</p>
-				<div class="d-flex justify-content-between gap-3">
-					{% for beach in top_beaches %}
-					<form action="/recommendation/detail" method="POST">
-						<div class="d-flex flex-column top-beach-card rounded-5 flex-fill">
-							<div class="top-image-container">
+						<div class="search-input-append m-1">
+							<button class="btn" type="submit">
 								<img
-									src="{{beach['image_address']}}"
-									alt=""
-									class="top-beach-image w-100"
+									src="/img/icons/search.png"
+									class="icon"
+									alt="Search Icon"
 								/>
-								<div class="top-beach-name-container m-3">
-									<span class="text text-bold text-color top-beach-name"
-										>{{beach['BEACH_NAME']}}</span
-									>
-								</div>
-							</div>
-
-							<div class="d-flex justify-content-center align-items-center m-3">
-								<p class="text text-information text-align-justify">
-									{{beach['beach_info']}}
-								</p>
-							</div>
-
-							<div
-								class="d-flex justify-content-between align-items-center mt-auto"
-							>
-								<div class="d-flex mx-3">
-									{% for x in range(5) %} {% if x < beach['safety_rating'] %}
-									<img
-										src="/img/icons/star-full.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% else %}
-									<img
-										src="/img/icons/star.png"
-										alt="rating star"
-										class="star-icon"
-									/>
-									{% endif %} {% endfor %}
-								</div>
-								<input
-									type="hidden"
-									name="beach_name"
-									value="{{beach['BEACH_NAME']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_image"
-									value="{{beach['image_address']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_lat"
-									value="{{beach['LATITUDE']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_long"
-									value="{{beach['LONGITUDE']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_warning"
-									value="{{beach['warning']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_amenities"
-									value="{{beach['amenities']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_info"
-									value="{{beach['beach_info']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_temperature_2m_min"
-									value="{{beach['temperature_2m_min']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_temperature_2m_max"
-									value="{{beach['temperature_2m_max']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_uv"
-									value="{{beach['uv_index_max']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_wind"
-									value="{{beach['max_wind_speed']}}"
-								/>
-								<input
-									type="hidden"
-									name="beach_wave"
-									value="{{beach['wave_height']}}"
-								/>
-								<input
-									type="hidden"
-									name="safety_rating"
-									value="{{beach['safety_rating']}}"
-								/>
-
-								<input
-									type="hidden"
-									name="sunrise"
-									value="{{beach['sunrise']}}"
-								/>
-
-								<input
-									type="hidden"
-									name="sunset"
-									value="{{beach['sunset']}}"
-								/>
-
-								<button
-									type="submit"
-									class="btn btn-warning rounded-5 w-100 m-3"
-								>
-									<span class="text"> View → </span>
-								</button>
-							</div>
+							</button>
 						</div>
 					</form>
-
-					{% endfor %}
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<section id="historical" class="historical section-padding">
-	<div class="d-flex flex-column justify-content-center align-items-center">
-		<p class="title text-center">
-			Click on Historical Insights to learn about past drowning accidents and
-			discover valuable insights.
-		</p>
-		<a href="/historical-insights" class="btn btn-primary rounded-5"
-			><span class="text p-3"> Historical Insights </span></a
-		>
-	</div>
-</section>
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section
+		id="safety-covered"
+		class="safety-covered background-darker-white section-padding"
+	>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="d-flex flex-column">
+					<p class="title text-bold text-center">
+						Pack and Go-We've Got the Safety Covered
+					</p>
+
+					<div class="d-flex justify-content-between">
+						<div
+							class="d-flex flex-column justify-content-center align-items-center"
+						>
+							<img src="/img/victoria.png" alt="Victoria" class="my-3" />
+							<p class="text text-align-center">
+								Backed by the Victorian Government
+							</p>
+							<p class="text text-align-center text-information">
+								Hazard ratings are provided by the Government of Victoria,
+								ensuring reliability.
+							</p>
+						</div>
+						<div
+							class="d-flex flex-column justify-content-center align-items-center"
+						>
+							<img src="/img/weather.png" alt="Victoria" class="my-3" />
+							<p class="text text-align-center">Live Weather Conditions</p>
+							<p class="text text-align-center text-information">
+								In addition to hazard ratings, real-time weather data is
+								considered to ensure accurate safety assessments.
+							</p>
+						</div>
+						<div
+							class="d-flex flex-column justify-content-center align-items-center"
+						>
+							<img src="/img/warning.png" alt="Victoria" class="my-3" />
+							<p class="text text-align-center">Beach Safety Alerts</p>
+							<p class="text text-align-center text-information">
+								Stay informed with latest updates on hazards like strong
+								currents, jellyfish, or other beach-specific warnings.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section id="top-beach" class="top-beach section-padding">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 col-xl-1"></div>
+				<div class="col-12 col-xl-10 my-3">
+					<p class="title text-bold">
+						Top recommendations for your next beach trip
+					</p>
+					<div class="d-flex justify-content-between gap-3">
+						{% for beach in top_beaches %}
+						<form action="/recommendation/detail" method="POST">
+							<div
+								class="d-flex flex-column top-beach-card rounded-5 flex-fill"
+							>
+								<div class="top-image-container">
+									<img
+										src="{{beach['image_address']}}"
+										alt=""
+										class="top-beach-image w-100"
+									/>
+									<div class="top-beach-name-container m-3">
+										<span class="text text-bold text-color top-beach-name"
+											>{{beach['BEACH_NAME']}}</span
+										>
+									</div>
+								</div>
+
+								<div
+									class="d-flex justify-content-center align-items-center m-3"
+								>
+									<p class="text text-information text-align-justify">
+										{{beach['beach_info']}}
+									</p>
+								</div>
+
+								<div
+									class="d-flex justify-content-between align-items-center mt-auto"
+								>
+									<div class="d-flex mx-3">
+										{% for x in range(5) %} {% if x < beach['safety_rating'] %}
+										<img
+											src="/img/icons/star-full.png"
+											alt="rating star"
+											class="star-icon"
+										/>
+										{% else %}
+										<img
+											src="/img/icons/star.png"
+											alt="rating star"
+											class="star-icon"
+										/>
+										{% endif %} {% endfor %}
+									</div>
+									<input
+										type="hidden"
+										name="beach_name"
+										value="{{beach['BEACH_NAME']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_image"
+										value="{{beach['image_address']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_lat"
+										value="{{beach['LATITUDE']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_long"
+										value="{{beach['LONGITUDE']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_warning"
+										value="{{beach['warning']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_amenities"
+										value="{{beach['amenities']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_info"
+										value="{{beach['beach_info']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_temperature_2m_min"
+										value="{{beach['temperature_2m_min']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_temperature_2m_max"
+										value="{{beach['temperature_2m_max']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_uv"
+										value="{{beach['uv_index_max']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_wind"
+										value="{{beach['max_wind_speed']}}"
+									/>
+									<input
+										type="hidden"
+										name="beach_wave"
+										value="{{beach['wave_height']}}"
+									/>
+									<input
+										type="hidden"
+										name="safety_rating"
+										value="{{beach['safety_rating']}}"
+									/>
+
+									<input
+										type="hidden"
+										name="sunrise"
+										value="{{beach['sunrise']}}"
+									/>
+
+									<input
+										type="hidden"
+										name="sunset"
+										value="{{beach['sunset']}}"
+									/>
+									<input
+										type="hidden"
+										name="safe_beaufort"
+										value="{{beach['safe_beaufort']}}"
+									/>
+
+									<button
+										type="submit"
+										class="btn btn-warning rounded-5 w-100 m-3"
+									>
+										<span class="text"> View → </span>
+									</button>
+								</div>
+							</div>
+						</form>
+
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section id="historical" class="historical section-padding">
+		<div class="d-flex flex-column justify-content-center align-items-center">
+			<p class="title text-center">
+				Click on Historical Insights to learn about past drowning accidents and
+				discover valuable insights.
+			</p>
+			<a href="/historical-insights" class="btn btn-primary rounded-5"
+				><span class="text p-3"> Historical Insights </span></a
+			>
+		</div>
+	</section>
+</div>
 
 {% endblock %}

@@ -116,6 +116,9 @@ def index():
 
         # Calculate the top 3 beaches based on current location with filtered data
         try:
+            # Fetch the merged data with default filter (SIGHTSEEING = True)
+            df_merged = fetch_merged_data()
+            df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
             top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
             print(f"safe time: {top_beaches['safe_beaufort']}")
 
@@ -344,7 +347,7 @@ def detail():
         beach_uv = round(float(request.form.get('beach_uv')),2)
         beach_wind = round(float(request.form.get('beach_wind')), 2)
         beach_wave = round(float(request.form.get('beach_wave')), 2)
-        beach_beaufort = request.form.get('beach_beaufort')
+        beach_beaufort = request.form.get('safe_beaufort')
         safety_rating = request.form.get('safety_rating') # safety_rating added
         sunrise = request.form.get('sunrise')
         sunset = request.form.get('sunset')
@@ -377,7 +380,8 @@ def detail():
                                uv = beach_uv,
                                wind = beach_wind,
                                wave = beach_wave,
-                               safety_rating = safety_rating)    
+                               safety_rating = safety_rating,
+                               safe_times = beach_beaufort)    
         
     else:
         pass

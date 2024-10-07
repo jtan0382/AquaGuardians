@@ -9,174 +9,187 @@ Guardians{% endblock %} {% block content %}
 	<div class="row my-5">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-			<div class="row my-3">
-				<div class="col-12">
-					<p class="title text-bold">Interactive Drowning Statistics</p>
-					<p class="subtitle text-bold">Did You Know?</p>
-					<p class="text">
-						Last year, 150 lives are lost to drowning at beaches.
-					</p>
-					<p class="text">There’s been a 26% increase over the past decade.</p>
-					<p class="text">
-						This makes the beach one of the most dangerous places for children.
-						It's important for parents like you to learn about beach safety to
-						help keep them safe.
-					</p>
-				</div>
-			</div>
-
-			<!-- Chart -->
-			<div class="row my-3">
-				<div class="col-12">
-					<!-- Filters for Bar Chart -->
-					<div class="chart-header">
-						<p class="subtitle text-bold text-center">
-							Explore Deaths and Disabilities by Age and Gender
-						</p>
-					</div>
-					<p class="subtitle text-bold">Filter Data</p>
-					<label for="measure-filter">Measure: </label>
-					<select id="measure-filter">
-						<option value="all">All</option>
-						<option value="Deaths">Deaths</option>
-						<option value="YLDS">YLDS</option>
-					</select>
-
-					<label for="gender-filter">Gender: </label>
-					<select id="gender-filter">
-						<option value="all">All</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-
-					<label for="age-filter">Age Group: </label>
-					<select id="age-filter">
-						<option value="all">All</option>
-						<option value="Newborn (0-28 days)">Newborn (0-28 days)</option>
-						<option value="Infants (1-11 months)">Infants (1-11 months)</option>
-						<option value="Young Toddlers (1-4 years)">
-							Young Toddlers (1-4 years)
-						</option>
-						<option value="Children (5-9 years)">Children (5-9 years)</option>
-						<option value="Older Children (10-17 years)">
-							Older Children (10-17 years)
-						</option>
-					</select>
-				</div>
-			</div>
-
-			<!-- Chart -->
-			<div class="row mt-3">
-				<div class="col-12 col-xl-6">
-					<div id="bar-chart-legend"></div>
-
-					<div id="bar-chart" class="chart-container">
-						<svg
-							class="img-fluid"
-							viewBox="0 0 600 400"
-							preserveAspectRatio="xMidYMid meet"
-						></svg>
-					</div>
-				</div>
-
-				<div class="col-12 col-xl-6">
-					<!-- Image Container -->
-					<div id="image-container">
-						<p class="subtitle text-bold">
-							Which activities at the beach have the highest drowning rates?
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<div class="row my-3">
+					<div class="col-12">
+						<p class="title text-bold">Interactive Drowning Statistics</p>
+						<p class="subtitle text-bold">Did You Know?</p>
+						<p class="text">
+							Last year, 150 lives are lost to drowning at beaches.
 						</p>
 						<p class="text">
-							Swimming and recreating are the highest at 67%. Followed by Diving
-							and Watercraft at 8% each.
+							There’s been a 26% increase over the past decade.
 						</p>
-						<img
-							src="/img/insights.jpg"
-							alt="Image 1"
-							class="img-fluid w-100"
-						/>
+						<p class="text">
+							This makes the beach one of the most dangerous places for
+							children. It's important for parents like you to learn about beach
+							safety to help keep them safe.
+						</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="row my-3">
-				<div class="col-12">
-					<div class="row">
-						<div class="col-12 col-xl-12">
-							<p class="subtitle bold">
-								What does this mean? Fill in the formation to look at our
-								insights.
+			<!-- Chart -->
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<div class="row my-3">
+					<div class="col-12">
+						<!-- Filters for Bar Chart -->
+						<div class="chart-header">
+							<p class="subtitle text-bold text-center">
+								Explore Deaths and Disabilities by Age and Gender
 							</p>
 						</div>
+						<p class="subtitle text-bold">Filter Data</p>
+						<label for="measure-filter">Measure: </label>
+						<select id="measure-filter">
+							<option value="all">All</option>
+							<option value="Deaths">Deaths</option>
+							<option value="YLDS">YLDS</option>
+						</select>
+
+						<label for="gender-filter">Gender: </label>
+						<select id="gender-filter">
+							<option value="all">All</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+
+						<label for="age-filter">Age Group: </label>
+						<select id="age-filter">
+							<option value="all">All</option>
+							<option value="Newborn (0-28 days)">Newborn (0-28 days)</option>
+							<option value="Infants (1-11 months)">
+								Infants (1-11 months)
+							</option>
+							<option value="Young Toddlers (1-4 years)">
+								Young Toddlers (1-4 years)
+							</option>
+							<option value="Children (5-9 years)">Children (5-9 years)</option>
+							<option value="Older Children (10-17 years)">
+								Older Children (10-17 years)
+							</option>
+						</select>
 					</div>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="col-12 col-xl-6">
-							<form id="user-form">
-								<div class="form-group">
-									<label for="name">Name: </label>
-									<input
-										type="text"
-										class="form-control"
-										id="name"
-										name="name"
-										placeholder="Enter name"
-									/>
-								</div>
+			<!-- Chart -->
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<div class="row mt-3">
+					<div class="col-12 col-xl-6">
+						<div id="bar-chart-legend"></div>
 
-								<div class="form-group">
-									<label for="num-children">Number of Children: </label>
-									<input
-										type="number"
-										class="form-control"
-										id="num-children"
-										name="num-children"
-										placeholder="Enter number of children"
-									/>
-								</div>
-
-								<div class="form-group">
-									<label for="ages">Ages of Children (comma-separated): </label>
-									<input
-										type="text"
-										class="form-control"
-										id="ages"
-										name="ages"
-										placeholder="Enter age of children (comma-seperated)"
-									/>
-								</div>
-
-								<div class="form-group">
-									<label for="gender">Gender (Male/Female): </label>
-									<input
-										type="text"
-										class="form-control"
-										id="gender"
-										name="gender"
-										placeholder="Enter gender"
-									/>
-								</div>
-
-								<button type="submit my-3" class="btn btn-outline-primary">
-									Submit
-								</button>
-							</form>
+						<div id="bar-chart" class="chart-container">
+							<svg
+								class="img-fluid"
+								viewBox="0 0 600 400"
+								preserveAspectRatio="xMidYMid meet"
+							></svg>
 						</div>
+					</div>
+					<div class="col-12 col-xl-6">
+						<!-- Image Container -->
+						<div id="image-container">
+							<p class="subtitle text-bold">
+								Which activities at the beach have the highest drowning rates?
+							</p>
+							<p class="text">
+								Swimming and recreating are the highest at 67%. Followed by
+								Diving and Watercraft at 8% each.
+							</p>
+							<img
+								src="/img/insights.jpg"
+								alt="Image 1"
+								class="img-fluid w-100"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
 
-						<div class="col-12 col-xl-6">
-							<!-- Pie Chart Container -->
-							<div class="chart-container" id="death-chart">
-								<!-- <h3>Proportion of Deaths</h3> -->
-								<svg
-									class="img-fluid"
-									viewBox="0 0 400 400"
-									preserveAspectRatio="xMidYMid meet"
-								></svg>
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<div class="row my-3">
+					<div class="col-12">
+						<div class="row">
+							<div class="col-12 col-xl-12">
+								<p class="subtitle bold">
+									What does this mean? Fill in the formation to look at our
+									insights.
+								</p>
 							</div>
 						</div>
-					</div>
 
-					<!-- Tooltip Element -->
-					<div class="tooltip" id="tooltip"></div>
+						<div class="row">
+							<div class="col-12 col-xl-6">
+								<form id="user-form">
+									<div class="form-group">
+										<label for="name">Name: </label>
+										<input
+											type="text"
+											class="form-control"
+											id="name"
+											name="name"
+											placeholder="Enter name"
+										/>
+									</div>
+
+									<div class="form-group">
+										<label for="num-children">Number of Children: </label>
+										<input
+											type="number"
+											class="form-control"
+											id="num-children"
+											name="num-children"
+											placeholder="Enter number of children"
+										/>
+									</div>
+
+									<div class="form-group">
+										<label for="ages"
+											>Ages of Children (comma-separated):
+										</label>
+										<input
+											type="text"
+											class="form-control"
+											id="ages"
+											name="ages"
+											placeholder="Enter age of children (comma-seperated)"
+										/>
+									</div>
+
+									<div class="form-group">
+										<label for="gender">Gender (Male/Female): </label>
+										<input
+											type="text"
+											class="form-control"
+											id="gender"
+											name="gender"
+											placeholder="Enter gender"
+										/>
+									</div>
+
+									<button type="submit my-3" class="btn btn-outline-primary">
+										Submit
+									</button>
+								</form>
+							</div>
+
+							<div class="col-12 col-xl-6">
+								<!-- Pie Chart Container -->
+								<div class="chart-container" id="death-chart">
+									<!-- <h3>Proportion of Deaths</h3> -->
+									<svg
+										class="img-fluid"
+										viewBox="0 0 400 400"
+										preserveAspectRatio="xMidYMid meet"
+									></svg>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tooltip Element -->
+						<div class="tooltip" id="tooltip"></div>
+					</div>
 				</div>
 			</div>
 		</div>

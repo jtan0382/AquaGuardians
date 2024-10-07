@@ -1,94 +1,99 @@
 {% extends "template.html" %} {% block title %}{{name}} - Aqua Guardian{%
 endblock %} {% block content %}
 
-<section
-	id="beach-header"
-	class="beach-header section-padding background-darker-white"
->
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<div class="d-flex align-items-center">
-				<!-- Left Side -->
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section
+		id="beach-header"
+		class="beach-header section-padding background-darker-white"
+	>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="d-flex align-items-center">
+					<!-- Left Side -->
 
-				<div class="d-flex flex-column flex-fill">
-					<p class="title text-bold">{{name}}</p>
-					<div class="d-flex gap-3 beach-info">
-						<p class="text">Suburb, VIC</p>
-						<a href="https://maps.google.com/?q={{lat}},{{long}}">
-							<img
-								src="/img/icons/location.png"
-								alt="location"
-								style="width: 2rem; height: 2rem"
-							/>
-						</a>
-					</div>
-				</div>
-
-				<!-- Right Side -->
-				<div
-					class="d-flex justify-content-center beach-header-information gap-2"
-				>
 					<div class="d-flex flex-column flex-fill">
-						{% if warnings %}
-						<span class="text text-center">{{ warnings | length }}</span>
+						<!-- <p class="title text-bold">{{name}}</p> -->
+						<div class="d-flex gap-3 beach-info">
+							<!-- <p class="text">Suburb, VIC</p> -->
+							<p class="title text-bold">{{name}}</p>
 
-						{% else %}
-						<span class="text text-center">0</span>
-						{% endif %}
-
-						<p class="text text-center">Warnings</p>
+							<a href="https://maps.google.com/?q={{lat}},{{long}}">
+								<img
+									src="/img/icons/location.png"
+									alt="location"
+									style="width: 2rem; height: 2rem"
+								/>
+							</a>
+						</div>
 					</div>
-					<div class="d-flex flex-column flex-fill">
-						<span class="text text-center">{{ safety_rating }}</span>
 
-						<p class="text text-center">Safety <br />Ratings</p>
-					</div>
-					<div class="d-flex flex-column flex-fill">
-						<span class="text text-center">3</span>
-						<p class="text text-center">
-							Beaufort <br />
-							Rating
-						</p>
+					<!-- Right Side -->
+					<div
+						class="d-flex justify-content-center beach-header-information gap-2"
+					>
+						<div class="d-flex flex-column flex-fill">
+							{% if warnings %}
+							<span class="text text-center">{{ warnings | length }}</span>
+
+							{% else %}
+							<span class="text text-center">0</span>
+							{% endif %}
+
+							<p class="text text-center">Warnings</p>
+						</div>
+						<div class="d-flex flex-column flex-fill">
+							<span class="text text-center">{{ safety_rating }}</span>
+
+							<p class="text text-center">Safety <br />Ratings</p>
+						</div>
+						<div class="d-flex flex-column flex-fill">
+							<span class="text text-center">3</span>
+							<p class="text text-center">
+								Beaufort <br />
+								Rating
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<section
-	id="beach-information-section"
-	class="beach-information-section section-padding"
->
-	<div class="row">
-		<div class="col-1"></div>
-		<div class="col-10">
-			<div class="d-flex gap-5 justify-content-center">
-				<img src="{{image}}" alt="{{name}}" class="img-fluid" />
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section
+		id="beach-information-section"
+		class="beach-information-section section-padding"
+	>
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-10">
+				<div class="d-flex gap-5 justify-content-center">
+					<img src="{{image}}" alt="{{name}}" class="img-fluid" />
 
-				<div class="d-flex flex-column flex-fill">
-					<span class="text">{{info}}</span>
-					<div class="d-flex gap-3 mt-auto">
-						<!-- Amenities -->
-						<div class="d-flex flex-column flex-fill list-of-amenity">
-							<span class="text">Amenities</span>
+					<div class="d-flex flex-column flex-fill">
+						<span class="text">{{info}}</span>
+						<div class="d-flex gap-3 mt-auto">
+							<!-- Amenities -->
+							<div class="d-flex flex-column flex-fill list-of-amenity">
+								<span class="text">Amenities</span>
 
-							<!-- Image -->
-							<div class="d-flex gap-2">
-								{% if amenities %} {% for amenity in amenities %}
+								<!-- Image -->
+								<div class="d-flex gap-2">
+									{% if amenities %} {% for amenity in amenities %}
 
-								<img
-									src="/img/amenities/{{amenity}}.png"
-									alt="{{amenity}}"
-									class="img-fluid icon"
-									style="width: 3rem; height: 3rem"
-								/>
+									<img
+										src="/img/amenities/{{amenity}}.png"
+										alt="{{amenity}}"
+										class="img-fluid icon"
+										style="width: 3rem; height: 3rem"
+									/>
 
-								{% endfor %} {% else %}
-								<p class="text">No Amenities Shown</p>
-								{% endif %}
-								<!-- <img
+									{% endfor %} {% else %}
+									<p class="text">No Amenities Shown</p>
+									{% endif %}
+									<!-- <img
 										src="/img/amenities/bbq.png"
 										alt="bbq"
 										class="img-fluid icon"
@@ -100,27 +105,27 @@ endblock %} {% block content %}
 										class="img-fluid icon"
 										style="width: 3rem; height: 3rem"
 									/> -->
+								</div>
 							</div>
-						</div>
-						<!-- Warning -->
-						<div class="d-flex flex-column flex-fill list-of-warning">
-							<span class="text">Warnings</span>
+							<!-- Warning -->
+							<div class="d-flex flex-column flex-fill list-of-warning">
+								<span class="text">Warnings</span>
 
-							<!-- Image -->
-							<div class="d-flex gap-2">
-								{% if warnings %} {% for warning in warnings %}
+								<!-- Image -->
+								<div class="d-flex gap-2">
+									{% if warnings %} {% for warning in warnings %}
 
-								<img
-									src="/img/warning/{{warning}}.jpeg"
-									alt="{{warning}}"
-									class="img-fluid icon"
-									style="width: 3rem; height: 3rem"
-								/>
+									<img
+										src="/img/warning/{{warning}}.jpeg"
+										alt="{{warning}}"
+										class="img-fluid icon"
+										style="width: 3rem; height: 3rem"
+									/>
 
-								{% endfor %}{% else %}
-								<p class="text">No Warning Shown</p>
-								{% endif %}
-								<!-- <img
+									{% endfor %}{% else %}
+									<p class="text">No Warning Shown</p>
+									{% endif %}
+									<!-- <img
 										src="/img/warning/bluebottle.jpeg"
 										alt="bbq"
 										class="img-fluid icon"
@@ -132,114 +137,110 @@ endblock %} {% block content %}
 										class="img-fluid icon"
 										style="width: 3rem; height: 3rem"
 									/> -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<!-- <section id="warning-list" class="warning-list section-padding">
-		<div class="row">
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section
+		id="current-weather"
+		class="current-weather section-padding background-darker-white"
+	>
+		<div class="row mb-5">
 			<div class="col-1"></div>
 			<div class="col-10">
-				<p class="title text-bold text-center">WARNINGS</p>
-			</div>
-		</div>
-	</section> -->
-
-<section
-	id="current-weather"
-	class="current-weather section-padding background-darker-white"
->
-	<div class="row mb-5">
-		<div class="col-1"></div>
-		<div class="col-10">
-			<div class="row">
-				<div class="col-md-12">
-					<p class="title text-bold text-center">CURRENT WEATHER</p>
+				<div class="row">
+					<div class="col-md-12">
+						<p class="title text-bold text-center">CURRENT WEATHER</p>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-12 col-xl-5 text-center">
-					<img src="/img/weather/weather-outline.png" alt="Weather" />
-				</div>
-				<div class="col-12 col-xl-5">
-					<div
-						class="current-weather-information background-more-darker p-2 h-100"
-					>
-						<div class="row m-3">
-							<div class="col-6">
-								<span class="text">Temp Min: {{temp_min}} °C</span>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-12 col-xl-5 text-center">
+						<img src="/img/weather/weather-outline.png" alt="Weather" />
+					</div>
+					<div class="col-12 col-xl-5">
+						<div
+							class="current-weather-information background-more-darker p-2 h-100"
+						>
+							<div class="row m-3">
+								<div class="col-6">
+									<span class="text">Temp Min: {{temp_min}} °C</span>
+								</div>
+								<div class="col-6">
+									<span class="text">Temp Max: {{temp_max}} °C</span>
+								</div>
 							</div>
-							<div class="col-6">
-								<span class="text">Temp Max: {{temp_max}} °C</span>
+							<div class="row m-3">
+								<div class="col-md-6">
+									<span class="text">Max UV Index: {{uv}}</span>
+								</div>
+								<div class="col-md-6">
+									<span class="text">Max Wind Speed: {{wind}}</span>
+								</div>
 							</div>
-						</div>
-						<div class="row m-3">
-							<div class="col-md-6">
-								<span class="text">Max UV Index: {{uv}}</span>
-							</div>
-							<div class="col-md-6">
-								<span class="text">Max Wind Speed: {{wind}}</span>
-							</div>
-						</div>
-						<div class="row m-3">
-							<div class="col-md-12">
-								<span class="text">Max Wave Height: {{wave}}</span>
+							<div class="row m-3">
+								<div class="col-md-12">
+									<span class="text">Max Wave Height: {{wave}}</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<section id="beaufort-time" class="beaufort-time section-padding">
-	<div class="row mb-5">
-		<div class="col-1"></div>
-		<div class="col-10">
-			<div class="row">
-				<div class="col-md-12">
-					<p class="title text-bold text-center">
-						SAFE TIMINGS ACCORDING TO BEAUFORT SCALE
-					</p>
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section id="beaufort-time" class="beaufort-time section-padding">
+		<div class="row mb-5">
+			<div class="col-1"></div>
+			<div class="col-10">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="title text-bold text-center">
+							SAFE TIMINGS ACCORDING TO BEAUFORT SCALE
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="row m-3">
-				<div class="col-1"></div>
-				<div class="col-12 col-xl-5 text-center">
-					<img src="/img/beaufort.png" alt="Beaufort" />
-				</div>
-				<div class="col-12 col-xl-5">
-					<div
-						class="d-flex justify-content-center align-items-center h-100 background-more-darker p-2"
-					>
-						<div class="beaufort-time m-3">
-							<div class="d-flex gap-3">
-								{{safe_times}} {% if safe_times %} {% for safe_time in
-								safe_times %}
-								<div><span class="text">{{safe_time}}</span></div>
+				<div class="row m-3">
+					<div class="col-1"></div>
+					<div class="col-12 col-xl-5 text-center">
+						<img src="/img/beaufort.png" alt="Beaufort" />
+					</div>
+					<div class="col-12 col-xl-5">
+						<div
+							class="d-flex justify-content-center align-items-center h-100 background-more-darker p-2"
+						>
+							<div class="beaufort-time m-3">
+								<div class="d-flex gap-3">
+									{{safe_times}} {% if safe_times %} {% for safe_time in
+									safe_times %}
+									<div><span class="text">{{safe_time}}</span></div>
 
-								{% endfor %}{% else %}
-								<p class="text">No Safe Time Shown</p>
-								{% endif %}
-							</div>
+									{% endfor %}{% else %}
+									<p class="text">No Safe Time Shown</p>
+									{% endif %}
+								</div>
 
-							<!-- <span class="text"
+								<!-- <span class="text"
 									>of the returned time please print only those between sunraise
 									and sunset</span
 								> -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 {% endblock %}

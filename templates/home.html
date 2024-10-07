@@ -6,12 +6,13 @@ endblock %} {% block content %}
 			
 		</div>
 	</section> -->
-<section id="hero" class="hero">
-	<div
-		class="d-flex flex-column justify-content-center align-items-center hero-banner rounded-3"
-	>
-		<!-- Transparent Overlay -->
-		<!-- <div
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section id="hero" class="hero">
+		<div
+			class="d-flex flex-column justify-content-center align-items-center hero-banner rounded-3"
+		>
+			<!-- Transparent Overlay -->
+			<!-- <div
 				style="
 					position: absolute;
 					top: 0;
@@ -22,73 +23,76 @@ endblock %} {% block content %}
 				"
 			></div> -->
 
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="text-content">
-					<p
-						class="text text-color"
-						style="text-align: justify; max-width: 50rem; margin: auto"
-					>
-						Did you know that 27.8% of premature deaths among migrant children
-						in Australia are due to drowning? Many may not be familiar with
-						local water safety conditions. Click on
-						<span class="text-bold">Safe Beaches</span> to find the safest
-						beaches near you
-					</p>
-					<div class="mt-4">
-						<button
-							class="btn btn-primary rounded-5 p-2"
-							onclick="getLocation()"
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="text-content">
+						<p
+							class="text text-color"
+							style="text-align: justify; max-width: 50rem; margin: auto"
 						>
-							<span class="text">See Safe Beaches near You →</span>
-						</button>
+							Did you know that 27.8% of premature deaths among migrant children
+							in Australia are due to drowning? Many may not be familiar with
+							local water safety conditions. Click on
+							<span class="text-bold">Safe Beaches</span> to find the safest
+							beaches near you
+						</p>
+						<div class="mt-4">
+							<button
+								class="btn btn-primary rounded-5 p-2"
+								onclick="getLocation()"
+							>
+								<span class="text">See Safe Beaches near You →</span>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<section id="product" class="product section-padding">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-sm-12 col-md-10">
-			<!-- About Information -->
+<div data-aos="fade-up" data-aos-duration="1000">
+	<section id="product" class="product section-padding">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-sm-12 col-md-10">
+				<!-- About Information -->
 
-			<div class="d-flex gap-3">
-				<!-- Left -->
-				<video class="rounded-3" width="80%" height="300" controls>
-					<source src="/media/test.mp4" type="video/mp4" />
-					Your browser does not support the video tag.
-				</video>
+				<div class="d-flex gap-3">
+					<!-- Left -->
+					<video class="rounded-3" width="80%" height="300" controls>
+						<source src="/media/test.mp4" type="video/mp4" />
+						Your browser does not support the video tag.
+					</video>
 
-				<!-- <div>
+					<!-- <div>
 						<img src="/img/children.jpeg" alt="" class="img-fluid rounded-5" />
 					</div> -->
-				<!-- Right -->
-				<div>
-					<div class="d-flex flex-column justify-content-around">
-						<div>
-							<p class="title">
-								<span class="text-bold">Our Mission:</span>
-								<i
-									>Making Beach Visits Safe and Enjoyable for Migrant
-									Families</i
-								>
-							</p>
-						</div>
-						<div class="d-flex flex-column">
-							<p class="text">
-								At AquaGuardians, we are dedicated to ensuring that migrant
-								families enjoy a safe and memorable time at the beach. Watch the
-								video to the right to learn more about us.
-							</p>
+					<!-- Right -->
+					<div>
+						<div class="d-flex flex-column justify-content-around">
+							<div>
+								<p class="title">
+									<span class="text-bold">Our Mission:</span>
+									<i
+										>Making Beach Visits Safe and Enjoyable for Migrant
+										Families</i
+									>
+								</p>
+							</div>
+							<div class="d-flex flex-column">
+								<p class="text">
+									At AquaGuardians, we are dedicated to ensuring that migrant
+									families enjoy a safe and memorable time at the beach. Watch
+									the video to the right to learn more about us.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 {% endblock %}
