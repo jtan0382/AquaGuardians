@@ -111,8 +111,8 @@ def index():
         longitude = float(request.args.get("longitude", 0))
 
         # Fetch the merged data with default filter (SIGHTSEEING = True)
-        df_merged = fetch_merged_data()
-        df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+        # df_merged = fetch_merged_data()
+        # df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
 
         # Calculate the top 3 beaches based on current location with filtered data
         try:
