@@ -14,7 +14,7 @@ endblock %} {% block content %}
 					Find the safest beaches across Victoria
 				</p>
 				<div class="search-container d-flex">
-					<form action="/recommendation" method="POST" class="w-100">
+					<form action="/recommendation#top-beach" method="GET" class="w-100">
 						<div class="search-input-prepend m-1">
 							<a
 								class="btn"
@@ -68,10 +68,20 @@ endblock %} {% block content %}
 							type="text"
 							name="user-input"
 							class="search-field rounded-5"
-							placeholder="Search by activity, beach, or suburb"
+							placeholder="Select filter from left for activities, and then enter address"
 							aria-label="Search"
 							autocomplete="shipping street-address"
 						/>
+						<!-- <input id="suburb-input" type="hidden" name="user_input_suburb" />  -->
+						<!-- <input
+								id="address-input"
+								type="text"
+								name="user_input_address_search"
+								class="search-field rounded-5"
+								placeholder="Select filter from left for activities, and then enter address"
+								aria-label="Search"
+								autocomplete="shipping street-address"
+							/> -->
 
 						<div class="search-input-append m-1">
 							<button class="btn" type="submit">

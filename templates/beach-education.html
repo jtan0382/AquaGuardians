@@ -9,8 +9,10 @@ endblock %} {% block content %}
 			<div class="row px-3">
 				<div class="col-4"></div>
 				<div class="col-4">
-					<div class="phone-card rounded-5 d-flex flex-column" style="max-height: 100vh; height: auto;">
-						
+					<div
+						class="phone-card rounded-5 d-flex flex-column"
+						style="max-height: 100vh; height: auto"
+					>
 						<!-- Header Row -->
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="text-left">
@@ -26,40 +28,59 @@ endblock %} {% block content %}
 						</div>
 
 						<!-- Container for received messages -->
-						<div id="message-wrapper" class="container flex-grow-1" style="overflow-y: auto; padding: auto; height: 300px;"> <!-- Scrollable container -->
+						<div
+							id="message-wrapper"
+							class="container flex-grow-1"
+							style="overflow-y: auto; padding: auto; height: 300px"
+						>
+							<!-- Scrollable container -->
 							<div class="container">
-									<div class="row" id="sms-container-top">
-										<!-- From messages will be appended here -->
-										
-									</div>
+								<div class="row" id="sms-container-top">
+									<!-- From messages will be appended here -->
+								</div>
 							</div>
 
 							<script type="module">
-								import { renderReceivedMessage } from '/js/beach-education.js';
-							
+								import { renderReceivedMessage } from "/js/beach-education.js";
+
 								// Example calls to render messages
-								renderReceivedMessage("Welcome to Beach Safety Module!", 'sms-container-top');
-								renderReceivedMessage("This is an interactive learning module where instructions will appear as received messages. Follow the instructions and choose an option accordingly.", 'sms-container-top');
-								renderReceivedMessage("Sometimes, there may be only one option! Make sure to scroll down to read the full instructions.", 'sms-container-top');
+								renderReceivedMessage(
+									"Welcome to Beach Safety Module!",
+									"sms-container-top"
+								);
+								renderReceivedMessage(
+									"This is an interactive learning module where instructions will appear as received messages. Follow the instructions and choose an option accordingly.",
+									"sms-container-top"
+								);
+								renderReceivedMessage(
+									"Sometimes, there may be only one option! Make sure to scroll down to read the full instructions.",
+									"sms-container-top"
+								);
 							</script>
-							
 
 							<!-- Middle Container for replies -->
 							<div class="container">
-								<div class="row" id="sms-container-middle"> <!-- Container for messages -->
-								<!-- Reply messages will be appended here -->
+								<div class="row" id="sms-container-middle">
+									<!-- Container for messages -->
+									<!-- Reply messages will be appended here -->
 								</div>
 							</div>
 						</div>
 
 						<!-- Button Section -->
-						<div id="button-section" class="d-flex flex-column mt-auto" style="padding: 30px 0;">
-							<button id="gotItButton" class="phone-response-button w-100 my-2 rounded-3 p-3">
+						<div
+							id="button-section"
+							class="d-flex flex-column mt-auto"
+							style="padding: 30px 0"
+						>
+							<button
+								id="gotItButton"
+								class="phone-response-button w-100 my-2 rounded-3 p-3"
+							>
 								<span class="text text-background-color">GOT IT</span>
 							</button>
 						</div>
 						<div class="phone-line"></div>
-					
 					</div>
 					<!-- </div> -->
 				</div>

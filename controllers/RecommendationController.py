@@ -31,11 +31,15 @@ def is_between_sunset_and_sunrise(time_str, sunset_time, sunrise_time):
 def index():
     # Filtered data
     if request.method == "POST":
+
         # Debug: Print all data received from the form
         print(f"\n\n===== Form data received: {request.form} =====\n\n")
 
-        user_address = request.form.get('user-input address-search')
-        filters = request.form.getlist('filters')
+        user_address = request.args.get('user-input address-search')
+        filters = request.args.getlist('filters')
+
+        print(f"suburb: {request.args}")
+
 
         # Debug: Check the type and content of filters
         print(f"\n\n===== Filters received (type: {type(filters)}): {filters} =====\n\n")
@@ -117,6 +121,18 @@ def index():
 
         latitude = float(request.args.get("latitude", 0))
         longitude = float(request.args.get("longitude", 0))
+
+        user_address = request.args.get('user-input address-search')
+        filters = request.args.getlist('filters')
+
+        # CHANGE IF AND ELIF for current location, use try and except so that if the db is error, we pass the error_page
+
+        print(f"suburb: {user_address}")
+        print(f"data: {request.args}")
+        print(f"user input: {user_address}, {filters}")
+        # print(f"suburb: {suburb}")
+
+
 
         # Fetch the merged data with default filter (SIGHTSEEING = True)
         # df_merged = fetch_merged_data()

@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import bcrypt
 import math
 
-
 # Define your categories and item counts
 categories = {
     'inform': 4,
@@ -28,8 +27,6 @@ def get_items_for_category(category, count, page, per_page):
     return items
 
 
-
-
 load_dotenv()
 
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/')
@@ -38,14 +35,31 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 HASHED_PASSWORD = os.getenv('HASHED_PASSWORD').encode('utf-8')
 
 app.register_blueprint(recommendation_bp, url_prefix='/recommendation')
-app.before_request(authenticate)
+app.before_request(authenticate)  # Ensure this runs before each request
 
 
-@app.route('/', methods=['POST'])
+# @app.route('/', methods=['GET', 'POST'])
+# def login():
+#     if 'authenticated' in session:
+#         # If the user is already authenticated, redirect to the home page
+#         return redirect(url_for('home'))
+    
+#     if request.method == 'POST':
+#         password = request.form['password'].encode('utf-8')
+
+#         if bcrypt.checkpw(password, HASHED_PASSWORD):
+#             session['authenticated'] = True
+#             session.permanent = False
+#             return redirect(url_for('home'))
+#         else:
+#             return render_template('index.html', error="Incorrect password")
+    
+#     return render_template('index.html', error="Please enter your password")
+
+@app.route('/', methods=['GET', 'POST'])
 def login():
-
     if 'authenticated' in session:
-        # If the user is already authenticated, redirect to the home page
+        # If the user is already authenticated, redirect to the index page
         return redirect(url_for('home'))
     
     if request.method == 'POST':
@@ -54,18 +68,14 @@ def login():
         if bcrypt.checkpw(password, HASHED_PASSWORD):
             session['authenticated'] = True
             session.permanent = False
+            # Redirect to the index page after successful authentication
             return redirect(url_for('home'))
-        
         else:
             return render_template('index.html', error="Incorrect password")
     
-    return render_template('index.html', error="Incorrect password")
+    return render_template('index.html', error="Please enter your password")
 
 
-
-@app.route("/")
-def index():
-    return render_template('index.html')
 
 @app.route("/home")
 def home():
@@ -80,15 +90,10 @@ def historical():
 def safety():
     return render_template("beach-education.html")
 
-
 @app.route("/emergency")
 def emergency():
     return render_template("emergency-procedures.html")
 
-
-# @app.route("/rip-current")
-# def rip():
-#     return render_template("rip-current.html")
 
 @app.route('/get_items/<category>')
 def get_items(category):
@@ -114,6 +119,7 @@ def get_items(category):
         'total_pages': total_pages
     })
 
+
 @app.route("/colour")
 def colour():
     return render_template("colour.html")
@@ -126,11 +132,7 @@ def error():
 @app.errorhandler(404)
 def page_not_found(e):
     # Render the custom error page
-    return render_template('not_found.html')
-
-
-
-
+    return render_template('error_page.html', e="The page is not found, check ur spelling and try again")
 
 
 if __name__ == '__main__':

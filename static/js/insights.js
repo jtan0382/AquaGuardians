@@ -128,11 +128,11 @@ d3.csv("/data/vis_data.csv").then(function (data) {
 				.style("display", "flex")
 				.style("align-items", "center")
 				.style("margin-bottom", "5px").html(`
-                <div style="width: 20px; height: 20px; background: ${color(
-									d.measure
-								)}; margin-right: 5px;"></div>
-                ${d.measure}: ${d.total}
-            `);
+                    <div style="width: 20px; height: 20px; background: ${color(
+											d.measure
+										)}; margin-right: 5px;"></div>
+                    ${d.measure}: ${d.total}
+                `);
 		});
 	}
 
@@ -256,11 +256,11 @@ d3.csv("/data/vis_data.csv").then(function (data) {
 				.style("display", "flex")
 				.style("align-items", "center")
 				.style("margin-bottom", "5px").html(`
-                <div style="width: 20px; height: 20px; background: ${color(
-									item
-								)}; margin-right: 5px;"></div>
-                ${item}
-            `);
+                    <div style="width: 20px; height: 20px; background: ${color(
+											item
+										)}; margin-right: 5px;"></div>
+                    ${item}
+                `);
 		});
 	}
 });
