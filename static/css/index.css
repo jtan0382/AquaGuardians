@@ -1,10 +1,9 @@
 /* ABOUT */
 .product div.d-flex{
 
-    flex-direction: row-reverse;
-  }
-
-.product-information{
-    max-width: 75rem;
+  flex-direction: row-reverse;
 }
 
+.product-information{
+  max-width: 75rem;
+}

@@ -27,136 +27,189 @@ def is_between_sunset_and_sunrise(time_str, sunset_time, sunrise_time):
     else:
         return time_obj >= sunset_time and time_obj <= sunrise_time
 
-# Currently Working index
-def index():
-    # Filtered data
-    if request.method == "POST":
+# # Currently Working index
+# def index():
+#     # Filtered data
+#     if request.method == "POST":
 
-        # Debug: Print all data received from the form
-        print(f"\n\n===== Form data received: {request.form} =====\n\n")
+#         # Debug: Print all data received from the form
+#         print(f"\n\n===== Form data received: {request.form} =====\n\n")
 
-        user_address = request.args.get('user-input address-search')
-        filters = request.args.getlist('filters')
+#         user_address = request.args.get('user-input address-search')
+#         filters = request.args.getlist('filters')
 
-        print(f"suburb: {request.args}")
+#         print(f"suburb: {request.args}")
 
 
-        # Debug: Check the type and content of filters
-        print(f"\n\n===== Filters received (type: {type(filters)}): {filters} =====\n\n")
+#         # Debug: Check the type and content of filters
+#         print(f"\n\n===== Filters received (type: {type(filters)}): {filters} =====\n\n")
 
-        # Ensure filters is a list
-        if isinstance(filters, str):
-            filters = [filters]
+#         # Ensure filters is a list
+#         if isinstance(filters, str):
+#             filters = [filters]
 
-        # Enforce user to input an address
-        if not user_address:
-            # If no address is provided, return an error message prompting the user to enter an address
-            print("\n\n===== No address provided. Requesting user to enter a valid address =====\n\n")
-            return render_template("error_page.html", e="Address must be entered in the search bar before searching.")
+#         # Enforce user to input an address
+#         if not user_address:
+#             # If no address is provided, return an error message prompting the user to enter an address
+#             print("\n\n===== No address provided. Requesting user to enter a valid address =====\n\n")
+#             return render_template("error_page.html", e="Address must be entered in the search bar before searching.")
         
-        # Determine coordinates to use
-        if user_address:
-            # Convert user address to latitude and longitude using Mapbox API
-            latitude, longitude = get_coordinates_from_address(user_address)
-            if latitude is None or longitude is None:
-                # Handle the case where coordinates are not found
-                print("\n\n===== No coordinates found for the given address =====\n\n")
-                return render_template("error_page.html", e="Address not found. Please enter a valid address.")
-        else:
-            # Use the previous user's physical latitude and longitude
-            latitude = float(request.args.get("latitude", 0))
-            longitude = float(request.args.get("longitude", 0))
-            if latitude == 0 and longitude == 0:
-                # Handle missing coordinates
-                print("\n\n===== Location data not found. Please enable location services or enter an address =====\n\n")
-                return render_template("error_page.html", e="Location data not found. Please enable location services or enter an address.")
+#         # Determine coordinates to use
+#         if user_address:
+#             # Convert user address to latitude and longitude using Mapbox API
+#             latitude, longitude = get_coordinates_from_address(user_address)
+#             if latitude is None or longitude is None:
+#                 # Handle the case where coordinates are not found
+#                 print("\n\n===== No coordinates found for the given address =====\n\n")
+#                 return render_template("error_page.html", e="Address not found. Please enter a valid address.")
+#         else:
+#             # Use the previous user's physical latitude and longitude
+#             latitude = float(request.args.get("latitude", 0))
+#             longitude = float(request.args.get("longitude", 0))
+#             if latitude == 0 and longitude == 0:
+#                 # Handle missing coordinates
+#                 print("\n\n===== Location data not found. Please enable location services or enter an address =====\n\n")
+#                 return render_template("error_page.html", e="Location data not found. Please enable location services or enter an address.")
 
-        # Fetch the merged data
-        df_merged = fetch_merged_data()
-        print(f"\n\n===== Total beaches before filtering: {df_merged.shape[0]} =====\n\n")
+#         # Fetch the merged data
+#         df_merged = fetch_merged_data()
+#         print(f"\n\n===== Total beaches before filtering: {df_merged.shape[0]} =====\n\n")
 
-        # Apply default filter (SIGHTSEEING = True) if no user filter is selected
-        if not filters:
-            df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
-            print(f"\n\n===== Beaches after applying SIGHTSEEING filter: {df_merged.shape[0]} =====\n\n")
-        else:
-            # Start with the default filter for SIGHTSEEING
-            conditions = (df_merged['SIGHTSEEING'] == True)
+#         # Apply default filter (SIGHTSEEING = True) if no user filter is selected
+#         if not filters:
+#             df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+#             print(f"\n\n===== Beaches after applying SIGHTSEEING filter: {df_merged.shape[0]} =====\n\n")
+#         else:
+#             # Start with the default filter for SIGHTSEEING
+#             conditions = (df_merged['SIGHTSEEING'] == True)
 
-            # Add conditions for each selected filter using logical AND 
-            if 'swimming' in filters:
-                conditions = conditions & (df_merged['PATROL'] == True) & (df_merged['SWIM'] == True)
-                print(f"\n\n===== Applying swimming filter... Beaches meeting PATROL and SWIM conditions: {df_merged[conditions].shape[0]} =====\n\n")
+#             # Add conditions for each selected filter using logical AND 
+#             if 'swimming' in filters:
+#                 conditions = conditions & (df_merged['PATROL'] == True) & (df_merged['SWIM'] == True)
+#                 print(f"\n\n===== Applying swimming filter... Beaches meeting PATROL and SWIM conditions: {df_merged[conditions].shape[0]} =====\n\n")
             
-            if 'surfing' in filters:
-                conditions = conditions & (df_merged['SURF'] == True)
-                print(f"\n\n===== Applying surfing filter... Beaches meeting SURF condition: {df_merged[conditions].shape[0]} =====\n\n")
+#             if 'surfing' in filters:
+#                 conditions = conditions & (df_merged['SURF'] == True)
+#                 print(f"\n\n===== Applying surfing filter... Beaches meeting SURF condition: {df_merged[conditions].shape[0]} =====\n\n")
 
-            if 'fishing' in filters:
-                conditions = conditions & (df_merged['FISH'] == True)
-                print(f"\n\n===== Applying fishing filter... Beaches meeting FISH condition: {df_merged[conditions].shape[0]} =====\n\n")
+#             if 'fishing' in filters:
+#                 conditions = conditions & (df_merged['FISH'] == True)
+#                 print(f"\n\n===== Applying fishing filter... Beaches meeting FISH condition: {df_merged[conditions].shape[0]} =====\n\n")
 
-            # Apply the combined conditions to filter the DataFrame
-            df_merged = df_merged[conditions]
-            print(f"\n\n===== Total beaches after applying all filters: {df_merged.shape[0]} =====\n\n")
+#             # Apply the combined conditions to filter the DataFrame
+#             df_merged = df_merged[conditions]
+#             print(f"\n\n===== Total beaches after applying all filters: {df_merged.shape[0]} =====\n\n")
 
-        MODEL_PARAMS = {
-            'a': 0.4,  # Weight for hazard rating
-            'b': 0.6   # Weight for distance
-        }
-        try:
-            # Calculate the top 3 beaches based on user's location and filtered data
-            top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
+#         MODEL_PARAMS = {
+#             'a': 0.4,  # Weight for hazard rating
+#             'b': 0.6   # Weight for distance
+#         }
+#         try:
+#             # Calculate the top 3 beaches based on user's location and filtered data
+#             top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
 
-            return render_template("recommendation.html", top_beaches=top_beaches.to_dict(orient='records'), user_address=user_address, filters=filters)
-        except:
-            return render_template("error_page.html", e = "Oops! Please refresh your website, there is an issue on database.")
+#             return render_template("recommendation.html", top_beaches=top_beaches.to_dict(orient='records'), user_address=user_address, filters=filters)
+#         except:
+#             return render_template("error_page.html", e = "Oops! Please refresh your website, there is an issue on database.")
 
-    # Current Location if address not provided in the search bar
-    elif request.method == 'GET':
-        MODEL_PARAMS = {
-            'a': 0.4,  # Weight for hazard rating
-            'b': 0.6   # Weight for distance
-        }
+#     # Current Location if address not provided in the search bar
+#     elif request.method == 'GET':
+#         MODEL_PARAMS = {
+#             'a': 0.4,  # Weight for hazard rating
+#             'b': 0.6   # Weight for distance
+#         }
 
+#         latitude = float(request.args.get("latitude", 0))
+#         longitude = float(request.args.get("longitude", 0))
+
+#         user_address = request.args.get('user-input address-search')
+#         filters = request.args.getlist('filters')
+
+#         # CHANGE IF AND ELIF for current location, use try and except so that if the db is error, we pass the error_page
+
+#         print(f"suburb: {user_address}")
+#         print(f"data: {request.args}")
+#         print(f"user input: {user_address}, {filters}")
+#         # print(f"suburb: {suburb}")
+
+
+
+#         # Fetch the merged data with default filter (SIGHTSEEING = True)
+#         # df_merged = fetch_merged_data()
+#         # df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+
+#         # Calculate the top 3 beaches based on current location with filtered data
+#         try:
+#             # Fetch the merged data with default filter (SIGHTSEEING = True)
+#             df_merged = fetch_merged_data()
+#             df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
+#             top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
+#             print(f"safe time: {top_beaches['safe_beaufort']}")
+
+
+#             print(f"\n\n===== Beaches based on current location: {top_beaches['BEACH_NAME']} =====\n\n")
+
+#             return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
+#         except:
+#             return render_template("error_page.html", e = "Oops! Please refresh your website, there is an issue on database.")
+
+
+#     else:
+#         return render_template("error_page.html", e="Please allow the location's permission")
+
+def index():
+    # Determine if the filters and address are entered by the user
+    user_address = request.args.get('user-input address-search')
+    filters = request.args.getlist('filters')
+
+    # Debugging output for filter and address input
+    print(f"\n\n===== Filters received: {filters} =====\n\n")
+    print(f"\n\n===== Address entered: {user_address} =====\n\n")
+
+    # Ensure filters is a list
+    if isinstance(filters, str):
+        filters = [filters]
+
+    # If the user provides an address, convert it to coordinates
+    if user_address:
+        latitude, longitude = get_coordinates_from_address(user_address)
+        if latitude is None or longitude is None:
+            return render_template("error_page.html", e="Address not found. Please enter a valid address.")
+    else:
+        # Use the provided latitude and longitude, or default to 0 if none provided
         latitude = float(request.args.get("latitude", 0))
         longitude = float(request.args.get("longitude", 0))
+        if latitude == 0 and longitude == 0:
+            return render_template("error_page.html", e="Location data not found. Please enable location services or enter an address.")
 
-        user_address = request.args.get('user-input address-search')
-        filters = request.args.getlist('filters')
+    
 
-        # CHANGE IF AND ELIF for current location, use try and except so that if the db is error, we pass the error_page
+    # Attempt to calculate top beaches and render the recommendation page
+    try:
+        # Fetch the merged data
+        df_merged = fetch_merged_data()
 
-        print(f"suburb: {user_address}")
-        print(f"data: {request.args}")
-        print(f"user input: {user_address}, {filters}")
-        # print(f"suburb: {suburb}")
-
-
-
-        # Fetch the merged data with default filter (SIGHTSEEING = True)
-        # df_merged = fetch_merged_data()
-        # df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
-
-        # Calculate the top 3 beaches based on current location with filtered data
-        try:
-            # Fetch the merged data with default filter (SIGHTSEEING = True)
-            df_merged = fetch_merged_data()
+        # Apply default filter (SIGHTSEEING = True) if no filters are selected
+        if not filters:
             df_merged = df_merged[df_merged['SIGHTSEEING'] == True]
-            top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
-            print(f"safe time: {top_beaches['safe_beaufort']}")
+        else:
+            conditions = (df_merged['SIGHTSEEING'] == True)
+            if 'swimming' in filters:
+                conditions &= (df_merged['PATROL'] == True) & (df_merged['SWIM'] == True)
+            if 'surfing' in filters:
+                conditions &= (df_merged['SURF'] == True)
+            if 'fishing' in filters:
+                conditions &= (df_merged['FISH'] == True)
+            df_merged = df_merged[conditions]
 
-
-            print(f"\n\n===== Beaches based on current location: {top_beaches['BEACH_NAME']} =====\n\n")
-
-            return render_template("recommendation.html", latitude=latitude, longitude=longitude, top_beaches=top_beaches.to_dict(orient='records'))
-        except:
-            return render_template("error_page.html", e = "Oops! Please refresh your website, there is an issue on database.")
-
-
-    else:
-        return render_template("error_page.html", e="Please allow the location's permission")
-
+        # Define model parameters
+        MODEL_PARAMS = {'a': 0.05, 'b': 0.95}
+        top_beaches = getTop3Beaches(longitude, latitude, MODEL_PARAMS, df_merged)
+        return render_template("recommendation.html", top_beaches=top_beaches.to_dict(orient='records'), user_address=user_address, filters=filters)
+    except Exception as e:
+        # print(f"Error: {e}")
+        return render_template("error_page.html", e="Oops! Please refresh your website until working, there is an issue on database.")
+        # return render_template("error_page.html", e="Oops! Please refresh your website, there is an issue on database.")
 
 
 

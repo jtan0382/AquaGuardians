@@ -137,6 +137,15 @@
     height: 3rem;
 }
 
+.footer img{
+    width: 10rem;
+    height: 10rem;
+}
+
+.footer a:hover{
+    color: var(--secondary-color)
+}
+
 .phone-icon{
     width: 1rem;
     height: 1rem;
