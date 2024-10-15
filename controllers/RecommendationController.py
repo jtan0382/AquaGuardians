@@ -208,7 +208,7 @@ def index():
         return render_template("recommendation.html", top_beaches=top_beaches.to_dict(orient='records'), user_address=user_address, filters=filters)
     except Exception as e:
         # print(f"Error: {e}")
-        return render_template("error_page.html", e="Oops! Please refresh your website until working, there is an issue on database.")
+        return render_template("error_page.html", e="Oops, something went wrong. Please try again later")
         # return render_template("error_page.html", e="Oops! Please refresh your website, there is an issue on database.")
 
 
